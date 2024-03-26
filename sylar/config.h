@@ -72,6 +72,7 @@ class Config {
 public:
     typedef std::map<std::string, ConfigVarBase::ptr> ConfigVarMap;
 
+    //查找是否存在该配置   如果存在  直接返回  不存在则新增
     template<class T>
     static typename ConfigVar<T>::ptr Lookup(const std::string& name,
             const T& default_value, const std::string& description = "") {

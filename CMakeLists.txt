@@ -1,20 +1,16 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.0)
 project(sylar)
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
-<<<<<<< HEAD
-set(EXPORT_COMPILE_COMMANDS ON)
-=======
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) 
->>>>>>> 28f729c (日志模块和config模块完成)
 set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS}  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function")
 
 include_directories(.)
-include_directories(/apps/sylar/include)
-link_directories(/apps/sylar/lib)
+include_directories(/usr/local/include)
+link_directories(/usr/local/lib)
 
 find_library(YAMLCPP yaml-cpp)
-message("***", ${YAMLCPP})
+
 
 set(LIB_SRC
     sylar/log.cc

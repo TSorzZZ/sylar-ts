@@ -32,7 +32,7 @@ void print_yaml(const YAML::Node& node, int level) {
 }
 
 void test_yaml() {
-    YAML::Node root = YAML::LoadFile("/home/sylar/workspace/sylar/bin/conf/log.yml");
+    YAML::Node root = YAML::LoadFile("/home/ts/project/sylar-ts/bin/conf/log.yml");
     print_yaml(root, 0);
 
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << root.Scalar();
@@ -42,7 +42,7 @@ void test_config() {
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "before: " << g_int_value_config->getValue();
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "before: " << g_float_value_config->toString();
 
-    YAML::Node root = YAML::LoadFile("/home/sylar/workspace/sylar/bin/conf/log.yml");
+    YAML::Node root = YAML::LoadFile("/home/ts/project/sylar-ts/bin/conf/log.yml");
     sylar::Config::LoadFromYaml(root);
 
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "after: " << g_int_value_config->getValue();
