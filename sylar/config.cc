@@ -14,6 +14,7 @@ ConfigVarBase::ptr Config::LookupBase(const std::string& name) {
 //  B: 10
 //  C: str
 
+//迭代加载所有的数据到vector中
 static void ListAllMember(const std::string& prefix,
                           const YAML::Node& node,
                           std::list<std::pair<std::string, const YAML::Node> >& output) {
@@ -32,6 +33,7 @@ static void ListAllMember(const std::string& prefix,
     }
 }
 
+//从yaml读入数据  转为配置
 void Config::LoadFromYaml(const YAML::Node& root) {
     std::list<std::pair<std::string, const YAML::Node> > all_nodes;
     ListAllMember("", root, all_nodes);
