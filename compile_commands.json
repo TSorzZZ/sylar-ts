@@ -1,27 +1,27 @@
 [
 {
   "directory": "/home/ts/project/sylar-ts",
-  "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/.   -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function -fPIC -o CMakeFiles/sylar.dir/sylar/log.cc.o -c /home/ts/project/sylar-ts/sylar/log.cc",
+  "command": "/usr/bin/c++ -Dsylar_EXPORTS -D__FILE__=\\\"sylar/log.cc\\\" -I/home/ts/project/sylar-ts/.   -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/log.cc.o -c /home/ts/project/sylar-ts/sylar/log.cc",
   "file": "/home/ts/project/sylar-ts/sylar/log.cc"
 },
 {
   "directory": "/home/ts/project/sylar-ts",
-  "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/.   -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function -fPIC -o CMakeFiles/sylar.dir/sylar/util.cc.o -c /home/ts/project/sylar-ts/sylar/util.cc",
+  "command": "/usr/bin/c++ -Dsylar_EXPORTS -D__FILE__=\\\"sylar/util.cc\\\" -I/home/ts/project/sylar-ts/.   -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/util.cc.o -c /home/ts/project/sylar-ts/sylar/util.cc",
   "file": "/home/ts/project/sylar-ts/sylar/util.cc"
 },
 {
   "directory": "/home/ts/project/sylar-ts",
-  "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/.   -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function -fPIC -o CMakeFiles/sylar.dir/sylar/config.cc.o -c /home/ts/project/sylar-ts/sylar/config.cc",
+  "command": "/usr/bin/c++ -Dsylar_EXPORTS -D__FILE__=\\\"sylar/config.cc\\\" -I/home/ts/project/sylar-ts/.   -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/config.cc.o -c /home/ts/project/sylar-ts/sylar/config.cc",
   "file": "/home/ts/project/sylar-ts/sylar/config.cc"
 },
 {
   "directory": "/home/ts/project/sylar-ts",
-  "command": "/usr/bin/c++  -I/home/ts/project/sylar-ts/.   -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function -o CMakeFiles/test_log.dir/tests/test_log.cc.o -c /home/ts/project/sylar-ts/tests/test_log.cc",
+  "command": "/usr/bin/c++  -D__FILE__=\\\"tests/test_log.cc\\\" -I/home/ts/project/sylar-ts/.   -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -Wno-builtin-macro-redefined -o CMakeFiles/test_log.dir/tests/test_log.cc.o -c /home/ts/project/sylar-ts/tests/test_log.cc",
   "file": "/home/ts/project/sylar-ts/tests/test_log.cc"
 },
 {
   "directory": "/home/ts/project/sylar-ts",
-  "command": "/usr/bin/c++  -I/home/ts/project/sylar-ts/.   -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function -o CMakeFiles/test_config.dir/tests/test_config.cc.o -c /home/ts/project/sylar-ts/tests/test_config.cc",
+  "command": "/usr/bin/c++  -D__FILE__=\\\"tests/test_config.cc\\\" -I/home/ts/project/sylar-ts/.   -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -Wno-builtin-macro-redefined -o CMakeFiles/test_config.dir/tests/test_config.cc.o -c /home/ts/project/sylar-ts/tests/test_config.cc",
   "file": "/home/ts/project/sylar-ts/tests/test_config.cc"
 }
 ]

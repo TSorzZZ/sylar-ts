@@ -293,6 +293,7 @@ public:
     }
     std::string getTypeName() const override { return typeid(T).name();}
 
+    //事件回调
     void addListener(uint64_t key, on_change_cb cb){
         m_cbs[key] = cb;
     }
@@ -314,14 +315,14 @@ private:
 
 class Config {
 public:
-    typedef std::map<std::string, ConfigVarBase::ptr> ConfigVarMap;
+    typedef std::unordered_map<std::string, ConfigVarBase::ptr> ConfigVarMap;
 
     //查找是否存在该配置   如果存在  直接返回  不存在则新增
     template<class T>
     static typename ConfigVar<T>::ptr Lookup(const std::string& name,
             const T& default_value, const std::string& description = "") {
-        auto it = s_datas.find(name);
-        if(it != s_datas.end()){
+        auto it = GetDatas().find(name); 
+        if(it != GetDatas().end()){
             auto tmp = std::dynamic_pointer_cast<ConfigVar<T>>(it->second);
             if(tmp){
                 SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "Lookup name=" << name << " exists";
@@ -341,14 +342,14 @@ public:
         }
 
         typename ConfigVar<T>::ptr v(new ConfigVar<T>(name, default_value, description));
-        s_datas[name] = v;
+        GetDatas()[name] = v;
         return v;
     }
 
     template<class T>
     static typename ConfigVar<T>::ptr Lookup(const std::string& name) {
-        auto it = s_datas.find(name);
-        if(it == s_datas.end()) {
+        auto it = GetDatas().find(name);
+        if(it == GetDatas().end()) {
             return nullptr;
         }
         return std::dynamic_pointer_cast<ConfigVar<T> >(it->second);
@@ -357,7 +358,11 @@ public:
     static void LoadFromYaml(const YAML::Node& root);
     static ConfigVarBase::ptr LookupBase(const std::string& name);
 private:
-    static ConfigVarMap s_datas;
+    // 解决全局变量初始化顺序的问题
+    static ConfigVarMap& GetDatas(){
+        static ConfigVarMap s_datas;
+        return  s_datas;
+    }
 };
 
 }
