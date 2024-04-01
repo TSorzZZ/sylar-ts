@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -Dsylar_EXPORTS
 
-CXX_INCLUDES = -I/home/ts/project/sylar-ts/.
+CXX_INCLUDES = -I/home/ts/project/sylar-ts/. -I/home/ts/project/sylar-ts/sylar
 
 CXX_FLAGS =   -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined
 
@@ -13,4 +13,6 @@ CXX_FLAGS =   -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-fun
 # Custom defines: CMakeFiles/sylar.dir/sylar/util.cc.o_DEFINES = __FILE__="sylar/util.cc"
 
 # Custom defines: CMakeFiles/sylar.dir/sylar/config.cc.o_DEFINES = __FILE__="sylar/config.cc"
+
+# Custom defines: CMakeFiles/sylar.dir/sylar/mythread.cc.o_DEFINES = __FILE__="sylar/mythread.cc"
 

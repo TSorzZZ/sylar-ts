@@ -241,7 +241,8 @@ CMakeFiles/test_log.dir/tests/test_log.cc.o: tests/test_log.cc \
   /usr/include/x86_64-linux-gnu/asm/unistd.h \
   /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
-  sylar/singleton.h
+  sylar/singleton.h \
+  sylar/util.h
 
 
 /usr/include/x86_64-linux-gnu/bits/unistd_ext.h:

@@ -214,7 +214,7 @@ CMakeFiles/test_log.dir/tests/test_log.cc.o: \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/stl_map.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/stl_multimap.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/erase_if.h \
-  /home/ts/project/sylar-ts/tests/../sylar/util.h /usr/include/unistd.h \
+  /home/ts/project/sylar-ts/sylar/util.h /usr/include/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
   /usr/include/x86_64-linux-gnu/bits/environments.h \
   /usr/include/x86_64-linux-gnu/bits/confname.h \
@@ -226,4 +226,5 @@ CMakeFiles/test_log.dir/tests/test_log.cc.o: \
   /usr/include/x86_64-linux-gnu/asm/unistd.h \
   /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
-  /home/ts/project/sylar-ts/tests/../sylar/singleton.h
+  /home/ts/project/sylar-ts/sylar/singleton.h \
+  /home/ts/project/sylar-ts/tests/../sylar/util.h

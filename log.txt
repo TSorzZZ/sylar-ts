@@ -702,4 +702,5 @@ std::string LoggerManager::toYamlString() {
 void LoggerManager::init() {
 }
 
-}
+}2024-04-02 00:48:51	ERROR	test macro error
+2024-04-02 00:48:51	ERROR	test macro fmt error aa
