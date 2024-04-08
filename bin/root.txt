@@ -1,0 +1,27 @@
+2024-04-08 23:13:14	name= system.str_int_umapdescription= system int umaptypename= St13unordered_mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiSt4hashIS5_ESt8equal_toIS5_ESaISt4pairIKS5_iEEEvalue= k: 2
+2024-04-08 23:13:14	name= system.str_int_mapdescription= system int maptypename= St3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiSt4lessIS5_ESaISt4pairIKS5_iEEEvalue= k: 2
+2024-04-08 23:13:14	name= system.int_usetdescription= system int usettypename= St13unordered_setIiSt4hashIiESt8equal_toIiESaIiEEvalue= - 6
+- 5
+2024-04-08 23:13:14	name= system.int_setdescription= system int settypename= St3setIiSt4lessIiESaIiEEvalue= - 3
+- 4
+2024-04-08 23:13:14	name= system.int_listdescription= system int listtypename= NSt7__cxx114listIiSaIiEEEvalue= - 3
+- 4
+2024-04-08 23:13:14	name= system.int_vecdescription= system int vectypename= St6vectorIiSaIiEEvalue= - 1
+- 2
+2024-04-08 23:13:14	name= system.valuedescription= system valuetypename= fvalue= 10.1999998
+2024-04-08 23:13:14	name= system.portdescription= system porttypename= ivalue= 8080
+2024-04-08 23:13:14	name= logsdescription= logs configtypename= St3setIN5sylar9LogDefineESt4lessIS1_ESaIS1_EEvalue= - name: root
+  level: INFO
+  formatter: "%d%T%m%n"
+  appenders:
+    - type: FileLogAppender
+      file: root.txt
+    - type: StdoutLogAppender
+- name: system
+  level: DEBUG
+  formatter: "%d%T%m%n"
+  appenders:
+    - type: FileLogAppender
+      file: system.txt
+      formatter: "%d%T%c%T[%p]%T%m%n"
+    - type: StdoutLogAppender

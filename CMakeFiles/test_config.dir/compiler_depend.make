@@ -899,9 +899,14 @@ CMakeFiles/test_config.dir/tests/test_config.cc.o: tests/test_config.cc \
   /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
   sylar/singleton.h \
+  sylar/mythread.h \
+  /usr/include/semaphore.h \
+  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
   sylar/log.h \
   /usr/include/c++/11/iostream
 
+
+/usr/include/semaphore.h:
 
 /usr/include/x86_64-linux-gnu/bits/syscall.h:
 
@@ -1583,6 +1588,8 @@ sylar/singleton.h:
 
 /usr/include/c++/11/exception:
 
+sylar/mythread.h:
+
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
 
 /usr/include/boost/mpl/vector/aux_/O1_size.hpp:
@@ -1962,6 +1969,8 @@ tests/test_config.cc:
 /usr/include/boost/preprocessor/seq/seq.hpp:
 
 /usr/include/c++/11/bits/refwrap.h:
+
+/usr/include/x86_64-linux-gnu/bits/semaphore.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 

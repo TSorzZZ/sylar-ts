@@ -852,4 +852,6 @@ CMakeFiles/sylar.dir/sylar/config.cc.o: \
   /usr/include/x86_64-linux-gnu/asm/unistd.h \
   /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
-  /home/ts/project/sylar-ts/sylar/singleton.h
+  /home/ts/project/sylar-ts/sylar/singleton.h \
+  /home/ts/project/sylar-ts/sylar/mythread.h /usr/include/semaphore.h \
+  /usr/include/x86_64-linux-gnu/bits/semaphore.h

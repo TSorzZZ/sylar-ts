@@ -242,8 +242,36 @@ CMakeFiles/test_log.dir/tests/test_log.cc.o: tests/test_log.cc \
   /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
   sylar/singleton.h \
+  sylar/mythread.h \
+  /usr/include/c++/11/cstddef \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/c++/11/unordered_map \
+  /usr/include/c++/11/bits/hashtable.h \
+  /usr/include/c++/11/bits/hashtable_policy.h \
+  /usr/include/c++/11/bits/enable_special_members.h \
+  /usr/include/c++/11/bits/unordered_map.h \
+  /usr/include/c++/11/bits/stl_algo.h \
+  /usr/include/c++/11/bits/algorithmfwd.h \
+  /usr/include/c++/11/bits/stl_heap.h \
+  /usr/include/c++/11/bits/uniform_int_dist.h \
+  /usr/include/semaphore.h \
+  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  /usr/include/c++/11/atomic \
   sylar/util.h
 
+
+/usr/include/c++/11/bits/stl_heap.h:
+
+/usr/include/c++/11/bits/algorithmfwd.h:
+
+/usr/include/c++/11/bits/stl_algo.h:
+
+/usr/include/c++/11/bits/enable_special_members.h:
+
+/usr/include/c++/11/bits/hashtable_policy.h:
+
+/usr/include/c++/11/bits/hashtable.h:
 
 /usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
 
@@ -411,6 +439,10 @@ sylar/log.h:
 
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
 
+/usr/include/c++/11/atomic:
+
+/usr/include/semaphore.h:
+
 /usr/include/c++/11/bits/exception_defines.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
@@ -430,6 +462,8 @@ sylar/log.h:
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/c++/11/cstddef:
 
 /usr/include/c++/11/map:
 
@@ -481,6 +515,8 @@ sylar/log.h:
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
+/usr/include/x86_64-linux-gnu/bits/semaphore.h:
+
 sylar/singleton.h:
 
 /usr/include/c++/11/exception:
@@ -507,9 +543,13 @@ sylar/singleton.h:
 
 /usr/include/c++/11/bits/alloc_traits.h:
 
+/usr/include/c++/11/functional:
+
 /usr/include/asm-generic/errno-base.h:
 
 /usr/include/c++/11/bits/char_traits.h:
+
+/usr/include/c++/11/bits/std_function.h:
 
 /usr/include/c++/11/bits/allocator.h:
 
@@ -577,6 +617,8 @@ sylar/singleton.h:
 
 /usr/include/x86_64-linux-gnu/bits/timex.h:
 
+/usr/include/c++/11/bits/uniform_int_dist.h:
+
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
 
 /usr/include/wchar.h:
@@ -590,6 +632,8 @@ sylar/singleton.h:
 /usr/include/c++/11/array:
 
 /usr/lib/llvm-14/lib/clang/14.0.0/include/stdarg.h:
+
+sylar/mythread.h:
 
 /usr/include/c++/11/bits/ostream.tcc:
 
@@ -617,6 +661,8 @@ sylar/singleton.h:
 
 /usr/include/x86_64-linux-gnu/bits/sched.h:
 
+/usr/include/c++/11/bits/unordered_map.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
 /usr/include/x86_64-linux-gnu/asm/unistd_64.h:
@@ -630,6 +676,8 @@ sylar/singleton.h:
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
+
+/usr/include/c++/11/unordered_map:
 
 /usr/include/c++/11/cctype:
 
