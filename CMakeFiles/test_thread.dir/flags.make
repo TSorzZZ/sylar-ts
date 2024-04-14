@@ -6,7 +6,7 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/ts/project/sylar-ts/. -I/home/ts/project/sylar-ts/sylar
 
-CXX_FLAGS =   -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -Wno-builtin-macro-redefined
+CXX_FLAGS =  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -Wno-builtin-macro-redefined
 
 # Custom defines: CMakeFiles/test_thread.dir/tests/test_thread.cc.o_DEFINES = __FILE__="tests/test_thread.cc"
 

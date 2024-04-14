@@ -902,7 +902,8 @@ CMakeFiles/test_thread.dir/tests/test_thread.cc.o: tests/test_thread.cc \
   /usr/include/c++/11/bits/mask_array.h \
   /usr/include/c++/11/bits/indirect_array.h \
   /usr/local/include/yaml-cpp/node/detail/impl.h \
-  /usr/local/include/yaml-cpp/node/emit.h
+  /usr/local/include/yaml-cpp/node/emit.h \
+  sylar/macro.h
 
 
 /usr/local/include/yaml-cpp/node/emit.h:
@@ -2306,6 +2307,8 @@ sylar/config.h:
 /usr/include/boost/preprocessor/config/config.hpp:
 
 /usr/include/boost/mpl/aux_/preprocessor/params.hpp:
+
+sylar/macro.h:
 
 /usr/include/boost/type_traits/is_function.hpp:
 

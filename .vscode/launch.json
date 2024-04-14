@@ -10,7 +10,7 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "${workspaceFolder}/bin/test_thread",
+            "program": "${workspaceFolder}/bin/test_util",
             "args": [],
             "cwd": "${workspaceFolder}"
         }
