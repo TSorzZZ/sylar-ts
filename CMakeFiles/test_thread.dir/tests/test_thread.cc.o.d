@@ -855,4 +855,9 @@ CMakeFiles/test_thread.dir/tests/test_thread.cc.o: \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/indirect_array.h \
   /usr/local/include/yaml-cpp/node/detail/impl.h \
   /usr/local/include/yaml-cpp/node/emit.h \
-  /home/ts/project/sylar-ts/sylar/macro.h
+  /home/ts/project/sylar-ts/sylar/macro.h \
+  /home/ts/project/sylar-ts/sylar/fiber.h \
+  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
+  /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
+  /usr/include/ucontext.h \
+  /usr/include/x86_64-linux-gnu/bits/indirect-return.h

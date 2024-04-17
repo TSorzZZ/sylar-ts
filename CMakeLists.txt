@@ -19,6 +19,7 @@ set(LIB_SRC
     sylar/util.cc
     sylar/config.cc
     sylar/mythread.cc
+    sylar/fiber.cc
     )
 
 add_library(sylar SHARED ${LIB_SRC}) # 添加一个名为sylar的共享库，源文件来自LIB_SRC变量
@@ -49,6 +50,14 @@ add_executable(test_util tests/test_util.cc) # 添加一个可执行文件test_u
 add_dependencies(test_util sylar) # 设置test_util依赖于sylar库
 force_redefine_file_macro_for_sources(test_util)
 target_link_libraries(test_util ${LIB_LIB}) # 链接test_util可执行文件到LIB_LIB中的库
+
+
+add_executable(test_fiber tests/test_fiber.cc) # 添加一个可执行文件test_util，源文件为tests/test_util.cc
+add_dependencies(test_fiber sylar) # 设置test_util依赖于sylar库
+force_redefine_file_macro_for_sources(test_fiber)
+target_link_libraries(test_fiber ${LIB_LIB}) # 链接test_util可执行文件到LIB_LIB中的库
+
+
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin) # 设置可执行文件的输出路径为项目源目录下的bin目录
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib) # 设置库文件的输出路径为项目源目录下的lib目录

@@ -3,5 +3,6 @@
 /home/ts/project/sylar-ts/CMakeFiles/test_config.dir
 /home/ts/project/sylar-ts/CMakeFiles/test_thread.dir
 /home/ts/project/sylar-ts/CMakeFiles/test_util.dir
+/home/ts/project/sylar-ts/CMakeFiles/test_fiber.dir
 /home/ts/project/sylar-ts/CMakeFiles/edit_cache.dir
 /home/ts/project/sylar-ts/CMakeFiles/rebuild_cache.dir

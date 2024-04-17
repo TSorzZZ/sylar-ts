@@ -242,4 +242,8 @@ CMakeFiles/sylar.dir/sylar/util.cc.o: \
   /usr/include/semaphore.h \
   /usr/include/x86_64-linux-gnu/bits/semaphore.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/atomic \
-  /usr/include/execinfo.h
+  /usr/include/execinfo.h /home/ts/project/sylar-ts/sylar/fiber.h \
+  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
+  /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
+  /usr/include/ucontext.h \
+  /usr/include/x86_64-linux-gnu/bits/indirect-return.h

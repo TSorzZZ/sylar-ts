@@ -21,6 +21,11 @@
 },
 {
   "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++ -Dsylar_EXPORTS -D__FILE__=\\\"sylar/fiber.cc\\\" -I/home/ts/project/sylar-ts/. -I/home/ts/project/sylar-ts/sylar  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/fiber.cc.o -c /home/ts/project/sylar-ts/sylar/fiber.cc",
+  "file": "/home/ts/project/sylar-ts/sylar/fiber.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
   "command": "/usr/bin/c++  -D__FILE__=\\\"tests/test_log.cc\\\" -I/home/ts/project/sylar-ts/. -I/home/ts/project/sylar-ts/sylar  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -Wno-builtin-macro-redefined -o CMakeFiles/test_log.dir/tests/test_log.cc.o -c /home/ts/project/sylar-ts/tests/test_log.cc",
   "file": "/home/ts/project/sylar-ts/tests/test_log.cc"
 },
@@ -38,5 +43,10 @@
   "directory": "/home/ts/project/sylar-ts",
   "command": "/usr/bin/c++  -D__FILE__=\\\"tests/test_util.cc\\\" -I/home/ts/project/sylar-ts/. -I/home/ts/project/sylar-ts/sylar  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -Wno-builtin-macro-redefined -o CMakeFiles/test_util.dir/tests/test_util.cc.o -c /home/ts/project/sylar-ts/tests/test_util.cc",
   "file": "/home/ts/project/sylar-ts/tests/test_util.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++  -D__FILE__=\\\"tests/test_fiber.cc\\\" -I/home/ts/project/sylar-ts/. -I/home/ts/project/sylar-ts/sylar  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -Wno-builtin-macro-redefined -o CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o -c /home/ts/project/sylar-ts/tests/test_fiber.cc",
+  "file": "/home/ts/project/sylar-ts/tests/test_fiber.cc"
 }
 ]
