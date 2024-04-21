@@ -1,0 +1,3 @@
+/home/ts/project/sylar-ts/CMakeFiles/sylar.dir
+/home/ts/project/sylar-ts/CMakeFiles/edit_cache.dir
+/home/ts/project/sylar-ts/CMakeFiles/rebuild_cache.dir
