@@ -1,5 +1,5 @@
-CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: \
-  /home/ts/project/sylar-ts/tests/test_fiber.cc \
+CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: \
+  /home/ts/project/sylar-ts/tests/test_scheduler.cc \
   /home/ts/project/sylar-ts/tests/../sylar/sylar.h \
   /home/ts/project/sylar-ts/sylar/log.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/cstdint \

@@ -20,6 +20,7 @@ set(LIB_SRC
     sylar/config.cc
     sylar/mythread.cc
     sylar/fiber.cc
+    sylar/scheduler.cc
     )
 
 add_library(sylar SHARED ${LIB_SRC}) # 添加一个名为sylar的共享库，源文件来自LIB_SRC变量
@@ -36,26 +37,31 @@ add_dependencies(test_log sylar) # 设置test_log依赖于sylar库
 force_redefine_file_macro_for_sources(test_log) 
 target_link_libraries(test_log ${LIB_LIB}) # 链接test_log可执行文件到LIB_LIB中的库
 
-add_executable(test_config tests/test_config.cc) # 添加一个可执行文件test_config，源文件为tests/test_config.cc
-add_dependencies(test_config sylar) # 设置test_config依赖于sylar库
+add_executable(test_config tests/test_config.cc) 
+add_dependencies(test_config sylar) 
 force_redefine_file_macro_for_sources(test_config) 
-target_link_libraries(test_config ${LIB_LIB}) # 链接test_config可执行文件到LIB_LIB中的库
+target_link_libraries(test_config ${LIB_LIB}) 
 
-add_executable(test_thread tests/test_thread.cc) # 添加一个可执行文件test_thread，源文件为tests/test_thread.cc
-add_dependencies(test_thread sylar) # 设置test_thread依赖于sylar库
+add_executable(test_thread tests/test_thread.cc) 
+add_dependencies(test_thread sylar) 
 force_redefine_file_macro_for_sources(test_thread) 
-target_link_libraries(test_thread ${LIB_LIB}) # 链接test_thread可执行文件到LIB_LIB中的库
+target_link_libraries(test_thread ${LIB_LIB}) 
 
-add_executable(test_util tests/test_util.cc) # 添加一个可执行文件test_util，源文件为tests/test_util.cc
-add_dependencies(test_util sylar) # 设置test_util依赖于sylar库
+add_executable(test_util tests/test_util.cc) 
+add_dependencies(test_util sylar) 
 force_redefine_file_macro_for_sources(test_util)
-target_link_libraries(test_util ${LIB_LIB}) # 链接test_util可执行文件到LIB_LIB中的库
+target_link_libraries(test_util ${LIB_LIB}) 
 
 
-add_executable(test_fiber tests/test_fiber.cc) # 添加一个可执行文件test_util，源文件为tests/test_util.cc
-add_dependencies(test_fiber sylar) # 设置test_util依赖于sylar库
+add_executable(test_fiber tests/test_fiber.cc) 
+add_dependencies(test_fiber sylar) 
 force_redefine_file_macro_for_sources(test_fiber)
-target_link_libraries(test_fiber ${LIB_LIB}) # 链接test_util可执行文件到LIB_LIB中的库
+target_link_libraries(test_fiber ${LIB_LIB}) 
+
+add_executable(test_scheduler tests/test_scheduler.cc) 
+add_dependencies(test_scheduler sylar) 
+force_redefine_file_macro_for_sources(test_scheduler)
+target_link_libraries(test_scheduler ${LIB_LIB}) 
 
 
 

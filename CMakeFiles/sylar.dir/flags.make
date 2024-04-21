@@ -18,3 +18,5 @@ CXX_FLAGS =  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-func
 
 # Custom defines: CMakeFiles/sylar.dir/sylar/fiber.cc.o_DEFINES = __FILE__="sylar/fiber.cc"
 
+# Custom defines: CMakeFiles/sylar.dir/sylar/scheduler.cc.o_DEFINES = __FILE__="sylar/scheduler.cc"
+

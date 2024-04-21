@@ -908,7 +908,8 @@ CMakeFiles/test_util.dir/tests/test_util.cc.o: tests/test_util.cc \
   /usr/include/x86_64-linux-gnu/sys/ucontext.h \
   /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
   /usr/include/ucontext.h \
-  /usr/include/x86_64-linux-gnu/bits/indirect-return.h
+  /usr/include/x86_64-linux-gnu/bits/indirect-return.h \
+  sylar/scheduler.h
 
 
 /usr/include/ucontext.h:
@@ -2536,6 +2537,8 @@ sylar/macro.h:
 /usr/include/boost/mpl/aux_/config/overload_resolution.hpp:
 
 /usr/include/boost/mpl/and.hpp:
+
+sylar/scheduler.h:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/apply_wrap.hpp:
 
