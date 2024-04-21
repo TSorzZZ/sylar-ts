@@ -132,371 +132,149 @@ sylar/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/build
 .PHONY : sylar/fast
 
-#=============================================================================
-# Target rules for targets named test_log
-
-# Build rule for target.
-test_log: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_log
-.PHONY : test_log
-
-# fast build rule for target.
-test_log/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/build
-.PHONY : test_log/fast
-
-#=============================================================================
-# Target rules for targets named test_config
-
-# Build rule for target.
-test_config: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_config
-.PHONY : test_config
-
-# fast build rule for target.
-test_config/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/build
-.PHONY : test_config/fast
-
-#=============================================================================
-# Target rules for targets named test_thread
-
-# Build rule for target.
-test_thread: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_thread
-.PHONY : test_thread
-
-# fast build rule for target.
-test_thread/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/build
-.PHONY : test_thread/fast
-
-#=============================================================================
-# Target rules for targets named test_util
-
-# Build rule for target.
-test_util: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_util
-.PHONY : test_util
-
-# fast build rule for target.
-test_util/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/build
-.PHONY : test_util/fast
-
-#=============================================================================
-# Target rules for targets named test_fiber
-
-# Build rule for target.
-test_fiber: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_fiber
-.PHONY : test_fiber
-
-# fast build rule for target.
-test_fiber/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/build
-.PHONY : test_fiber/fast
-
-#=============================================================================
-# Target rules for targets named test_scheduler
-
-# Build rule for target.
-test_scheduler: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_scheduler
-.PHONY : test_scheduler
-
-# fast build rule for target.
-test_scheduler/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/build
-.PHONY : test_scheduler/fast
-
-sylar/config.o: sylar/config.cc.o
-.PHONY : sylar/config.o
+sylar/src/config.o: sylar/src/config.cc.o
+.PHONY : sylar/src/config.o
 
 # target to build an object file
-sylar/config.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/config.cc.o
-.PHONY : sylar/config.cc.o
+sylar/src/config.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/config.cc.o
+.PHONY : sylar/src/config.cc.o
 
-sylar/config.i: sylar/config.cc.i
-.PHONY : sylar/config.i
+sylar/src/config.i: sylar/src/config.cc.i
+.PHONY : sylar/src/config.i
 
 # target to preprocess a source file
-sylar/config.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/config.cc.i
-.PHONY : sylar/config.cc.i
+sylar/src/config.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/config.cc.i
+.PHONY : sylar/src/config.cc.i
 
-sylar/config.s: sylar/config.cc.s
-.PHONY : sylar/config.s
+sylar/src/config.s: sylar/src/config.cc.s
+.PHONY : sylar/src/config.s
 
 # target to generate assembly for a file
-sylar/config.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/config.cc.s
-.PHONY : sylar/config.cc.s
+sylar/src/config.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/config.cc.s
+.PHONY : sylar/src/config.cc.s
 
-sylar/fiber.o: sylar/fiber.cc.o
-.PHONY : sylar/fiber.o
+sylar/src/fiber.o: sylar/src/fiber.cc.o
+.PHONY : sylar/src/fiber.o
 
 # target to build an object file
-sylar/fiber.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/fiber.cc.o
-.PHONY : sylar/fiber.cc.o
+sylar/src/fiber.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/fiber.cc.o
+.PHONY : sylar/src/fiber.cc.o
 
-sylar/fiber.i: sylar/fiber.cc.i
-.PHONY : sylar/fiber.i
+sylar/src/fiber.i: sylar/src/fiber.cc.i
+.PHONY : sylar/src/fiber.i
 
 # target to preprocess a source file
-sylar/fiber.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/fiber.cc.i
-.PHONY : sylar/fiber.cc.i
+sylar/src/fiber.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/fiber.cc.i
+.PHONY : sylar/src/fiber.cc.i
 
-sylar/fiber.s: sylar/fiber.cc.s
-.PHONY : sylar/fiber.s
+sylar/src/fiber.s: sylar/src/fiber.cc.s
+.PHONY : sylar/src/fiber.s
 
 # target to generate assembly for a file
-sylar/fiber.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/fiber.cc.s
-.PHONY : sylar/fiber.cc.s
+sylar/src/fiber.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/fiber.cc.s
+.PHONY : sylar/src/fiber.cc.s
 
-sylar/log.o: sylar/log.cc.o
-.PHONY : sylar/log.o
+sylar/src/log.o: sylar/src/log.cc.o
+.PHONY : sylar/src/log.o
 
 # target to build an object file
-sylar/log.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/log.cc.o
-.PHONY : sylar/log.cc.o
+sylar/src/log.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/log.cc.o
+.PHONY : sylar/src/log.cc.o
 
-sylar/log.i: sylar/log.cc.i
-.PHONY : sylar/log.i
+sylar/src/log.i: sylar/src/log.cc.i
+.PHONY : sylar/src/log.i
 
 # target to preprocess a source file
-sylar/log.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/log.cc.i
-.PHONY : sylar/log.cc.i
+sylar/src/log.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/log.cc.i
+.PHONY : sylar/src/log.cc.i
 
-sylar/log.s: sylar/log.cc.s
-.PHONY : sylar/log.s
+sylar/src/log.s: sylar/src/log.cc.s
+.PHONY : sylar/src/log.s
 
 # target to generate assembly for a file
-sylar/log.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/log.cc.s
-.PHONY : sylar/log.cc.s
+sylar/src/log.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/log.cc.s
+.PHONY : sylar/src/log.cc.s
 
-sylar/mythread.o: sylar/mythread.cc.o
-.PHONY : sylar/mythread.o
+sylar/src/mythread.o: sylar/src/mythread.cc.o
+.PHONY : sylar/src/mythread.o
 
 # target to build an object file
-sylar/mythread.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/mythread.cc.o
-.PHONY : sylar/mythread.cc.o
+sylar/src/mythread.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/mythread.cc.o
+.PHONY : sylar/src/mythread.cc.o
 
-sylar/mythread.i: sylar/mythread.cc.i
-.PHONY : sylar/mythread.i
+sylar/src/mythread.i: sylar/src/mythread.cc.i
+.PHONY : sylar/src/mythread.i
 
 # target to preprocess a source file
-sylar/mythread.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/mythread.cc.i
-.PHONY : sylar/mythread.cc.i
+sylar/src/mythread.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/mythread.cc.i
+.PHONY : sylar/src/mythread.cc.i
 
-sylar/mythread.s: sylar/mythread.cc.s
-.PHONY : sylar/mythread.s
+sylar/src/mythread.s: sylar/src/mythread.cc.s
+.PHONY : sylar/src/mythread.s
 
 # target to generate assembly for a file
-sylar/mythread.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/mythread.cc.s
-.PHONY : sylar/mythread.cc.s
+sylar/src/mythread.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/mythread.cc.s
+.PHONY : sylar/src/mythread.cc.s
 
-sylar/scheduler.o: sylar/scheduler.cc.o
-.PHONY : sylar/scheduler.o
+sylar/src/scheduler.o: sylar/src/scheduler.cc.o
+.PHONY : sylar/src/scheduler.o
 
 # target to build an object file
-sylar/scheduler.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/scheduler.cc.o
-.PHONY : sylar/scheduler.cc.o
+sylar/src/scheduler.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/scheduler.cc.o
+.PHONY : sylar/src/scheduler.cc.o
 
-sylar/scheduler.i: sylar/scheduler.cc.i
-.PHONY : sylar/scheduler.i
+sylar/src/scheduler.i: sylar/src/scheduler.cc.i
+.PHONY : sylar/src/scheduler.i
 
 # target to preprocess a source file
-sylar/scheduler.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/scheduler.cc.i
-.PHONY : sylar/scheduler.cc.i
+sylar/src/scheduler.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/scheduler.cc.i
+.PHONY : sylar/src/scheduler.cc.i
 
-sylar/scheduler.s: sylar/scheduler.cc.s
-.PHONY : sylar/scheduler.s
+sylar/src/scheduler.s: sylar/src/scheduler.cc.s
+.PHONY : sylar/src/scheduler.s
 
 # target to generate assembly for a file
-sylar/scheduler.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/scheduler.cc.s
-.PHONY : sylar/scheduler.cc.s
+sylar/src/scheduler.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/scheduler.cc.s
+.PHONY : sylar/src/scheduler.cc.s
 
-sylar/util.o: sylar/util.cc.o
-.PHONY : sylar/util.o
+sylar/src/util.o: sylar/src/util.cc.o
+.PHONY : sylar/src/util.o
 
 # target to build an object file
-sylar/util.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/util.cc.o
-.PHONY : sylar/util.cc.o
+sylar/src/util.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/util.cc.o
+.PHONY : sylar/src/util.cc.o
 
-sylar/util.i: sylar/util.cc.i
-.PHONY : sylar/util.i
-
-# target to preprocess a source file
-sylar/util.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/util.cc.i
-.PHONY : sylar/util.cc.i
-
-sylar/util.s: sylar/util.cc.s
-.PHONY : sylar/util.s
-
-# target to generate assembly for a file
-sylar/util.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/util.cc.s
-.PHONY : sylar/util.cc.s
-
-tests/test_config.o: tests/test_config.cc.o
-.PHONY : tests/test_config.o
-
-# target to build an object file
-tests/test_config.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/tests/test_config.cc.o
-.PHONY : tests/test_config.cc.o
-
-tests/test_config.i: tests/test_config.cc.i
-.PHONY : tests/test_config.i
+sylar/src/util.i: sylar/src/util.cc.i
+.PHONY : sylar/src/util.i
 
 # target to preprocess a source file
-tests/test_config.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/tests/test_config.cc.i
-.PHONY : tests/test_config.cc.i
+sylar/src/util.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/util.cc.i
+.PHONY : sylar/src/util.cc.i
 
-tests/test_config.s: tests/test_config.cc.s
-.PHONY : tests/test_config.s
-
-# target to generate assembly for a file
-tests/test_config.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/tests/test_config.cc.s
-.PHONY : tests/test_config.cc.s
-
-tests/test_fiber.o: tests/test_fiber.cc.o
-.PHONY : tests/test_fiber.o
-
-# target to build an object file
-tests/test_fiber.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o
-.PHONY : tests/test_fiber.cc.o
-
-tests/test_fiber.i: tests/test_fiber.cc.i
-.PHONY : tests/test_fiber.i
-
-# target to preprocess a source file
-tests/test_fiber.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.i
-.PHONY : tests/test_fiber.cc.i
-
-tests/test_fiber.s: tests/test_fiber.cc.s
-.PHONY : tests/test_fiber.s
+sylar/src/util.s: sylar/src/util.cc.s
+.PHONY : sylar/src/util.s
 
 # target to generate assembly for a file
-tests/test_fiber.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.s
-.PHONY : tests/test_fiber.cc.s
-
-tests/test_log.o: tests/test_log.cc.o
-.PHONY : tests/test_log.o
-
-# target to build an object file
-tests/test_log.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/tests/test_log.cc.o
-.PHONY : tests/test_log.cc.o
-
-tests/test_log.i: tests/test_log.cc.i
-.PHONY : tests/test_log.i
-
-# target to preprocess a source file
-tests/test_log.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/tests/test_log.cc.i
-.PHONY : tests/test_log.cc.i
-
-tests/test_log.s: tests/test_log.cc.s
-.PHONY : tests/test_log.s
-
-# target to generate assembly for a file
-tests/test_log.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/tests/test_log.cc.s
-.PHONY : tests/test_log.cc.s
-
-tests/test_scheduler.o: tests/test_scheduler.cc.o
-.PHONY : tests/test_scheduler.o
-
-# target to build an object file
-tests/test_scheduler.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o
-.PHONY : tests/test_scheduler.cc.o
-
-tests/test_scheduler.i: tests/test_scheduler.cc.i
-.PHONY : tests/test_scheduler.i
-
-# target to preprocess a source file
-tests/test_scheduler.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.i
-.PHONY : tests/test_scheduler.cc.i
-
-tests/test_scheduler.s: tests/test_scheduler.cc.s
-.PHONY : tests/test_scheduler.s
-
-# target to generate assembly for a file
-tests/test_scheduler.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.s
-.PHONY : tests/test_scheduler.cc.s
-
-tests/test_thread.o: tests/test_thread.cc.o
-.PHONY : tests/test_thread.o
-
-# target to build an object file
-tests/test_thread.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/tests/test_thread.cc.o
-.PHONY : tests/test_thread.cc.o
-
-tests/test_thread.i: tests/test_thread.cc.i
-.PHONY : tests/test_thread.i
-
-# target to preprocess a source file
-tests/test_thread.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/tests/test_thread.cc.i
-.PHONY : tests/test_thread.cc.i
-
-tests/test_thread.s: tests/test_thread.cc.s
-.PHONY : tests/test_thread.s
-
-# target to generate assembly for a file
-tests/test_thread.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/tests/test_thread.cc.s
-.PHONY : tests/test_thread.cc.s
-
-tests/test_util.o: tests/test_util.cc.o
-.PHONY : tests/test_util.o
-
-# target to build an object file
-tests/test_util.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/tests/test_util.cc.o
-.PHONY : tests/test_util.cc.o
-
-tests/test_util.i: tests/test_util.cc.i
-.PHONY : tests/test_util.i
-
-# target to preprocess a source file
-tests/test_util.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/tests/test_util.cc.i
-.PHONY : tests/test_util.cc.i
-
-tests/test_util.s: tests/test_util.cc.s
-.PHONY : tests/test_util.s
-
-# target to generate assembly for a file
-tests/test_util.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/tests/test_util.cc.s
-.PHONY : tests/test_util.cc.s
+sylar/src/util.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/util.cc.s
+.PHONY : sylar/src/util.cc.s
 
 # Help Target
 help:
@@ -507,48 +285,24 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... sylar"
-	@echo "... test_config"
-	@echo "... test_fiber"
-	@echo "... test_log"
-	@echo "... test_scheduler"
-	@echo "... test_thread"
-	@echo "... test_util"
-	@echo "... sylar/config.o"
-	@echo "... sylar/config.i"
-	@echo "... sylar/config.s"
-	@echo "... sylar/fiber.o"
-	@echo "... sylar/fiber.i"
-	@echo "... sylar/fiber.s"
-	@echo "... sylar/log.o"
-	@echo "... sylar/log.i"
-	@echo "... sylar/log.s"
-	@echo "... sylar/mythread.o"
-	@echo "... sylar/mythread.i"
-	@echo "... sylar/mythread.s"
-	@echo "... sylar/scheduler.o"
-	@echo "... sylar/scheduler.i"
-	@echo "... sylar/scheduler.s"
-	@echo "... sylar/util.o"
-	@echo "... sylar/util.i"
-	@echo "... sylar/util.s"
-	@echo "... tests/test_config.o"
-	@echo "... tests/test_config.i"
-	@echo "... tests/test_config.s"
-	@echo "... tests/test_fiber.o"
-	@echo "... tests/test_fiber.i"
-	@echo "... tests/test_fiber.s"
-	@echo "... tests/test_log.o"
-	@echo "... tests/test_log.i"
-	@echo "... tests/test_log.s"
-	@echo "... tests/test_scheduler.o"
-	@echo "... tests/test_scheduler.i"
-	@echo "... tests/test_scheduler.s"
-	@echo "... tests/test_thread.o"
-	@echo "... tests/test_thread.i"
-	@echo "... tests/test_thread.s"
-	@echo "... tests/test_util.o"
-	@echo "... tests/test_util.i"
-	@echo "... tests/test_util.s"
+	@echo "... sylar/src/config.o"
+	@echo "... sylar/src/config.i"
+	@echo "... sylar/src/config.s"
+	@echo "... sylar/src/fiber.o"
+	@echo "... sylar/src/fiber.i"
+	@echo "... sylar/src/fiber.s"
+	@echo "... sylar/src/log.o"
+	@echo "... sylar/src/log.i"
+	@echo "... sylar/src/log.s"
+	@echo "... sylar/src/mythread.o"
+	@echo "... sylar/src/mythread.i"
+	@echo "... sylar/src/mythread.s"
+	@echo "... sylar/src/scheduler.o"
+	@echo "... sylar/src/scheduler.i"
+	@echo "... sylar/src/scheduler.s"
+	@echo "... sylar/src/util.o"
+	@echo "... sylar/src/util.i"
+	@echo "... sylar/src/util.s"
 .PHONY : help
 
 

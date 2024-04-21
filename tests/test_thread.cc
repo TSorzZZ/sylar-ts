@@ -1,10 +1,10 @@
-#include "../sylar/sylar.h"
+#include "sylar.h"
 #include <memory>
 #include <string>
 #include <vector>
 
-sylar::Logger::ptr g_logger =  SYLAR_LOG_ROOT();
-sylar::RWMutex s_mutex;
+static sylar::Logger::ptr g_logger =  SYLAR_LOG_ROOT();
+static sylar::RWMutex s_mutex;
 
 int count = 0;
 
@@ -36,7 +36,7 @@ void fun3(){
 
 using threadPtr = sylar::Thread::ptr;
 
-int main(){
+int main(int argc, char** argv){
     SYLAR_LOG_INFO(g_logger) << "thread test begin";
     YAML::Node root = YAML::LoadFile("/home/ts/project/sylar-ts/bin/conf/log2.yml");
     sylar::Config::LoadFromYaml(root);

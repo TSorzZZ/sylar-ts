@@ -7,62 +7,38 @@ set(CMAKE_VERBOSE_MAKEFILE ON) # 设置CMake生成的Makefile为详细模式，�
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # 导出编译命令，用于IDE或其他工具使用
 set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function ") # 设置C++编译器的标志，包括环境变量中的CXXFLAGS、优化级别、调试信息、C++标准、警告控制等
 
-include_directories(.) # 添加当前目录到头文件搜索路径
-include_directories(/usr/local/include) # 添加/usr/local/include到头文件搜索路径
-include_directories(/home/ts/project/sylar-ts/sylar) # 添加/home/ts/project/sylar-ts/sylar到头文件搜索路径
-link_directories(/usr/local/lib) # 添加/usr/local/lib到库文件搜索路径
+# 指定头文件搜索路径
+include_directories(.) 
+include_directories(${PROJECT_SOURCE_DIR}/sylar/include) 
+# 指定库文件搜索路径
+link_directories(/usr/local/lib) 
 
-find_library(YAMLCPP yaml-cpp) # 查找名为yaml-cpp的库，并将其路径存储在变量YAMLCPP中
+# 查找名为yaml-cpp的库，并将其路径存储在变量YAMLCPP中
+find_library(YAMLCPP yaml-cpp) 
 
-set(LIB_SRC 
-    sylar/log.cc
-    sylar/util.cc
-    sylar/config.cc
-    sylar/mythread.cc
-    sylar/fiber.cc
-    sylar/scheduler.cc
-    )
+# 递归查找所有源文件
+file(GLOB_RECURSE SRC_DIR_LIST ${PROJECT_SOURCE_DIR}/sylar/src/*.cc ${PROJECT_SOURCE_DIR}/sylar/src/*.cpp)    
 
-add_library(sylar SHARED ${LIB_SRC}) # 添加一个名为sylar的共享库，源文件来自LIB_SRC变量
-force_redefine_file_macro_for_sources(sylar) 
-#add_library(sylar_static STATIC ${LIB_SRC}) # 注释掉的代码，用于添加一个名为sylar_static的静态库
-#SET_TARGET_PROPERTIES (sylar_static PROPERTIES OUTPUT_NAME "sylar") 
+# 创建一个名为sylar的动态库 
+add_library(sylar SHARED ${SRC_DIR_LIST}) 
+# add_library(sylar STATIC ${SRC_DIR_LIST}) 
 
-set(LIB_LIB sylar 
-            pthread
-            ${YAMLCPP})
+set(LIB_LIB sylar pthread ${YAMLCPP})
 
-add_executable(test_log tests/test_log.cc) # 添加一个可执行文件test_log，源文件为tests/test_log.cc
-add_dependencies(test_log sylar) # 设置test_log依赖于sylar库
-force_redefine_file_macro_for_sources(test_log) 
-target_link_libraries(test_log ${LIB_LIB}) # 链接test_log可执行文件到LIB_LIB中的库
+# 递归查找所有test源文件
+file(GLOB_RECURSE TEST_DIR_LIST ${PROJECT_SOURCE_DIR}/tests/*.cc ${PROJECT_SOURCE_DIR}/tests/*.cpp)    
 
-add_executable(test_config tests/test_config.cc) 
-add_dependencies(test_config sylar) 
-force_redefine_file_macro_for_sources(test_config) 
-target_link_libraries(test_config ${LIB_LIB}) 
-
-add_executable(test_thread tests/test_thread.cc) 
-add_dependencies(test_thread sylar) 
-force_redefine_file_macro_for_sources(test_thread) 
-target_link_libraries(test_thread ${LIB_LIB}) 
-
-add_executable(test_util tests/test_util.cc) 
-add_dependencies(test_util sylar) 
-force_redefine_file_macro_for_sources(test_util)
-target_link_libraries(test_util ${LIB_LIB}) 
-
-
-add_executable(test_fiber tests/test_fiber.cc) 
-add_dependencies(test_fiber sylar) 
-force_redefine_file_macro_for_sources(test_fiber)
-target_link_libraries(test_fiber ${LIB_LIB}) 
-
-add_executable(test_scheduler tests/test_scheduler.cc) 
-add_dependencies(test_scheduler sylar) 
-force_redefine_file_macro_for_sources(test_scheduler)
-target_link_libraries(test_scheduler ${LIB_LIB}) 
-
+foreach(TEST ${TEST_SOURCES})
+    # 从原文件中提取目标名称 Name Without Extension
+    get_filename_component(TARGET_NAME ${TEST} NAME_WE)
+    # 添加可执行测试用例文件
+    add_executable(${TARGET_NAME} ${TEST})
+    # 指定依赖的库文件
+    add_dependencies(${TARGET_NAME} sylar)
+    force_redefine_file_macro_for_sources(${TARGET_NAME})
+    # 链接动态库  要放在添加可执行文件后
+    target_link_libraries(${TARGET_NAME} ${LIB_LIB})
+endforeach()
 
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin) # 设置可执行文件的输出路径为项目源目录下的bin目录

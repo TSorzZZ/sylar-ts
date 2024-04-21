@@ -1,5 +1,5 @@
-#include "../sylar/config.h"
-#include "../sylar/log.h"
+#include "config.h"
+#include "log.h"
 #include <set>
 #include<iostream>
 #include <sstream>

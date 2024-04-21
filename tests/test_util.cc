@@ -1,7 +1,7 @@
-#include"../sylar/sylar.h"
+#include"sylar.h"
 #include<assert.h>
 
-sylar::Logger::ptr g_logger = SYLAR_LOG_ROOT();
+static sylar::Logger::ptr g_logger = SYLAR_LOG_ROOT();
 
 
 void test_assert(){
@@ -10,7 +10,7 @@ void test_assert(){
     SYLAR_ASSERT2(0 == 1, "abcd xx");
 }
 
-int main(){
+int main(int argc, char** argv){
     test_assert();
     return 0;
 }

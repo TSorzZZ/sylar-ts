@@ -1,7 +1,7 @@
-#include "../sylar/sylar.h"
+#include "sylar.h"
 #include <unistd.h>
 
-sylar::Logger::ptr g_logger = SYLAR_LOG_ROOT();
+static sylar::Logger::ptr g_logger = SYLAR_LOG_ROOT();
 
 void test_fiber(){
     static int s_count = 5;
@@ -13,7 +13,7 @@ void test_fiber(){
     
 }
 
-int main(){
+int main(int argc, char** argv){
     SYLAR_LOG_INFO(g_logger) << "main begin";
     sylar::Scheduler sc(3, false, "testt");
     sc.start();

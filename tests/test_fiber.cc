@@ -1,8 +1,8 @@
-#include "../sylar/sylar.h"
+#include "sylar.h"
 #include <memory>
 #include <string>
 
-sylar::Logger::ptr g_logger = SYLAR_LOG_ROOT();
+static sylar::Logger::ptr g_logger = SYLAR_LOG_ROOT();
 
 void run_in_fiber(){
     SYLAR_LOG_INFO(g_logger) << "run_in_fiber begin";
@@ -27,7 +27,7 @@ void test_fiber(){
 }
 
 
-int main(){
+int main(int argc, char** argv){
     sylar::Thread::SetName("mainThread");
     std::vector<sylar::Thread::ptr> threadPool;
     for(int i = 0; i < 3; i++){
