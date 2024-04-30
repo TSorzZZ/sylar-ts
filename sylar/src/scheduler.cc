@@ -14,25 +14,27 @@ namespace sylar {
 static sylar::Logger::ptr g_logger = SYLAR_LOG_NAME("system");
 
 static thread_local Scheduler* t_scheduler = nullptr;   //协程调度器指针
-static thread_local Fiber* t_fiber = nullptr;           //当前主协程
+static thread_local Fiber* t_fiber = nullptr;           //当前调度器协程
 
 Scheduler::Scheduler(size_t threads, bool use_caller, const std::string& name):m_name(name){
     SYLAR_ASSERT(threads > 0);
 
-    if(use_caller)  //如果当前为主线程创建调度
+    if(use_caller)  //当前线程主协程直接进行调度
     {
-        sylar::Fiber::GetThis();    //初始化主协程
-        --threads;  //当前线程直接参与调度
+        sylar::Fiber::GetThis();    //初始化当前线程主协程
+        --threads;  //当前线程主协程直接参与调度
 
         SYLAR_ASSERT(GetThis() == nullptr);
         t_scheduler = this;
-        //主协程直接进行调度
+        //当前线程主协程自己绑定run方法  并且加入任务队列用于调度
         m_rootFiber.reset(new Fiber(std::bind(&Scheduler::run, this), 0, true));
         sylar::Thread::SetName(m_name);
         t_fiber = m_rootFiber.get();
         m_rootThread = sylar::GetThreadId();
         m_threadIds.push_back(m_rootThread);
-    }else{
+    }
+    else
+    {
         m_rootThread = -1;
     }
     m_threadCount = threads;
@@ -64,6 +66,7 @@ void Scheduler::start(){
     SYLAR_ASSERT(m_threads.empty());
 
     m_threads.resize(m_threadCount);    //重置线程池大小
+    //启动多个线程
     for(size_t i = 0; i < m_threadCount; ++i){
         m_threads[i].reset(new Thread(std::bind(&Scheduler::run, this), 
         m_name +  "_" + std::to_string(i)));
@@ -71,10 +74,6 @@ void Scheduler::start(){
     }
     lock.unlock();
 
-    // if(m_rootFiber){
-    //     m_rootFiber->call();
-    //     SYLAR_LOG_INFO(g_logger) << "call out";
-    // }
 }
 
 void Scheduler::stop(){
@@ -88,7 +87,7 @@ void Scheduler::stop(){
         if(stopping())return;
     }
 
-    if(m_rootThread != -1){ //usercaller线程
+    if(m_rootThread != -1){ //use caller线程
         SYLAR_ASSERT(GetThis() == this);
     }else{
         SYLAR_ASSERT( GetThis() != this);
@@ -101,14 +100,6 @@ void Scheduler::stop(){
 
     if(m_rootFiber){
         tickle();
-        // while(!stopping()){
-        //     if(m_rootFiber->getState() == Fiber::TERM || m_rootFiber->getState() == Fiber::EXCEPT){
-        //         m_rootFiber.reset(new Fiber(std::bind(&Scheduler::run, this), 0, true));
-        //         SYLAR_LOG_INFO(g_logger) << "root fiber term, reset"; 
-        //         t_fiber = m_rootFiber.get();
-        //     }
-        //     m_rootFiber->call();
-        // }
         if(!stopping()){
             m_rootFiber->call();
         }
@@ -135,7 +126,7 @@ void Scheduler::setThis(){
 void Scheduler::run(){  //真正的调度方法
     //1.  初始化协程  指定调度器
     SYLAR_LOG_INFO(g_logger) << "run!!!";
-    //Fiber::GetThis();
+    
     setThis();
 
     //2.如果不是主线程 指定当前主协程

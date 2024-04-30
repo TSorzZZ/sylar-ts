@@ -59,6 +59,7 @@ protected:
     virtual void idle();    //什么都不干的时候做什么？
     void run();
     void setThis();
+    bool hasIdleThreads() {return m_idleThreadCount > 0;};
 private:
     template<class FiberOrCb>
     bool scheduleNoLock(FiberOrCb fc, int thread){  //无锁调度    只有任务队列为空的时候才需要唤醒线程
@@ -100,16 +101,16 @@ private:
     MutexType m_mutex;
     std::vector<sylar::Thread::ptr> m_threads;  //线程池
     std::list<FiberAndThread> m_fibers;         //任务
-    std::string m_name;
-    Fiber::ptr m_rootFiber;
+    std::string m_name;                         //调度器名称
+    Fiber::ptr m_rootFiber;                     //use caller时的调度协程
 protected:
-    std::vector<int> m_threadIds;       //线程id
-    size_t m_threadCount = 0;               //线程数
+    std::vector<int> m_threadIds;                          //线程id
+    size_t m_threadCount = 0;                              //线程数
     std::atomic_size_t m_activeThreadCount {0};         //激活线程数
     std::atomic_size_t m_idleThreadCount {0};           //等待线程数
-    bool m_stopping = true;                    //是否停止
-    bool m_autoStop = false;                    //自动停止
-    int m_rootThread = 0;                   //主线程
+    bool m_stopping = true;                                //是否停止
+    bool m_autoStop = false;                               //自动停止
+    int m_rootThread = 0;                                  //主线程
 
 };
 

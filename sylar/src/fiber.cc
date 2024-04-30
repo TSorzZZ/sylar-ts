@@ -22,8 +22,8 @@ static Logger::ptr g_logger = SYLAR_LOG_NAME("system");
 static std::atomic<uint64_t> s_fiber_id {0};        //协程id
 static std::atomic<uint64_t> s_fiber_count {0};     //协程数
 
-static thread_local Fiber* t_fiber = nullptr;           //当前线程正在运行的协程
-static thread_local Fiber::ptr t_threadFiber = nullptr;    //线程主协程
+static thread_local Fiber* t_fiber = nullptr;           //当前正在运行的协程指针
+static thread_local Fiber::ptr t_threadFiber = nullptr;    //线程主协程指针
 
 static ConfigVar<uint32_t>::ptr g_fiber_stack_size = Config::Lookup<uint32_t>("fiber.stack_size", 128 * 1024, "fiber stack size");
 
@@ -72,9 +72,12 @@ Fiber::Fiber(std::function<void()> cb, size_t stacksize, bool use_caller):m_id(+
     m_ctx.uc_stack.ss_sp = m_stack;
     m_ctx.uc_stack.ss_size = m_stacksize;
 
+    //直接通过主协程调度
     if(!use_caller){
         makecontext(&m_ctx, &Fiber::MainFunc, 0);
-    }else{
+    }
+    else    //通过调度协程调度
+    {
         makecontext(&m_ctx, &Fiber::CallerMainFunc, 0);
     }
     
@@ -104,6 +107,17 @@ void Fiber::SetThis(Fiber* f) {
     t_fiber = f;
 }
 
+// 获得当前正在执行的协程      如果线程未存在协程 则创建主协程    如果存在  直接返回  
+Fiber::ptr Fiber::GetThis(){
+    if(t_fiber){
+        return t_fiber->shared_from_this();
+    }
+    Fiber::ptr mainFiber(new Fiber);    //已经把当前协程置为主协程
+    SYLAR_ASSERT(t_fiber == mainFiber.get());
+    t_threadFiber = mainFiber;
+    return t_fiber->shared_from_this();
+}    
+
 //复用协程函数  重置状态     INIT， TERM
 void Fiber::reset(std::function<void()> cb){
     SYLAR_ASSERT(m_stack);
@@ -121,6 +135,7 @@ void Fiber::reset(std::function<void()> cb){
 
 }
 
+// 从主协程切换到当前子协程   主协程 -> 当前子协程
 void Fiber::call(){
     SetThis(this);
     m_state = EXEC;
@@ -129,14 +144,15 @@ void Fiber::call(){
     }
 }
 
+// 从当前子协程切换回主协程  当前子协程 -> 主协程
 void Fiber::back(){
     SetThis( t_threadFiber.get());
-        if(swapcontext(&m_ctx, &t_threadFiber->m_ctx)){
+    if(swapcontext(&m_ctx, &t_threadFiber->m_ctx)){
         SYLAR_ASSERT2(false, "swapcontext");
-        }
+    }
 }
 
-//切换到当前协程    主协程 -> 子协程
+// 从调度协程切换到当前子协程    调度协程 -> 当前子协程
 void Fiber::swapIn(){
     SetThis(this);
     SYLAR_ASSERT(m_state != EXEC);
@@ -148,7 +164,7 @@ void Fiber::swapIn(){
 }  
 
 
-//切换到后台执行   子协程 -> 主协程 
+// 从调度协程切换回当前子协程    当前子协程 -> 调度协程
 void Fiber::swapOut(){
     if(this != Scheduler::GetMainFiber()){  //
         SetThis( Scheduler::GetMainFiber());
@@ -158,18 +174,7 @@ void Fiber::swapOut(){
     }
 }
 
-//返回当前正在执行的协程      如果线程未存在协程 则创建主协程    如果存在  直接返回  
-Fiber::ptr Fiber::GetThis(){
-    if(t_fiber){
-        return t_fiber->shared_from_this();
-    }
-    Fiber::ptr mainFiber(new Fiber);
-    SYLAR_ASSERT(t_fiber == mainFiber.get());
-    t_threadFiber = mainFiber;
-    return t_fiber->shared_from_this();
-}    
-
-//切换到后台 设置为ready
+//切换到后台 设置为ready        当前子协程 ->调度协程
 void Fiber::YieldToReady(){
     Fiber::ptr cur = GetThis();
     SYLAR_ASSERT(cur->m_state == EXEC);
@@ -177,7 +182,7 @@ void Fiber::YieldToReady(){
     cur->swapOut();
 }
 
-//切换到后台，设置为hold
+//切换到后台，设置为hold        当前子协程 ->调度协程
 void Fiber::YieldToHold(){
     Fiber::ptr cur = GetThis();
     SYLAR_ASSERT(cur->m_state == EXEC);
@@ -185,14 +190,10 @@ void Fiber::YieldToHold(){
     cur->swapOut();
 }
 
-//总协程数
-uint64_t Fiber::TotalFibers(){
-    return s_fiber_count;
-} 
 
 // 协程主函数 执行完之后返回term状态
 void Fiber::MainFunc(){
-    Fiber::ptr cur = GetThis(); //引用技术会+1 导致无法析构
+    Fiber::ptr cur = GetThis(); //引用计数会+1 导致无法析构
     SYLAR_ASSERT(cur);
     try{
         cur->m_cb();
@@ -216,7 +217,7 @@ void Fiber::MainFunc(){
 }
 
 void Fiber::CallerMainFunc(){
-    Fiber::ptr cur = GetThis(); //引用技术会+1 导致无法析构
+    Fiber::ptr cur = GetThis(); //引用计数会+1 导致无法析构
     SYLAR_ASSERT(cur);
     try{
         cur->m_cb();
@@ -237,6 +238,11 @@ void Fiber::CallerMainFunc(){
 
     SYLAR_ASSERT2(false, "never  reach fiber_id = " + std::to_string(raw_ptr->getId()));
 }
+
+//总协程数
+uint64_t Fiber::TotalFibers(){
+    return s_fiber_count;
+} 
 
 
 }

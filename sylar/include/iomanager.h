@@ -24,9 +24,9 @@ public:
     };
 
 private:
-    struct FdContext{
+    struct FdContext{                               //Fd上下文
         typedef Mutex MutexType;
-        int fd = 0;                                     //事件关联句柄
+        int fd = 0;                                 //事件关联句柄
         struct EventContext{
             Scheduler* scheduler = nullptr;         //事件执行的scheduler
             Fiber::ptr fiber;                       //事件协程
@@ -60,11 +60,11 @@ protected:
     void idle() override;
     void contextResize(size_t size);
 private:
-    int m_epfd = 0;
-    int m_tickleFds[2]; //
-    std::atomic<size_t> m_pendingEventCount = {0};
+    int m_epfd = 0;                                   // epoll 文件句柄
+    int m_tickleFds[2];                               // pipe 文件句柄，fd[0]读端，fd[1]写端
+    std::atomic<size_t> m_pendingEventCount = {0};  // 当前等待执行的IO事件数量
     RWMutexType m_mutex;
-    std::vector<FdContext*> m_fdContexts;
+    std::vector<FdContext*> m_fdContexts;              //fd队列
 };
 
 

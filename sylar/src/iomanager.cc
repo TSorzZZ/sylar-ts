@@ -5,7 +5,9 @@
 #include "scheduler.h"
 #include <cerrno>
 #include <cstddef>
+#include <cstdint>
 #include <cstring>
+#include <memory>
 #include <sys/epoll.h>
 #include <unistd.h>
 #include<fcntl.h>
@@ -20,7 +22,7 @@ IOManager::FdContext::EventContext& IOManager::FdContext::getContext(IOManager::
         case IOManager::READ:
             return read;
         case IOManager::WRITE:
-            return read;
+            return write;
         default:
             SYLAR_ASSERT2(false, "getContext");
     }
@@ -51,7 +53,7 @@ IOManager::IOManager(size_t threads, bool use_caller, const std::string& name)
     SYLAR_ASSERT(m_epfd > 0);
 
     int ret = pipe(m_tickleFds);
-    SYLAR_ASSERT(ret);
+    SYLAR_ASSERT(!ret);
 
     epoll_event event;
     memset(&event, 0, sizeof(epoll_event));
@@ -59,10 +61,10 @@ IOManager::IOManager(size_t threads, bool use_caller, const std::string& name)
     event.data.fd = m_tickleFds[0];
 
     ret = fcntl(m_tickleFds[0],F_SETFL, O_NONBLOCK);
-    SYLAR_ASSERT(ret);
+    SYLAR_ASSERT(!ret);
 
     ret = epoll_ctl(m_epfd, EPOLL_CTL_ADD, m_tickleFds[0], &event);
-
+    SYLAR_ASSERT(!ret);
     contextResize(32);
 
     start();
@@ -98,17 +100,17 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb){
     FdContext* fd_ctx = nullptr;
     RWMutexType::ReadLock lock(m_mutex);
     //取出fd上下文
-    if(m_fdContexts.size() > fd){
+    if((int)m_fdContexts.size() > fd){
         fd_ctx = m_fdContexts[fd];
         lock.unlock();
     }else{
         lock.unlock();
         RWMutexType::WriteLock lock2(m_mutex);
-        contextResize(m_fdContexts.size() * 1.5);
+        contextResize(fd * 1.5);
         fd_ctx = m_fdContexts[fd];
     }
 
-    FdContext::Mutex::Lock lock(fd_ctx->mutex);
+    FdContext::MutexType::Lock lock2(fd_ctx->mutex);
     //
     if(fd_ctx->m_events & event){
         SYLAR_LOG_ERROR(g_logger) << "addEvent assert fd=" << fd 
@@ -136,17 +138,17 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb){
 
     event_ctx.scheduler = Scheduler::GetThis();
     if(cb){
-        context.cb.swap(cb);
+        event_ctx.cb.swap(cb);
     }else{
-        context.fiber = Fiber::GetThis();
-        SYLAR_ASSERT(context.fiber->getState() == Fiber::EXEC);
+        event_ctx.fiber = Fiber::GetThis();
+        SYLAR_ASSERT(event_ctx.fiber->getState() == Fiber::EXEC);
     }
     return 0;
         
 }
 bool IOManager::delEvent(int fd, Event event){
     RWMutexType::ReadLock lock(m_mutex);
-    if(m_fdContexts.size() <= fd){
+    if((int)m_fdContexts.size() <= fd){
         return false;
     }
     FdContext* fd_ctx = m_fdContexts[fd];
@@ -258,14 +260,100 @@ IOManager* IOManager::GetThis(){
 }
 
 void IOManager::tickle(){
-    
+    if(!hasIdleThreads()){
+        return;
+    }
+    int ret = write(m_tickleFds[1], "T", 1);
+    SYLAR_ASSERT(ret == 1);
 }
+
 bool IOManager::stopping(){
-    
+    return Scheduler::stopping() && m_pendingEventCount == 0;
 }
+
 void IOManager::idle(){
+    epoll_event* events = new epoll_event[64]();
+    //重载删除器
+    std::shared_ptr<epoll_event> shared_events(events, [](epoll_event* ptr){
+        delete [] ptr;
+    });
+
+    while(true){
+        if(stopping()){
+            SYLAR_LOG_INFO(g_logger) << "name=" << getName() << "idle stopping exit";
+            break;
+        }
+
+        int ret = 0;
+        do{
+            static const int MAX_TIMEOUT = 5000;
+            ret = epoll_wait(m_epfd, events, 64, MAX_TIMEOUT);
+
+            if(ret < 0 && errno == EINTR){
+
+            }else{
+                break;
+            }
+
+
+        }while(true);
+
+        for(int i = 0; i < ret; i++){
+            epoll_event&  event = events[i];
+            if(event.data.fd == m_tickleFds[0]){
+                uint8_t dummy;
+                while(read(m_tickleFds[0], &dummy, 1)); //et触发 所以要while
+                continue;
+            }
+
+            FdContext* fd_ctx = (FdContext*)event.data.ptr;
+            FdContext::MutexType::Lock lock(fd_ctx->mutex);
+            if(event.events & (EPOLLERR | EPOLLHUP)){
+                event.events |= EPOLLIN | EPOLLOUT;
+            }
+            int real_events = NONE;
+            if(event.events & EPOLLIN){
+                real_events |= READ;
+            }
+            if(event.events & EPOLLOUT){
+                real_events |= WRITE;
+            }
+
+            if((fd_ctx->m_events & real_events) == NONE)continue;
+
+            int left_events = (fd_ctx->m_events & ~real_events);
+            int op = left_events ? EPOLL_CTL_MOD : EPOLL_CTL_DEL;
+            event.events = EPOLLET | left_events;
+            int ret2 = epoll_ctl(m_epfd, op, fd_ctx->fd, &event);
+            if(ret2){
+                SYLAR_LOG_ERROR(g_logger) << "epoll_ctl(" << m_epfd << ", "
+                << op << "," << fd_ctx->fd << "," << event.events << "):"
+                << ret2 << "(" << errno << ") (" << strerror(errno)  <<")";
+                continue;
+            }
+
+            if(real_events & READ){
+                fd_ctx->triggerEvent(READ);
+                --m_pendingEventCount;
+            }
+            if(real_events & WRITE){
+                fd_ctx->triggerEvent(WRITE);
+                --m_pendingEventCount;
+            }
+        }
+        Fiber::ptr cur = Fiber::GetThis();
+        auto raw_ptr = cur.get();
+        cur.reset();
+        raw_ptr->swapOut();
+    }
 
 }
 
 
 }
+
+
+
+
+
+

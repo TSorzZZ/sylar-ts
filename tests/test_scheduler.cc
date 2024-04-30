@@ -10,12 +10,11 @@ void test_fiber(){
     if(--s_count >= 0){
         sylar::Scheduler::GetThis()->schedule(test_fiber, sylar::GetThreadId());
     }
-    
 }
 
 int main(int argc, char** argv){
     SYLAR_LOG_INFO(g_logger) << "main begin";
-    sylar::Scheduler sc(3, false, "testt");
+    sylar::Scheduler sc(3, true, "testt");
     sc.start();
     sc.schedule(test_fiber);
     sc.stop();

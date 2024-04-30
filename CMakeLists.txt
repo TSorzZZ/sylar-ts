@@ -28,7 +28,7 @@ set(LIB_LIB sylar pthread ${YAMLCPP})
 # 递归查找所有test源文件
 file(GLOB_RECURSE TEST_DIR_LIST ${PROJECT_SOURCE_DIR}/tests/*.cc ${PROJECT_SOURCE_DIR}/tests/*.cpp)    
 
-foreach(TEST ${TEST_SOURCES})
+foreach(TEST ${TEST_DIR_LIST})
     # 从原文件中提取目标名称 Name Without Extension
     get_filename_component(TARGET_NAME ${TEST} NAME_WE)
     # 添加可执行测试用例文件

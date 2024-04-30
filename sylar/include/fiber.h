@@ -20,8 +20,8 @@ public:
     enum State{
         INIT,   //初始化
         HOLD,   //挂起
+        READY,  //就绪
         EXEC,   //执行
-        READY,   //就绪
         TERM,   //终止
         EXCEPT  //异常
     };
