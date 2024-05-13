@@ -1,11 +1,14 @@
 #include "util.h"
 #include "log.h"
+#include <bits/types/struct_timeval.h>
+#include <cstddef>
 #include <cstdlib>
 #include<execinfo.h>
 #include <ostream>
 #include <sstream>
 #include <string>
 #include <vector>
+#include <sys/time.h>
 #include "fiber.h"
 
 namespace sylar {
@@ -47,7 +50,18 @@ std::string BacktraceToString(int size, int skip, const std::string& prefix){
     return ss.str();
 }
 
+uint64_t GetCurrentMS(){
+    timeval tv;
+    gettimeofday(&tv, NULL);
+    SYLAR_LOG_DEBUG(g_logger) << tv.tv_sec << "  " << tv.tv_usec;
+    return tv.tv_sec * 1000ul + tv.tv_usec / 1000;
+}
 
+uint64_t GetCurrentUS(){
+    timeval tv;
+    gettimeofday(&tv, NULL);
+    return tv.tv_sec * 1000 * 1000ul + tv.tv_usec;
+}
 
 
 }

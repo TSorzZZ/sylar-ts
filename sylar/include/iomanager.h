@@ -4,15 +4,17 @@
 #include "fiber.h"
 #include "mythread.h"
 #include "scheduler.h"
+#include "timer.h"
 #include <atomic>
 #include <cstddef>
+#include <cstdint>
 #include <functional>
 #include <memory>
 #include <vector>
 
 namespace sylar{
 
-class IOManager : public Scheduler{
+class IOManager : public Scheduler, public TimerManager{
 public:
     typedef std::shared_ptr<IOManager> ptr;
     typedef RWMutex RWMutexType;
@@ -38,7 +40,7 @@ private:
 
         EventContext read;                          //读事件
         EventContext write;                         //写事件
-        Event m_events = NONE;                      //已注册事件
+        Event events = NONE;                      //已注册事件
         MutexType mutex;
     };
 
@@ -58,7 +60,9 @@ protected:
     void tickle() override;
     bool stopping() override;
     void idle() override;
+    bool stopping(uint64_t& timeout);
     void contextResize(size_t size);
+    void onTimerInsertedAtFront() override;
 private:
     int m_epfd = 0;                                   // epoll 文件句柄
     int m_tickleFds[2];                               // pipe 文件句柄，fd[0]读端，fd[1]写端

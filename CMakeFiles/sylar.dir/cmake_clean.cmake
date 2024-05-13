@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/sylar.dir/sylar/src/mythread.cc.o.d"
   "CMakeFiles/sylar.dir/sylar/src/scheduler.cc.o"
   "CMakeFiles/sylar.dir/sylar/src/scheduler.cc.o.d"
+  "CMakeFiles/sylar.dir/sylar/src/timer.cc.o"
+  "CMakeFiles/sylar.dir/sylar/src/timer.cc.o.d"
   "CMakeFiles/sylar.dir/sylar/src/util.cc.o"
   "CMakeFiles/sylar.dir/sylar/src/util.cc.o.d"
   "lib/libsylar.pdb"

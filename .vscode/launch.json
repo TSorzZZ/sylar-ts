@@ -11,7 +11,7 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "${workspaceFolder}/bin/test_scheduler",
+            "program": "${workspaceFolder}/bin/test_iomanager",
             "args": [],
             "cwd": "${workspaceFolder}"
         }

@@ -24,7 +24,7 @@ public:
 private:
     Semaphore(const Semaphore&) = delete;
     Semaphore(const Semaphore&&) = delete;
-    Semaphore operator = (const Semaphore&) = delete;
+    Semaphore& operator = (const Semaphore&) = delete;
 
 private:
     sem_t m_semaphore;
@@ -41,7 +41,7 @@ public:
     }
 
     ~ScopedLockImpl(){
-        m_mutex.unlock();
+        unlock();
     }
 
     void lock(){
@@ -72,7 +72,7 @@ public:
     }
 
     ~ReadScopedLockImpl(){
-        m_mutex.unlock();
+        unlock();
     }
 
     void lock(){
@@ -103,7 +103,7 @@ public:
     }
 
     ~WriteScopedLockImpl(){
-        m_mutex.unlock();
+        unlock();
     }
 
     void lock(){
@@ -261,8 +261,8 @@ private:
     Thread(const Thread&&) = delete;
     Thread& operator = (const Thread&) = delete;
 private:
-    pid_t m_id;
-    pthread_t m_thread;
+    pid_t m_id = -1;
+    pthread_t m_thread = 0;
     std::function<void()> m_cb;
     std::string m_name;
     Semaphore m_semaphore;

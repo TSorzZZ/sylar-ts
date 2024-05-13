@@ -367,6 +367,30 @@ sylar/src/scheduler.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/scheduler.cc.s
 .PHONY : sylar/src/scheduler.cc.s
 
+sylar/src/timer.o: sylar/src/timer.cc.o
+.PHONY : sylar/src/timer.o
+
+# target to build an object file
+sylar/src/timer.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/timer.cc.o
+.PHONY : sylar/src/timer.cc.o
+
+sylar/src/timer.i: sylar/src/timer.cc.i
+.PHONY : sylar/src/timer.i
+
+# target to preprocess a source file
+sylar/src/timer.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/timer.cc.i
+.PHONY : sylar/src/timer.cc.i
+
+sylar/src/timer.s: sylar/src/timer.cc.s
+.PHONY : sylar/src/timer.s
+
+# target to generate assembly for a file
+sylar/src/timer.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/timer.cc.s
+.PHONY : sylar/src/timer.cc.s
+
 sylar/src/util.o: sylar/src/util.cc.o
 .PHONY : sylar/src/util.o
 
@@ -593,6 +617,9 @@ help:
 	@echo "... sylar/src/scheduler.o"
 	@echo "... sylar/src/scheduler.i"
 	@echo "... sylar/src/scheduler.s"
+	@echo "... sylar/src/timer.o"
+	@echo "... sylar/src/timer.i"
+	@echo "... sylar/src/timer.s"
 	@echo "... sylar/src/util.o"
 	@echo "... sylar/src/util.i"
 	@echo "... sylar/src/util.s"

@@ -31,6 +31,11 @@
 },
 {
   "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/. -I/home/ts/project/sylar-ts/sylar/include  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/timer.cc.o -c /home/ts/project/sylar-ts/sylar/src/timer.cc",
+  "file": "/home/ts/project/sylar-ts/sylar/src/timer.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
   "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/. -I/home/ts/project/sylar-ts/sylar/include  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/util.cc.o -c /home/ts/project/sylar-ts/sylar/src/util.cc",
   "file": "/home/ts/project/sylar-ts/sylar/src/util.cc"
 },

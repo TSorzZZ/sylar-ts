@@ -7,6 +7,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <cstring>
+#include <functional>
 #include <memory>
 #include <sys/epoll.h>
 #include <unistd.h>
@@ -35,8 +36,8 @@ void IOManager::FdContext::resetContext(EventContext& ctx){
 }
 
 void IOManager::FdContext::triggerEvent(Event event){
-    SYLAR_ASSERT(event & m_events);
-    m_events = (Event)(m_events & ~event);
+    SYLAR_ASSERT(event & events);
+    events = (Event)(events & ~event);
     EventContext& ctx = getContext(event);
     if(ctx.cb){
         ctx.scheduler->schedule(&ctx.cb);
@@ -112,15 +113,15 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb){
 
     FdContext::MutexType::Lock lock2(fd_ctx->mutex);
     //
-    if(fd_ctx->m_events & event){
+    if(fd_ctx->events & event){
         SYLAR_LOG_ERROR(g_logger) << "addEvent assert fd=" << fd 
-        << "event= " << fd_ctx->m_events;
-        SYLAR_ASSERT(!(fd_ctx->m_events & event));
+        << "event= " << fd_ctx->events;
+        SYLAR_ASSERT(!(fd_ctx->events & event));
     }
 
-    int op = fd_ctx->m_events ? EPOLL_CTL_MOD: EPOLL_CTL_ADD;
+    int op = fd_ctx->events ? EPOLL_CTL_MOD: EPOLL_CTL_ADD;
     epoll_event epevent;
-    epevent.events = EPOLLET| fd_ctx->m_events | event;
+    epevent.events = EPOLLET| fd_ctx->events | event;
     epevent.data.ptr = fd_ctx;
 
     int ret = epoll_ctl(m_epfd, op, fd, &epevent);
@@ -132,7 +133,7 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb){
     }
 
     ++m_pendingEventCount;
-    fd_ctx->m_events = (Event)(fd_ctx->m_events | event);
+    fd_ctx->events = (Event)(fd_ctx->events | event);
     FdContext::EventContext& event_ctx = fd_ctx->getContext(event);
     SYLAR_ASSERT(!event_ctx.scheduler && !event_ctx.fiber && !event_ctx.cb) ;  //确定有事件
 
@@ -156,11 +157,11 @@ bool IOManager::delEvent(int fd, Event event){
     
     FdContext::MutexType::Lock lock2(fd_ctx->mutex);
 
-    if(!(fd_ctx->m_events & event)){
+    if(!(fd_ctx->events & event)){
         return false;
     }
 
-    Event new_events = (Event)(fd_ctx->m_events & ~event);
+    Event new_events = (Event)(fd_ctx->events & ~event);
     int op = new_events? EPOLL_CTL_MOD: EPOLL_CTL_DEL;
     epoll_event epevent;
     epevent.events = EPOLLET | new_events;
@@ -175,7 +176,7 @@ bool IOManager::delEvent(int fd, Event event){
     }
 
     --m_pendingEventCount;
-    fd_ctx->m_events = new_events;
+    fd_ctx->events = new_events;
     FdContext::EventContext& event_ctx = fd_ctx->getContext(event);
     fd_ctx->resetContext(event_ctx);
     return true;
@@ -183,7 +184,7 @@ bool IOManager::delEvent(int fd, Event event){
 
 bool IOManager::cancelEvent(int fd, Event event){
     RWMutexType::ReadLock lock(m_mutex);
-    if(m_fdContexts.size() <= fd){
+    if((int)m_fdContexts.size() <= fd){
         return false;
     }
     FdContext* fd_ctx = m_fdContexts[fd];
@@ -191,11 +192,11 @@ bool IOManager::cancelEvent(int fd, Event event){
     
     FdContext::MutexType::Lock lock2(fd_ctx->mutex);
 
-    if(!(fd_ctx->m_events & event)){
+    if(!(fd_ctx->events & event)){
         return false;
     }
 
-    Event new_events = (Event)(fd_ctx->m_events & ~event);
+    Event new_events = (Event)(fd_ctx->events & ~event);
     int op = new_events? EPOLL_CTL_MOD: EPOLL_CTL_DEL;
     epoll_event epevent;
     epevent.events = EPOLLET | new_events;
@@ -217,7 +218,7 @@ bool IOManager::cancelEvent(int fd, Event event){
 
 bool IOManager::cancelAll(int fd){
     RWMutexType::ReadLock lock(m_mutex);
-    if(m_fdContexts.size() <= fd){
+    if((int)m_fdContexts.size() <= fd){
         return false;
     }
     FdContext* fd_ctx = m_fdContexts[fd];
@@ -225,7 +226,7 @@ bool IOManager::cancelAll(int fd){
     
     FdContext::MutexType::Lock lock2(fd_ctx->mutex);
 
-    if(!(fd_ctx->m_events)){
+    if(!(fd_ctx->events)){
         return false;
     }
 
@@ -242,17 +243,17 @@ bool IOManager::cancelAll(int fd){
             return false;
     }
 
-    if(fd_ctx->m_events & READ){
+    if(fd_ctx->events & READ){
         fd_ctx->triggerEvent(READ);
         --m_pendingEventCount;
     }
     
-    if(fd_ctx->m_events & WRITE){
+    if(fd_ctx->events & WRITE){
         fd_ctx->triggerEvent(WRITE);
         --m_pendingEventCount;
     }
 
-    SYLAR_ASSERT(fd_ctx->m_events == 0);
+    SYLAR_ASSERT(fd_ctx->events == 0);
     return true;
 }
 IOManager* IOManager::GetThis(){    
@@ -267,8 +268,16 @@ void IOManager::tickle(){
     SYLAR_ASSERT(ret == 1);
 }
 
+
+
+bool IOManager::stopping(uint64_t& timeout){
+    timeout = getNextTimer();
+    return timeout == ~0ull && m_pendingEventCount == 0 && Scheduler::stopping();
+}
+
 bool IOManager::stopping(){
-    return Scheduler::stopping() && m_pendingEventCount == 0;
+    uint64_t timeout = 0;
+    return stopping(timeout);
 }
 
 void IOManager::idle(){
@@ -279,30 +288,42 @@ void IOManager::idle(){
     });
 
     while(true){
-        if(stopping()){
+        uint64_t next_timeout = 0;
+        if(stopping(next_timeout)){
             SYLAR_LOG_INFO(g_logger) << "name=" << getName() << "idle stopping exit";
             break;
         }
 
+        
         int ret = 0;
-        do{
-            static const int MAX_TIMEOUT = 5000;
-            ret = epoll_wait(m_epfd, events, 64, MAX_TIMEOUT);
-
-            if(ret < 0 && errno == EINTR){
-
-            }else{
+        do {
+            static const int MAX_TIMEOUT = 3000;
+            if(next_timeout != ~0ull) {
+                next_timeout = (int)next_timeout > MAX_TIMEOUT
+                                ? MAX_TIMEOUT : next_timeout;
+            } else {
+                next_timeout = MAX_TIMEOUT;
+            }
+            ret = epoll_wait(m_epfd, events, 64, (int)next_timeout);
+            if(ret < 0 && errno == EINTR) {
+            } else {
                 break;
             }
+        } while(true);
 
-
-        }while(true);
+        std::vector<std::function<void()>> cbs;
+        listExpiredCb(cbs);
+        if(!cbs.empty()){
+            SYLAR_LOG_DEBUG(g_logger) << "on timern size=" << cbs.size();
+            schedule(cbs.begin(), cbs.end());
+            cbs.clear();
+        }
 
         for(int i = 0; i < ret; i++){
             epoll_event&  event = events[i];
             if(event.data.fd == m_tickleFds[0]){
                 uint8_t dummy;
-                while(read(m_tickleFds[0], &dummy, 1)); //et触发 所以要while
+                while(read(m_tickleFds[0], &dummy, 1) == 1); //et触发 所以要while
                 continue;
             }
 
@@ -319,9 +340,9 @@ void IOManager::idle(){
                 real_events |= WRITE;
             }
 
-            if((fd_ctx->m_events & real_events) == NONE)continue;
+            if((fd_ctx->events & real_events) == NONE)continue;
 
-            int left_events = (fd_ctx->m_events & ~real_events);
+            int left_events = (fd_ctx->events & ~real_events);
             int op = left_events ? EPOLL_CTL_MOD : EPOLL_CTL_DEL;
             event.events = EPOLLET | left_events;
             int ret2 = epoll_ctl(m_epfd, op, fd_ctx->fd, &event);
@@ -349,6 +370,9 @@ void IOManager::idle(){
 
 }
 
+void IOManager::onTimerInsertedAtFront(){
+    tickle();
+}
 
 }
 

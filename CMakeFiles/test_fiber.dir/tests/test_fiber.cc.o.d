@@ -862,4 +862,5 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: \
   /usr/include/ucontext.h \
   /usr/include/x86_64-linux-gnu/bits/indirect-return.h \
   /home/ts/project/sylar-ts/sylar/include/scheduler.h \
-  /home/ts/project/sylar-ts/sylar/include/iomanager.h
+  /home/ts/project/sylar-ts/sylar/include/iomanager.h \
+  /home/ts/project/sylar-ts/sylar/include/timer.h

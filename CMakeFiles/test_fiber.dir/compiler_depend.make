@@ -910,7 +910,8 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: tests/test_fiber.cc \
   /usr/include/ucontext.h \
   /usr/include/x86_64-linux-gnu/bits/indirect-return.h \
   sylar/include/scheduler.h \
-  sylar/include/iomanager.h
+  sylar/include/iomanager.h \
+  sylar/include/timer.h
 
 
 /usr/include/ucontext.h:
@@ -1248,6 +1249,8 @@ sylar/include/iomanager.h:
 /usr/include/boost/numeric/conversion/numeric_cast_traits.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/math-vector.h:
+
+sylar/include/timer.h:
 
 /usr/include/c++/11/cmath:
 
