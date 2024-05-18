@@ -53,7 +53,7 @@ std::string BacktraceToString(int size, int skip, const std::string& prefix){
 uint64_t GetCurrentMS(){
     timeval tv;
     gettimeofday(&tv, NULL);
-    SYLAR_LOG_DEBUG(g_logger) << tv.tv_sec << "  " << tv.tv_usec;
+    //SYLAR_LOG_DEBUG(g_logger) << tv.tv_sec << "  " << tv.tv_usec;
     return tv.tv_sec * 1000ul + tv.tv_usec / 1000;
 }
 

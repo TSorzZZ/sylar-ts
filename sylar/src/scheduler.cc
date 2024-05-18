@@ -1,5 +1,6 @@
 #include "scheduler.h"
 #include "fiber.h"
+#include "hook.h"
 #include "log.h"
 #include"macro.h"
 #include "mythread.h"
@@ -26,7 +27,7 @@ Scheduler::Scheduler(size_t threads, bool use_caller, const std::string& name):m
 
         SYLAR_ASSERT(GetThis() == nullptr);
         t_scheduler = this;
-        //当前线程主协程自己绑定run方法  并且加入任务队列用于调度
+        //当前线程主协程 新建一个fiber绑定run方法  并且加入任务队列用于调度
         m_rootFiber.reset(new Fiber(std::bind(&Scheduler::run, this), 0, true));
         sylar::Thread::SetName(m_name);
         t_fiber = m_rootFiber.get();
@@ -126,7 +127,7 @@ void Scheduler::setThis(){
 void Scheduler::run(){  //真正的调度方法
     //1.  初始化协程  指定调度器
     SYLAR_LOG_INFO(g_logger) << "run!!!";
-    
+    set_hook_enable(true);  //只使用scheduler时不能开启hook 不然会找不到iomanager
     setThis();
 
     //2.如果不是主线程 指定当前主协程
@@ -216,7 +217,9 @@ void Scheduler::run(){  //真正的调度方法
                 cb_fiber.reset();
             }
         }
-        else{
+        else    //没有任务执行就执行idle协程
+        {
+            //SYLAR_LOG_INFO(g_logger) << "idle run!!!";
             if(is_active){
                 --m_activeThreadCount;
                 continue;

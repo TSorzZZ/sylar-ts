@@ -112,7 +112,7 @@ Fiber::ptr Fiber::GetThis(){
     if(t_fiber){
         return t_fiber->shared_from_this();
     }
-    Fiber::ptr mainFiber(new Fiber);    //已经把当前协程置为主协程
+    Fiber::ptr mainFiber(new Fiber);    //把当前协程置为主协程
     SYLAR_ASSERT(t_fiber == mainFiber.get());
     t_threadFiber = mainFiber;
     return t_fiber->shared_from_this();
@@ -164,7 +164,7 @@ void Fiber::swapIn(){
 }  
 
 
-// 从调度协程切换回当前子协程    当前子协程 -> 调度协程
+// 从当前子协程切换回调度协程    当前子协程 -> 调度协程
 void Fiber::swapOut(){
     if(this != Scheduler::GetMainFiber()){  //
         SetThis( Scheduler::GetMainFiber());
@@ -212,7 +212,7 @@ void Fiber::MainFunc(){
     cur.reset();    //释放智能指针
     raw_ptr->swapOut(); //切换回主协程
 
-        SYLAR_ASSERT2(false, "never  reach fiber_id = " + std::to_string(raw_ptr->getId()));
+    SYLAR_ASSERT2(false, "never  reach fiber_id = " + std::to_string(raw_ptr->getId()));
 
 }
 

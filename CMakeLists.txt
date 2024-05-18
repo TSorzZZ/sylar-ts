@@ -23,7 +23,7 @@ file(GLOB_RECURSE SRC_DIR_LIST ${PROJECT_SOURCE_DIR}/sylar/src/*.cc ${PROJECT_SO
 add_library(sylar SHARED ${SRC_DIR_LIST}) 
 # add_library(sylar STATIC ${SRC_DIR_LIST}) 
 
-set(LIB_LIB sylar pthread ${YAMLCPP})
+set(LIB_LIB sylar pthread dl ${YAMLCPP})
 
 # 递归查找所有test源文件
 file(GLOB_RECURSE TEST_DIR_LIST ${PROJECT_SOURCE_DIR}/tests/*.cc ${PROJECT_SOURCE_DIR}/tests/*.cpp)    

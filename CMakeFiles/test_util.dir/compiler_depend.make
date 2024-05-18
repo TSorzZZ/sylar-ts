@@ -243,6 +243,7 @@ CMakeFiles/test_util.dir/tests/test_util.cc.o: tests/test_util.cc \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
   sylar/include/singleton.h \
   sylar/include/mythread.h \
+  sylar/include/noncopyable.h \
   /usr/include/c++/11/cstddef \
   /usr/include/c++/11/functional \
   /usr/include/c++/11/bits/std_function.h \
@@ -1622,6 +1623,8 @@ sylar/include/timer.h:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/or.hpp:
 
+sylar/include/noncopyable.h:
+
 /usr/include/c++/11/bits/stl_raw_storage_iter.h:
 
 /usr/include/boost/mpl/aux_/reverse_fold_impl.hpp:
@@ -1767,12 +1770,6 @@ tests/test_util.cc:
 /usr/include/boost/mpl/aux_/yes_no.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
-
-/usr/include/c++/11/atomic:
-
-/usr/include/boost/numeric/conversion/detail/sign_mixture.hpp:
-
-/usr/include/boost/iterator/detail/facade_iterator_category.hpp:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
 
@@ -2066,6 +2063,10 @@ sylar/include/log.h:
 
 /usr/include/boost/concept/assert.hpp:
 
+/usr/include/linux/limits.h:
+
+/usr/include/boost/mpl/always.hpp:
+
 /usr/include/c++/11/bits/gslice.h:
 
 /usr/include/boost/preprocessor/repetition/for.hpp:
@@ -2077,10 +2078,6 @@ sylar/include/log.h:
 /usr/include/boost/mpl/list/aux_/front.hpp:
 
 /usr/include/c++/11/bits/shared_ptr_base.h:
-
-/usr/include/boost/mpl/always.hpp:
-
-/usr/include/linux/limits.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
@@ -2199,6 +2196,12 @@ sylar/include/sylar.h:
 /usr/include/c++/11/bits/stl_pair.h:
 
 /usr/include/boost/mpl/aux_/config/has_xxx.hpp:
+
+/usr/include/c++/11/atomic:
+
+/usr/include/boost/numeric/conversion/detail/sign_mixture.hpp:
+
+/usr/include/boost/iterator/detail/facade_iterator_category.hpp:
 
 /usr/include/boost/mpl/aux_/config/integral.hpp:
 

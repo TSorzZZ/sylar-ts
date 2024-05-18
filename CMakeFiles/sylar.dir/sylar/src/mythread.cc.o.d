@@ -1,6 +1,7 @@
 CMakeFiles/sylar.dir/sylar/src/mythread.cc.o: \
   /home/ts/project/sylar-ts/sylar/src/mythread.cc \
   /home/ts/project/sylar-ts/sylar/include/mythread.h \
+  /home/ts/project/sylar-ts/sylar/include/noncopyable.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/cstddef \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11/bits/c++config.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

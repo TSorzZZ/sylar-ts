@@ -165,6 +165,7 @@ CMakeFiles/sylar.dir/sylar/src/iomanager.cc.o: \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/stl_heap.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/uniform_int_dist.h \
   /home/ts/project/sylar-ts/sylar/include/mythread.h \
+  /home/ts/project/sylar-ts/sylar/include/noncopyable.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/cstddef \
   /usr/include/semaphore.h \
   /usr/include/x86_64-linux-gnu/bits/semaphore.h \

@@ -858,6 +858,7 @@ CMakeFiles/sylar.dir/sylar/src/fiber.cc.o: \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
   /home/ts/project/sylar-ts/sylar/include/singleton.h \
   /home/ts/project/sylar-ts/sylar/include/mythread.h \
+  /home/ts/project/sylar-ts/sylar/include/noncopyable.h \
   /usr/include/semaphore.h \
   /usr/include/x86_64-linux-gnu/bits/semaphore.h \
   /home/ts/project/sylar-ts/sylar/include/macro.h \

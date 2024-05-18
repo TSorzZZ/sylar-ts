@@ -228,6 +228,7 @@ CMakeFiles/test_log.dir/tests/test_log.cc.o: \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
   /home/ts/project/sylar-ts/sylar/include/singleton.h \
   /home/ts/project/sylar-ts/sylar/include/mythread.h \
+  /home/ts/project/sylar-ts/sylar/include/noncopyable.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/cstddef \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/functional \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/std_function.h \

@@ -6,8 +6,18 @@
 },
 {
   "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/. -I/home/ts/project/sylar-ts/sylar/include  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/fd_manager.cc.o -c /home/ts/project/sylar-ts/sylar/src/fd_manager.cc",
+  "file": "/home/ts/project/sylar-ts/sylar/src/fd_manager.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
   "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/. -I/home/ts/project/sylar-ts/sylar/include  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/fiber.cc.o -c /home/ts/project/sylar-ts/sylar/src/fiber.cc",
   "file": "/home/ts/project/sylar-ts/sylar/src/fiber.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/. -I/home/ts/project/sylar-ts/sylar/include  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/hook.cc.o -c /home/ts/project/sylar-ts/sylar/src/hook.cc",
+  "file": "/home/ts/project/sylar-ts/sylar/src/hook.cc"
 },
 {
   "directory": "/home/ts/project/sylar-ts",
@@ -48,6 +58,11 @@
   "directory": "/home/ts/project/sylar-ts",
   "command": "/usr/bin/c++  -D__FILE__=\\\"tests/test_fiber.cc\\\" -I/home/ts/project/sylar-ts/. -I/home/ts/project/sylar-ts/sylar/include  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -Wno-builtin-macro-redefined -o CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o -c /home/ts/project/sylar-ts/tests/test_fiber.cc",
   "file": "/home/ts/project/sylar-ts/tests/test_fiber.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++  -D__FILE__=\\\"tests/test_hook.cc\\\" -I/home/ts/project/sylar-ts/. -I/home/ts/project/sylar-ts/sylar/include  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -Wno-builtin-macro-redefined -o CMakeFiles/test_hook.dir/tests/test_hook.cc.o -c /home/ts/project/sylar-ts/tests/test_hook.cc",
+  "file": "/home/ts/project/sylar-ts/tests/test_hook.cc"
 },
 {
   "directory": "/home/ts/project/sylar-ts",

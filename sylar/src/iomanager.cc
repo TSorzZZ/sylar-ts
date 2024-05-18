@@ -96,7 +96,7 @@ void IOManager::contextResize(size_t size){
 }
 
 
-//-1 error 0 retry 1 success
+//添加事件 -1 error 0 success
 int IOManager::addEvent(int fd, Event event, std::function<void()> cb){
     FdContext* fd_ctx = nullptr;
     RWMutexType::ReadLock lock(m_mutex);
@@ -147,6 +147,8 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb){
     return 0;
         
 }
+
+// 删除事件  不执行回调
 bool IOManager::delEvent(int fd, Event event){
     RWMutexType::ReadLock lock(m_mutex);
     if((int)m_fdContexts.size() <= fd){
@@ -182,6 +184,7 @@ bool IOManager::delEvent(int fd, Event event){
     return true;
 }
 
+//取消事件 如果该事件被注册过回调，那就触发一次回调事件
 bool IOManager::cancelEvent(int fd, Event event){
     RWMutexType::ReadLock lock(m_mutex);
     if((int)m_fdContexts.size() <= fd){
@@ -216,6 +219,7 @@ bool IOManager::cancelEvent(int fd, Event event){
     return true;
 }
 
+// 取消所有事件 所有被注册的回调事件在cancel之前都会被执行一次
 bool IOManager::cancelAll(int fd){
     RWMutexType::ReadLock lock(m_mutex);
     if((int)m_fdContexts.size() <= fd){
@@ -260,6 +264,8 @@ IOManager* IOManager::GetThis(){
     return dynamic_cast<IOManager*>(Scheduler::GetThis());
 }
 
+//当调度器空闲时，idle协程通过epoll_wait阻塞在管道的读描述符上，等管道的可读事件。
+//添加新任务时，tickle方法写管道，idle协程检测到管道可读后退出，调度器执行调度。
 void IOManager::tickle(){
     if(!hasIdleThreads()){
         return;
@@ -290,7 +296,7 @@ void IOManager::idle(){
     while(true){
         uint64_t next_timeout = 0;
         if(stopping(next_timeout)){
-            SYLAR_LOG_INFO(g_logger) << "name=" << getName() << "idle stopping exit";
+            SYLAR_LOG_INFO(g_logger) << "name=" << getName() << " idle stopping exit";
             break;
         }
 
@@ -314,7 +320,7 @@ void IOManager::idle(){
         std::vector<std::function<void()>> cbs;
         listExpiredCb(cbs);
         if(!cbs.empty()){
-            SYLAR_LOG_DEBUG(g_logger) << "on timern size=" << cbs.size();
+            SYLAR_LOG_DEBUG(g_logger) << "on timer size=" << cbs.size();
             schedule(cbs.begin(), cbs.end());
             cbs.clear();
         }

@@ -9,20 +9,22 @@
 #include <sys/types.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-
+#include <iostream>
+#include <sys/epoll.h>
 static sylar::Logger::ptr g_logger = SYLAR_LOG_ROOT();
-int sockfd = 0;
-void test_fiber(){
-    SYLAR_LOG_INFO(g_logger) << "test_fiber";
-}
 
-void test1(){
-    sylar::IOManager iom;
-    iom.schedule(&test_fiber);
+int sock = 0;
 
+void test_fiber() {
+    SYLAR_LOG_INFO(g_logger) << "test_fiber sock=" << sock;
 
-    sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    fcntl(sockfd, F_SETFL, O_NONBLOCK);
+    //sleep(3);
+
+    //close(sock);
+    //sylar::IOManager::GetThis()->cancelAll(sock);
+
+    sock = socket(AF_INET, SOCK_STREAM, 0);
+    fcntl(sock, F_SETFL, O_NONBLOCK);
 
     sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
@@ -30,31 +32,34 @@ void test1(){
     addr.sin_port = htons(80);
     inet_pton(AF_INET, "120.232.145.185", &addr.sin_addr.s_addr);
 
-    
-    if(!connect(sockfd, (sockaddr *)&addr, sizeof(addr))){
-
-    }else if(errno == EINPROGRESS){
-        SYLAR_LOG_INFO(g_logger) << "add evemt errno= " << errno << " " << strerror(errno);
-            iom.addEvent(sockfd, sylar::IOManager::READ, [](){
-            SYLAR_LOG_INFO(g_logger) << "read callbak";
-        }); 
-        iom.addEvent(sockfd, sylar::IOManager::WRITE, [](){
-            SYLAR_LOG_INFO(g_logger) << "write callback";
-            sylar::IOManager::GetThis()->cancelEvent(sockfd, sylar::IOManager::READ);
-            close(sockfd);
+    if(!connect(sock, (const sockaddr*)&addr, sizeof(addr))) {
+    } else if(errno == EINPROGRESS) {
+        SYLAR_LOG_INFO(g_logger) << "add event errno=" << errno << " " << strerror(errno);
+        sylar::IOManager::GetThis()->addEvent(sock, sylar::IOManager::READ, [](){
+            SYLAR_LOG_INFO(g_logger) << "read callback";
         });
-    }else{
+        sylar::IOManager::GetThis()->addEvent(sock, sylar::IOManager::WRITE, [](){
+            SYLAR_LOG_INFO(g_logger) << "write callback";
+            //close(sock);
+            sylar::IOManager::GetThis()->cancelEvent(sock, sylar::IOManager::READ);
+            close(sock);
+        });
+    } else {
         SYLAR_LOG_INFO(g_logger) << "else " << errno << " " << strerror(errno);
     }
-    
-    
 
 }
 
+void test1() {
+    std::cout << "EPOLLIN=" << EPOLLIN
+              << " EPOLLOUT=" << EPOLLOUT << std::endl;
+    sylar::IOManager iom(2, false, "test_iom");
+    iom.schedule(&test_fiber);
+}
 
 sylar::Timer::ptr s_timer;
 void test_timer() {
-    sylar::IOManager iom(2);
+    sylar::IOManager iom(2,true,"test_timer");
     s_timer = iom.addTimer(1000, [](){
         static int i = 0;
         SYLAR_LOG_INFO(g_logger) << "hello timer i=" << i;
@@ -65,9 +70,8 @@ void test_timer() {
     }, true);
 }
 
-
-int main(int argc, char** argv){
-    //test1();
-    test_timer();
+int main(int argc, char** argv) {
+    test1();
+    //test_timer();
     return 0;
 }

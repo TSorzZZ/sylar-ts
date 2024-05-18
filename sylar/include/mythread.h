@@ -1,6 +1,7 @@
 #ifndef __SYLAR_THREAD_H__
 #define __SYLAR_THREAD_H__
 
+#include "noncopyable.h"
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -14,7 +15,7 @@
 namespace sylar{
     
 
-class Semaphore{
+class Semaphore: Noncopyable{
 public:
     Semaphore(uint32_t count = 0);
     ~Semaphore();
@@ -125,7 +126,7 @@ private:
     bool m_locked;
 };
 
-class Mutex{
+class Mutex: Noncopyable{
 public:
     typedef ScopedLockImpl<Mutex> Lock;
     Mutex(){
@@ -149,7 +150,7 @@ private:
     pthread_mutex_t m_mutex;
 };
 
-class NullMutex{
+class NullMutex: Noncopyable{
 public:
     typedef ScopedLockImpl<NullMutex> Lock;
     NullMutex(){}
@@ -158,7 +159,7 @@ public:
     void unlock(){}
 };
 
-class NullRWMutex{
+class NullRWMutex: Noncopyable{
 public:
     typedef ReadScopedLockImpl<NullMutex> ReadLock;
     typedef WriteScopedLockImpl<NullMutex> WriteLock;
@@ -169,7 +170,7 @@ public:
     void unlock(){}
 };
 
-class RWMutex{
+class RWMutex: Noncopyable{
 public:
     typedef ReadScopedLockImpl<RWMutex> ReadLock;
     typedef WriteScopedLockImpl<RWMutex> WriteLock;
@@ -197,7 +198,7 @@ private:
     pthread_rwlock_t m_lock;
 };
 
-class Spinlock{
+class Spinlock: Noncopyable{
 public:
     typedef ScopedLockImpl<Spinlock> Lock;
     Spinlock(){
@@ -219,7 +220,7 @@ private:
     pthread_spinlock_t m_mutex;
 };
 
-class CASLock{
+class CASLock: Noncopyable{
 public:
     typedef ScopedLockImpl<CASLock> Lock;
     CASLock(){

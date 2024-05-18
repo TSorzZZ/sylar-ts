@@ -900,12 +900,15 @@ CMakeFiles/test_config.dir/tests/test_config.cc.o: tests/test_config.cc \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
   sylar/include/singleton.h \
   sylar/include/mythread.h \
+  sylar/include/noncopyable.h \
   /usr/include/semaphore.h \
   /usr/include/x86_64-linux-gnu/bits/semaphore.h \
   /usr/include/c++/11/iostream
 
 
 /usr/include/semaphore.h:
+
+sylar/include/noncopyable.h:
 
 sylar/include/mythread.h:
 

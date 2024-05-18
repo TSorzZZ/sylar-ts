@@ -159,6 +159,19 @@ test_fiber/fast:
 .PHONY : test_fiber/fast
 
 #=============================================================================
+# Target rules for targets named test_hook
+
+# Build rule for target.
+test_hook: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_hook
+.PHONY : test_hook
+
+# fast build rule for target.
+test_hook/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/build
+.PHONY : test_hook/fast
+
+#=============================================================================
 # Target rules for targets named test_iomanager
 
 # Build rule for target.
@@ -247,6 +260,30 @@ sylar/src/config.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/config.cc.s
 .PHONY : sylar/src/config.cc.s
 
+sylar/src/fd_manager.o: sylar/src/fd_manager.cc.o
+.PHONY : sylar/src/fd_manager.o
+
+# target to build an object file
+sylar/src/fd_manager.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/fd_manager.cc.o
+.PHONY : sylar/src/fd_manager.cc.o
+
+sylar/src/fd_manager.i: sylar/src/fd_manager.cc.i
+.PHONY : sylar/src/fd_manager.i
+
+# target to preprocess a source file
+sylar/src/fd_manager.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/fd_manager.cc.i
+.PHONY : sylar/src/fd_manager.cc.i
+
+sylar/src/fd_manager.s: sylar/src/fd_manager.cc.s
+.PHONY : sylar/src/fd_manager.s
+
+# target to generate assembly for a file
+sylar/src/fd_manager.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/fd_manager.cc.s
+.PHONY : sylar/src/fd_manager.cc.s
+
 sylar/src/fiber.o: sylar/src/fiber.cc.o
 .PHONY : sylar/src/fiber.o
 
@@ -270,6 +307,30 @@ sylar/src/fiber.s: sylar/src/fiber.cc.s
 sylar/src/fiber.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/fiber.cc.s
 .PHONY : sylar/src/fiber.cc.s
+
+sylar/src/hook.o: sylar/src/hook.cc.o
+.PHONY : sylar/src/hook.o
+
+# target to build an object file
+sylar/src/hook.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/hook.cc.o
+.PHONY : sylar/src/hook.cc.o
+
+sylar/src/hook.i: sylar/src/hook.cc.i
+.PHONY : sylar/src/hook.i
+
+# target to preprocess a source file
+sylar/src/hook.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/hook.cc.i
+.PHONY : sylar/src/hook.cc.i
+
+sylar/src/hook.s: sylar/src/hook.cc.s
+.PHONY : sylar/src/hook.s
+
+# target to generate assembly for a file
+sylar/src/hook.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/hook.cc.s
+.PHONY : sylar/src/hook.cc.s
 
 sylar/src/iomanager.o: sylar/src/iomanager.cc.o
 .PHONY : sylar/src/iomanager.o
@@ -463,6 +524,30 @@ tests/test_fiber.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.s
 .PHONY : tests/test_fiber.cc.s
 
+tests/test_hook.o: tests/test_hook.cc.o
+.PHONY : tests/test_hook.o
+
+# target to build an object file
+tests/test_hook.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cc.o
+.PHONY : tests/test_hook.cc.o
+
+tests/test_hook.i: tests/test_hook.cc.i
+.PHONY : tests/test_hook.i
+
+# target to preprocess a source file
+tests/test_hook.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cc.i
+.PHONY : tests/test_hook.cc.i
+
+tests/test_hook.s: tests/test_hook.cc.s
+.PHONY : tests/test_hook.s
+
+# target to generate assembly for a file
+tests/test_hook.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cc.s
+.PHONY : tests/test_hook.cc.s
+
 tests/test_iomanager.o: tests/test_iomanager.cc.o
 .PHONY : tests/test_iomanager.o
 
@@ -594,6 +679,7 @@ help:
 	@echo "... sylar"
 	@echo "... test_config"
 	@echo "... test_fiber"
+	@echo "... test_hook"
 	@echo "... test_iomanager"
 	@echo "... test_log"
 	@echo "... test_scheduler"
@@ -602,9 +688,15 @@ help:
 	@echo "... sylar/src/config.o"
 	@echo "... sylar/src/config.i"
 	@echo "... sylar/src/config.s"
+	@echo "... sylar/src/fd_manager.o"
+	@echo "... sylar/src/fd_manager.i"
+	@echo "... sylar/src/fd_manager.s"
 	@echo "... sylar/src/fiber.o"
 	@echo "... sylar/src/fiber.i"
 	@echo "... sylar/src/fiber.s"
+	@echo "... sylar/src/hook.o"
+	@echo "... sylar/src/hook.i"
+	@echo "... sylar/src/hook.s"
 	@echo "... sylar/src/iomanager.o"
 	@echo "... sylar/src/iomanager.i"
 	@echo "... sylar/src/iomanager.s"
@@ -629,6 +721,9 @@ help:
 	@echo "... tests/test_fiber.o"
 	@echo "... tests/test_fiber.i"
 	@echo "... tests/test_fiber.s"
+	@echo "... tests/test_hook.o"
+	@echo "... tests/test_hook.i"
+	@echo "... tests/test_hook.s"
 	@echo "... tests/test_iomanager.o"
 	@echo "... tests/test_iomanager.i"
 	@echo "... tests/test_iomanager.s"

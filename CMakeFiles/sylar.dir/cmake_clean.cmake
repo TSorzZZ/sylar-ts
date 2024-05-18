@@ -1,8 +1,12 @@
 file(REMOVE_RECURSE
   "CMakeFiles/sylar.dir/sylar/src/config.cc.o"
   "CMakeFiles/sylar.dir/sylar/src/config.cc.o.d"
+  "CMakeFiles/sylar.dir/sylar/src/fd_manager.cc.o"
+  "CMakeFiles/sylar.dir/sylar/src/fd_manager.cc.o.d"
   "CMakeFiles/sylar.dir/sylar/src/fiber.cc.o"
   "CMakeFiles/sylar.dir/sylar/src/fiber.cc.o.d"
+  "CMakeFiles/sylar.dir/sylar/src/hook.cc.o"
+  "CMakeFiles/sylar.dir/sylar/src/hook.cc.o.d"
   "CMakeFiles/sylar.dir/sylar/src/iomanager.cc.o"
   "CMakeFiles/sylar.dir/sylar/src/iomanager.cc.o.d"
   "CMakeFiles/sylar.dir/sylar/src/log.cc.o"
