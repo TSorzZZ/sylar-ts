@@ -8,8 +8,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # 导出编译命令，用于IDE或其他�
 set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function ") # 设置C++编译器的标志，包括环境变量中的CXXFLAGS、优化级别、调试信息、C++标准、警告控制等
 
 # 指定头文件搜索路径
+include_directories(BEFORE ${PROJECT_SOURCE_DIR}/sylar/include) 
 include_directories(.) 
-include_directories(${PROJECT_SOURCE_DIR}/sylar/include) 
 # 指定库文件搜索路径
 link_directories(/usr/local/lib) 
 

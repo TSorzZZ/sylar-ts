@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/ts/project/sylar-ts/sylar/src/address.cc" "CMakeFiles/sylar.dir/sylar/src/address.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/address.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/config.cc" "CMakeFiles/sylar.dir/sylar/src/config.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/config.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/fd_manager.cc" "CMakeFiles/sylar.dir/sylar/src/fd_manager.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/fd_manager.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/fiber.cc" "CMakeFiles/sylar.dir/sylar/src/fiber.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/fiber.cc.o.d"
@@ -16,6 +17,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/ts/project/sylar-ts/sylar/src/log.cc" "CMakeFiles/sylar.dir/sylar/src/log.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/log.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/mythread.cc" "CMakeFiles/sylar.dir/sylar/src/mythread.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/mythread.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/scheduler.cc" "CMakeFiles/sylar.dir/sylar/src/scheduler.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/scheduler.cc.o.d"
+  "/home/ts/project/sylar-ts/sylar/src/sockett.cc" "CMakeFiles/sylar.dir/sylar/src/sockett.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/sockett.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/timer.cc" "CMakeFiles/sylar.dir/sylar/src/timer.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/timer.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/util.cc" "CMakeFiles/sylar.dir/sylar/src/util.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/util.cc.o.d"
   )

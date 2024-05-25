@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/sylar.dir/sylar/src/address.cc.o"
+  "CMakeFiles/sylar.dir/sylar/src/address.cc.o.d"
   "CMakeFiles/sylar.dir/sylar/src/config.cc.o"
   "CMakeFiles/sylar.dir/sylar/src/config.cc.o.d"
   "CMakeFiles/sylar.dir/sylar/src/fd_manager.cc.o"
@@ -15,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/sylar.dir/sylar/src/mythread.cc.o.d"
   "CMakeFiles/sylar.dir/sylar/src/scheduler.cc.o"
   "CMakeFiles/sylar.dir/sylar/src/scheduler.cc.o.d"
+  "CMakeFiles/sylar.dir/sylar/src/sockett.cc.o"
+  "CMakeFiles/sylar.dir/sylar/src/sockett.cc.o.d"
   "CMakeFiles/sylar.dir/sylar/src/timer.cc.o"
   "CMakeFiles/sylar.dir/sylar/src/timer.cc.o.d"
   "CMakeFiles/sylar.dir/sylar/src/util.cc.o"

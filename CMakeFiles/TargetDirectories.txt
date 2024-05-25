@@ -1,10 +1,12 @@
 /home/ts/project/sylar-ts/CMakeFiles/sylar.dir
+/home/ts/project/sylar-ts/CMakeFiles/test_address.dir
 /home/ts/project/sylar-ts/CMakeFiles/test_config.dir
 /home/ts/project/sylar-ts/CMakeFiles/test_fiber.dir
 /home/ts/project/sylar-ts/CMakeFiles/test_hook.dir
 /home/ts/project/sylar-ts/CMakeFiles/test_iomanager.dir
 /home/ts/project/sylar-ts/CMakeFiles/test_log.dir
 /home/ts/project/sylar-ts/CMakeFiles/test_scheduler.dir
+/home/ts/project/sylar-ts/CMakeFiles/test_socket.dir
 /home/ts/project/sylar-ts/CMakeFiles/test_thread.dir
 /home/ts/project/sylar-ts/CMakeFiles/test_util.dir
 /home/ts/project/sylar-ts/CMakeFiles/edit_cache.dir
