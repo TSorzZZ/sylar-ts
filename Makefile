@@ -146,6 +146,19 @@ test_address/fast:
 .PHONY : test_address/fast
 
 #=============================================================================
+# Target rules for targets named test_bytearray
+
+# Build rule for target.
+test_bytearray: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_bytearray
+.PHONY : test_bytearray
+
+# fast build rule for target.
+test_bytearray/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/build
+.PHONY : test_bytearray/fast
+
+#=============================================================================
 # Target rules for targets named test_config
 
 # Build rule for target.
@@ -285,6 +298,30 @@ sylar/src/address.s: sylar/src/address.cc.s
 sylar/src/address.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/address.cc.s
 .PHONY : sylar/src/address.cc.s
+
+sylar/src/bytearray.o: sylar/src/bytearray.cc.o
+.PHONY : sylar/src/bytearray.o
+
+# target to build an object file
+sylar/src/bytearray.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/bytearray.cc.o
+.PHONY : sylar/src/bytearray.cc.o
+
+sylar/src/bytearray.i: sylar/src/bytearray.cc.i
+.PHONY : sylar/src/bytearray.i
+
+# target to preprocess a source file
+sylar/src/bytearray.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/bytearray.cc.i
+.PHONY : sylar/src/bytearray.cc.i
+
+sylar/src/bytearray.s: sylar/src/bytearray.cc.s
+.PHONY : sylar/src/bytearray.s
+
+# target to generate assembly for a file
+sylar/src/bytearray.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/src/bytearray.cc.s
+.PHONY : sylar/src/bytearray.cc.s
 
 sylar/src/config.o: sylar/src/config.cc.o
 .PHONY : sylar/src/config.o
@@ -574,6 +611,30 @@ tests/test_address.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/tests/test_address.cc.s
 .PHONY : tests/test_address.cc.s
 
+tests/test_bytearray.o: tests/test_bytearray.cc.o
+.PHONY : tests/test_bytearray.o
+
+# target to build an object file
+tests/test_bytearray.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.o
+.PHONY : tests/test_bytearray.cc.o
+
+tests/test_bytearray.i: tests/test_bytearray.cc.i
+.PHONY : tests/test_bytearray.i
+
+# target to preprocess a source file
+tests/test_bytearray.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.i
+.PHONY : tests/test_bytearray.cc.i
+
+tests/test_bytearray.s: tests/test_bytearray.cc.s
+.PHONY : tests/test_bytearray.s
+
+# target to generate assembly for a file
+tests/test_bytearray.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.s
+.PHONY : tests/test_bytearray.cc.s
+
 tests/test_config.o: tests/test_config.cc.o
 .PHONY : tests/test_config.o
 
@@ -800,6 +861,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... sylar"
 	@echo "... test_address"
+	@echo "... test_bytearray"
 	@echo "... test_config"
 	@echo "... test_fiber"
 	@echo "... test_hook"
@@ -812,6 +874,9 @@ help:
 	@echo "... sylar/src/address.o"
 	@echo "... sylar/src/address.i"
 	@echo "... sylar/src/address.s"
+	@echo "... sylar/src/bytearray.o"
+	@echo "... sylar/src/bytearray.i"
+	@echo "... sylar/src/bytearray.s"
 	@echo "... sylar/src/config.o"
 	@echo "... sylar/src/config.i"
 	@echo "... sylar/src/config.s"
@@ -848,6 +913,9 @@ help:
 	@echo "... tests/test_address.o"
 	@echo "... tests/test_address.i"
 	@echo "... tests/test_address.s"
+	@echo "... tests/test_bytearray.o"
+	@echo "... tests/test_bytearray.i"
+	@echo "... tests/test_bytearray.s"
 	@echo "... tests/test_config.o"
 	@echo "... tests/test_config.i"
 	@echo "... tests/test_config.s"

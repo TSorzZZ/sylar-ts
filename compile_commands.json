@@ -6,6 +6,11 @@
 },
 {
   "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/bytearray.cc.o -c /home/ts/project/sylar-ts/sylar/src/bytearray.cc",
+  "file": "/home/ts/project/sylar-ts/sylar/src/bytearray.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
   "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/config.cc.o -c /home/ts/project/sylar-ts/sylar/src/config.cc",
   "file": "/home/ts/project/sylar-ts/sylar/src/config.cc"
 },
@@ -63,6 +68,11 @@
   "directory": "/home/ts/project/sylar-ts",
   "command": "/usr/bin/c++  -D__FILE__=\\\"tests/test_address.cc\\\" -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -Wno-builtin-macro-redefined -o CMakeFiles/test_address.dir/tests/test_address.cc.o -c /home/ts/project/sylar-ts/tests/test_address.cc",
   "file": "/home/ts/project/sylar-ts/tests/test_address.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++  -D__FILE__=\\\"tests/test_bytearray.cc\\\" -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -Wno-builtin-macro-redefined -o CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.o -c /home/ts/project/sylar-ts/tests/test_bytearray.cc",
+  "file": "/home/ts/project/sylar-ts/tests/test_bytearray.cc"
 },
 {
   "directory": "/home/ts/project/sylar-ts",
