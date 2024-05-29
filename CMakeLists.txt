@@ -8,6 +8,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # 导出编译命令，用于IDE或其他�
 set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function ") # 设置C++编译器的标志，包括环境变量中的CXXFLAGS、优化级别、调试信息、C++标准、警告控制等
 
 # 指定头文件搜索路径
+include_directories(BEFORE ${PROJECT_SOURCE_DIR}/sylar/include/http) 
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/sylar/include) 
 include_directories(.) 
 # 指定库文件搜索路径
@@ -17,7 +18,7 @@ link_directories(/usr/local/lib)
 find_library(YAMLCPP yaml-cpp) 
 
 # 递归查找所有源文件
-file(GLOB_RECURSE SRC_DIR_LIST ${PROJECT_SOURCE_DIR}/sylar/src/*.cc ${PROJECT_SOURCE_DIR}/sylar/src/*.cpp)    
+file(GLOB_RECURSE SRC_DIR_LIST ${PROJECT_SOURCE_DIR}/sylar/src/*.cc ${PROJECT_SOURCE_DIR}/sylar/src/*.cpp ${PROJECT_SOURCE_DIR}/sylar/src/http/*.cc)    
 
 # 创建一个名为sylar的动态库 
 add_library(sylar SHARED ${SRC_DIR_LIST}) 
