@@ -27,7 +27,7 @@ add_library(sylar SHARED ${SRC_DIR_LIST})
 set(LIB_LIB sylar pthread dl ${YAMLCPP})
 
 # 递归查找所有test源文件
-file(GLOB_RECURSE TEST_DIR_LIST ${PROJECT_SOURCE_DIR}/tests/*.cc ${PROJECT_SOURCE_DIR}/tests/*.cpp)    
+file(GLOB_RECURSE TEST_DIR_LIST ${PROJECT_SOURCE_DIR}/tests/*.cc ${PROJECT_SOURCE_DIR}/tests/*.cpp ${PROJECT_SOURCE_DIR}/examples/*.cc)    
 
 foreach(TEST ${TEST_DIR_LIST})
     # 从原文件中提取目标名称 Name Without Extension

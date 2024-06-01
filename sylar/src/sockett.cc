@@ -334,7 +334,7 @@ Address::ptr Socket::getRemoteAddress(){
             break;
     }
     socklen_t addrlen = result->getAddrLen();
-    if(getpeername(m_family, result->getAddr(), &addrlen)){
+    if(getpeername(m_sock, result->getAddr(), &addrlen)){
         SYLAR_LOG_ERROR(g_logger) << "getpeername error sock= " << m_sock
         << " errno= " << errno << " errstr= " << strerror(errno);
         return Address::ptr(new UnknownAddress(m_family));
@@ -368,7 +368,7 @@ Address::ptr Socket::getLocalAddress(){
             break;
     }
     socklen_t addrlen = result->getAddrLen();
-    if(getsockname(m_family, result->getAddr(), &addrlen)){
+    if(getsockname(m_sock, result->getAddr(), &addrlen)){
         SYLAR_LOG_ERROR(g_logger) << "getsockname error sock= " << m_sock
         << " errno= " << errno << " errstr= " << strerror(errno);
         return Address::ptr(new UnknownAddress(m_family));
@@ -428,9 +428,9 @@ bool Socket::cancelAll() {
 
 void Socket::initSock(){
     int val = 1;
-    setOption(SOL_SOCKET, SO_REUSEADDR, val);
+    setOption(SOL_SOCKET, SO_REUSEADDR, (const void*)&val);
     if(m_type == SOCK_STREAM){
-       setOption(IPPROTO_TCP, TCP_NODELAY, val);    //合并发包 降低延迟
+       setOption(IPPROTO_TCP, TCP_NODELAY, (const void*)&val);    //合并发包 降低延迟
     }
     
 }
@@ -447,5 +447,8 @@ void Socket::newSock() {
 }
 
 
+std::ostream& operator<<(std::ostream& os, const Socket& sock) {
+    return sock.dump(os);
+}
 
 }

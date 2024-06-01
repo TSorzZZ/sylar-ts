@@ -142,9 +142,9 @@ retry:
             }
             return -1;
         } else {
-            SYLAR_LOG_DEBUG(g_logger) << "do_io<" << hook_fun_name << ">";
+            //SYLAR_LOG_DEBUG(g_logger) << "do_io<" << hook_fun_name << ">";
             sylar::Fiber::YieldToHold();
-            SYLAR_LOG_DEBUG(g_logger) << "do_io<" << hook_fun_name << ">";
+            //SYLAR_LOG_DEBUG(g_logger) << "do_io<" << hook_fun_name << ">";
             if(timer) {
                 timer->cancel();
             }

@@ -11,7 +11,7 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "${workspaceFolder}/bin/test_address",
+            "program": "${workspaceFolder}/bin/test_tcp_server",
             "args": [],
             "cwd": "${workspaceFolder}"
         }

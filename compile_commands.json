@@ -71,8 +71,23 @@
 },
 {
   "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/socket_stream.cc.o -c /home/ts/project/sylar-ts/sylar/src/socket_stream.cc",
+  "file": "/home/ts/project/sylar-ts/sylar/src/socket_stream.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
   "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/sockett.cc.o -c /home/ts/project/sylar-ts/sylar/src/sockett.cc",
   "file": "/home/ts/project/sylar-ts/sylar/src/sockett.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/stream.cc.o -c /home/ts/project/sylar-ts/sylar/src/stream.cc",
+  "file": "/home/ts/project/sylar-ts/sylar/src/stream.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/tcp_server.cc.o -c /home/ts/project/sylar-ts/sylar/src/tcp_server.cc",
+  "file": "/home/ts/project/sylar-ts/sylar/src/tcp_server.cc"
 },
 {
   "directory": "/home/ts/project/sylar-ts",
@@ -83,6 +98,11 @@
   "directory": "/home/ts/project/sylar-ts",
   "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/util.cc.o -c /home/ts/project/sylar-ts/sylar/src/util.cc",
   "file": "/home/ts/project/sylar-ts/sylar/src/util.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++  -D__FILE__=\\\"examples/echo_server.cc\\\" -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -Wno-builtin-macro-redefined -o CMakeFiles/echo_server.dir/examples/echo_server.cc.o -c /home/ts/project/sylar-ts/examples/echo_server.cc",
+  "file": "/home/ts/project/sylar-ts/examples/echo_server.cc"
 },
 {
   "directory": "/home/ts/project/sylar-ts",
@@ -138,6 +158,11 @@
   "directory": "/home/ts/project/sylar-ts",
   "command": "/usr/bin/c++  -D__FILE__=\\\"tests/test_socket.cc\\\" -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -Wno-builtin-macro-redefined -o CMakeFiles/test_socket.dir/tests/test_socket.cc.o -c /home/ts/project/sylar-ts/tests/test_socket.cc",
   "file": "/home/ts/project/sylar-ts/tests/test_socket.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++  -D__FILE__=\\\"tests/test_tcp_server.cc\\\" -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -Wno-builtin-macro-redefined -o CMakeFiles/test_tcp_server.dir/tests/test_tcp_server.cc.o -c /home/ts/project/sylar-ts/tests/test_tcp_server.cc",
+  "file": "/home/ts/project/sylar-ts/tests/test_tcp_server.cc"
 },
 {
   "directory": "/home/ts/project/sylar-ts",

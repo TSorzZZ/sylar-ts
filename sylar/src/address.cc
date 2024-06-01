@@ -454,11 +454,11 @@ IPAddress::ptr IPv6Address::broadcastAddress(uint32_t prefix_len) {
 IPAddress::ptr IPv6Address::networkAddress(uint32_t prefix_len) {
     sockaddr_in6 baddr(m_addr);
     baddr.sin6_addr.s6_addr[prefix_len/8] &= 
-    CreateMask<uint32_t>(prefix_len%8);
+    CreateMask<uint8_t>(prefix_len%8);
 
-    // for(int i = prefix_len / 8 + 1; i < 16; i++){
-    //     baddr.sin6_addr.s6_addr[i] = 0xff;
-    // }
+    for(int i = prefix_len / 8 + 1; i < 16; i++){
+        baddr.sin6_addr.s6_addr[i] = 0x00;
+    }
     return IPv6Address::ptr(new IPv6Address(baddr));
 
 }
@@ -525,6 +525,18 @@ socklen_t UnixAddress::getAddrLen() const{
 
 void UnixAddress::setAddrLen(uint32_t v){
     m_length = v;
+}
+
+std::string UnixAddress::getPath() const {
+    std::stringstream ss;
+    if(m_length > offsetof(sockaddr_un, sun_path)
+            && m_addr.sun_path[0] == '\0') {
+        ss << "\\0" << std::string(m_addr.sun_path + 1,
+                m_length - offsetof(sockaddr_un, sun_path) - 1);
+    } else {
+        ss << m_addr.sun_path;
+    }
+    return ss.str();
 }
 
 std::ostream& UnixAddress::insert(std::ostream& os) const {
