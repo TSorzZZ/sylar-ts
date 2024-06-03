@@ -8,6 +8,7 @@
 
 namespace sylar{
 
+//set排序规则
 bool Timer::Comparator::operator()(const Timer::ptr & lhs, const Timer::ptr & rhs) const
 {
     if(!lhs && !rhs){
@@ -36,6 +37,7 @@ Timer::Timer(uint64_t next):m_next(next){
 
 }
 
+//取消定时器
 bool Timer::cancel(){
     TimerManager::RWMutexType::WriteLock lock(m_manager->m_mutex);
     if(m_cb)
@@ -48,7 +50,7 @@ bool Timer::cancel(){
     return false;
 }
 
-//重置定时器执行时间
+//重新计算定时器执行时间
 bool Timer::refresh(){
     TimerManager::RWMutexType::WriteLock lock(m_manager->m_mutex);
     if(!m_cb) return false;
@@ -61,7 +63,7 @@ bool Timer::refresh(){
     return true;
 }
 
-//重置定时器时间
+//重新设置定时器时间
 bool Timer::reset(uint64_t ms, bool from_now){
     if(ms == m_ms && !from_now) return true;
     TimerManager::RWMutexType::WriteLock lock(m_manager->m_mutex);
@@ -100,6 +102,7 @@ Timer::ptr TimerManager::addTimer(uint64_t ms, std::function<void()> cb,
     return timer;
 }
     
+//
 static void OnTimer(std::weak_ptr<void> weak_cond, std::function<void()> cb)
 {
     std::shared_ptr<void> tmp = weak_cond.lock();
@@ -108,6 +111,7 @@ static void OnTimer(std::weak_ptr<void> weak_cond, std::function<void()> cb)
     }
 }
 
+//条件计时器   weak_cond对象存在时才触发
 Timer::ptr TimerManager::addConditionTimer(uint64_t ms, std::function<void()> cb, 
     std::weak_ptr<void> weak_cond, bool recurring)
 {
@@ -149,11 +153,9 @@ void TimerManager::listExpiredCb(std::vector<std::function<void()>>& cbs){
         return;
     }
     Timer::ptr now_timer(new Timer(now_ms));
-    //若系统时间改动则将m_timers的所有Timer视为过期的，否则返回第一个 >= now_ms的迭代器，在此迭代器之前的定时器全都已经超时
-    auto it = rollover ? m_timers.end() : m_timers.lower_bound(now_timer);
-    while(it != m_timers.end() &&  (*it)->m_next == now_ms){
-        ++it;
-    }
+    //若系统时间改动则将m_timers的所有Timer视为过期的，否则返回第一个 > now_ms的迭代器，在此迭代器之前的定时器全都已经超时
+    auto it = rollover ? m_timers.end() : m_timers.upper_bound(now_timer);
+
     //将已超时的计时器加入过期计时器中
     expired.insert(expired.begin(), m_timers.begin(), it);
     m_timers.erase(m_timers.begin(), it);

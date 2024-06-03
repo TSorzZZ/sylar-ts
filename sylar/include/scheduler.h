@@ -23,7 +23,6 @@ public:
     virtual ~Scheduler();
 
     const std::string& getName()const {return m_name;}
-
     static Scheduler* GetThis();
     static Fiber* GetMainFiber();
 
@@ -81,9 +80,7 @@ private:
         FiberAndThread(Fiber::ptr* f, int thr): thread(thr){
             fiber.swap(*f);
         }
-
         FiberAndThread(std::function<void()> f, int thr): cb(f),thread(thr){}
-
         FiberAndThread(std::function<void()>* f, int thr): thread(thr){
             cb.swap(*f);
         }
@@ -100,9 +97,9 @@ private:
 private:
     MutexType m_mutex;
     std::vector<sylar::Thread::ptr> m_threads;  //线程池
-    std::list<FiberAndThread> m_fibers;         //任务
+    std::list<FiberAndThread> m_fibers;         //任务池
     std::string m_name;                         //调度器名称
-    Fiber::ptr m_rootFiber;                     //use caller时的调度协程
+    Fiber::ptr m_rootFiber;                     //caller线程中的调度协程，协程绑定run方法
 protected:
     std::vector<int> m_threadIds;                          //线程id
     size_t m_threadCount = 0;                              //线程数
@@ -110,7 +107,7 @@ protected:
     std::atomic_size_t m_idleThreadCount {0};           //等待线程数
     bool m_stopping = true;                                //是否停止
     bool m_autoStop = false;                               //自动停止
-    int m_rootThread = 0;                                  //主线程
+    int m_rootThread = 0;                                  //caller线程的id
 
 };
 

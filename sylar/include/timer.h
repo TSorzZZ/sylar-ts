@@ -27,7 +27,7 @@ private:
     
 private:
     bool m_recurring = false;       //是否循环定时器
-    uint64_t m_ms = 0;              //执行周期
+    uint64_t m_ms = 0;              //相对时间
     uint64_t m_next = 0;            //精确执行时间  绝对时间
     std::function<void()> m_cb;
     TimerManager* m_manager = nullptr;
@@ -50,13 +50,13 @@ public:
                                 std::weak_ptr<void> weak_cond, bool recurring = false);
     uint64_t getNextTimer();
     void listExpiredCb(std::vector<std::function<void()>>& cbs);
-    bool hasTimer();
+    bool hasTimer();    //
 protected:
-    virtual void onTimerInsertedAtFront() = 0;
-    void addTimer(Timer::ptr val, RWMutexType::WriteLock& lock);
+    virtual void onTimerInsertedAtFront() = 0;  //timer插入最前时发生什么
+    void addTimer(Timer::ptr val, RWMutexType::WriteLock& lock);    //添加timer
     
 private:
-    bool detectClockRollover(uint64_t now_ms);
+    bool detectClockRollover(uint64_t now_ms);  //检测系统时间变化
 private:
     RWMutexType m_mutex;
     std::set<Timer::ptr, Timer::Comparator> m_timers;   //有序

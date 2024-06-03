@@ -35,8 +35,8 @@ public:
     void reset(std::function<void()> cb);   //重置协程函数  重置状态     INIT， TERM
     void swapIn();  //切换到当前协程
     void swapOut(); //切换到后台执行    让出
-    void call();
-    void back();
+    void call();    // 从线程主协程切换到当前子协程   线程主协程 -> 当前子协程
+    void back();    // 从当前子协程切换回线程主协程  当前子协程 -> 线程主协程
 
     uint64_t getId()const {return m_id;}
     State getState()const {return m_state;}
@@ -48,6 +48,7 @@ public:
     static void YieldToReady(); //切换到后台 设置为ready
     static void YieldToHold();  //切换到后台，设置为hold
     static uint64_t TotalFibers();  //总协程数
+
     static void MainFunc();
     static void CallerMainFunc();
 private:

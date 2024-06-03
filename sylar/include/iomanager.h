@@ -38,8 +38,8 @@ private:
         void resetContext(EventContext& ctx);
         void triggerEvent(Event event);
 
-        EventContext read;                          //读事件
-        EventContext write;                         //写事件
+        EventContext read;                          //当前Fd的读事件
+        EventContext write;                         //当前Fd的写事件
         Event events = NONE;                      //已注册事件
         MutexType mutex;
     };

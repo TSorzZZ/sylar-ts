@@ -1,6 +1,7 @@
 #include "scheduler.h"
 #include "fiber.h"
 #include "hook.h"
+#include "iomanager.h"
 #include "log.h"
 #include"macro.h"
 #include "mythread.h"
@@ -15,7 +16,7 @@ namespace sylar {
 static sylar::Logger::ptr g_logger = SYLAR_LOG_NAME("system");
 
 static thread_local Scheduler* t_scheduler = nullptr;   //协程调度器指针
-static thread_local Fiber* t_fiber = nullptr;           //当前调度器协程
+static thread_local Fiber* t_scheduler_fiber = nullptr;           //当前调度器协程
 
 Scheduler::Scheduler(size_t threads, bool use_caller, const std::string& name):m_name(name){
     SYLAR_ASSERT(threads > 0);
@@ -27,10 +28,10 @@ Scheduler::Scheduler(size_t threads, bool use_caller, const std::string& name):m
 
         SYLAR_ASSERT(GetThis() == nullptr);
         t_scheduler = this;
-        //当前线程主协程 新建一个fiber绑定run方法  并且加入任务队列用于调度
+        //caller线程中的调度协程，协程绑定run方法 新建一个fiber绑定run方法  并且加入任务队列用于调度
         m_rootFiber.reset(new Fiber(std::bind(&Scheduler::run, this), 0, true));
         sylar::Thread::SetName(m_name);
-        t_fiber = m_rootFiber.get();
+        t_scheduler_fiber = m_rootFiber.get();
         m_rootThread = sylar::GetThreadId();
         m_threadIds.push_back(m_rootThread);
     }
@@ -53,11 +54,12 @@ Scheduler* Scheduler::GetThis(){
     return t_scheduler;
 }
 
-
+//获取当前调度协程
 Fiber* Scheduler::GetMainFiber(){
-    return t_fiber;
+    return t_scheduler_fiber;
 }
 
+//开启调度
 void Scheduler::start(){
     MutexType::Lock lock(m_mutex);
     if(!m_stopping){
@@ -67,7 +69,7 @@ void Scheduler::start(){
     SYLAR_ASSERT(m_threads.empty());
 
     m_threads.resize(m_threadCount);    //重置线程池大小
-    //启动多个线程
+    //启动多个线程 开始调度
     for(size_t i = 0; i < m_threadCount; ++i){
         m_threads[i].reset(new Thread(std::bind(&Scheduler::run, this), 
         m_name +  "_" + std::to_string(i)));
@@ -77,8 +79,10 @@ void Scheduler::start(){
 
 }
 
+
 void Scheduler::stop(){
     m_autoStop = true;
+
     if(m_rootFiber && m_threadCount == 0 && 
         (m_rootFiber->getState() == Fiber::TERM ||
         m_rootFiber->getState() == Fiber::INIT) )
@@ -88,7 +92,7 @@ void Scheduler::stop(){
         if(stopping())return;
     }
 
-    if(m_rootThread != -1){ //use caller线程
+    if(m_rootThread != -1){ //use caller线程   调度器就是当前自己
         SYLAR_ASSERT(GetThis() == this);
     }else{
         SYLAR_ASSERT( GetThis() != this);
@@ -112,6 +116,7 @@ void Scheduler::stop(){
         threadPool.swap(m_threads);
     }
 
+    //等待所有线程执行完
     for(auto& i: threadPool){
         i->join();
     }
@@ -127,18 +132,21 @@ void Scheduler::setThis(){
 void Scheduler::run(){  //真正的调度方法
     //1.  初始化协程  指定调度器
     SYLAR_LOG_INFO(g_logger) << "run!!!";
-    set_hook_enable(true);  //只使用scheduler时不能开启hook 不然会找不到iomanager
+    if(typeid(*this) == typeid(IOManager)){
+        set_hook_enable(true);  //只使用scheduler时不能开启hook 不然会找不到iomanager
+    }
     setThis();
 
-    //2.如果不是主线程 指定当前主协程
+    //2.如果不是caller线程 指定当前调度协程为当前协程
     if(sylar::GetThreadId() != m_rootThread){
-        t_fiber = Fiber::GetThis().get();
+        t_scheduler_fiber = Fiber::GetThis().get();
     }
 
     Fiber::ptr idle_fiber(new Fiber(std::bind(&Scheduler::idle, this)));
     Fiber::ptr cb_fiber;
 
     FiberAndThread ft;
+    //3. 找到一个可执行的任务
     while(true){
         ft.reset();
         bool tickle_me = false;
@@ -148,7 +156,7 @@ void Scheduler::run(){  //真正的调度方法
             auto it = m_fibers.begin();
             // 1、遍历任务队列
             while(it != m_fibers.end()){
-                // 2、并非主线程   且   该任务指定了线程id 且不对应
+                // 2、该任务指定了线程id 且不对应
                 if( it->thread != -1 && it->thread != sylar::GetThreadId()){
                     ++it;
                     tickle_me = true;   //通知别人处理  
@@ -179,19 +187,20 @@ void Scheduler::run(){  //真正的调度方法
         if(ft.fiber && (ft.fiber->getState() != Fiber::TERM &&
             ft.fiber->getState() != Fiber::EXCEPT) ){ //唤醒
             
-            ft.fiber->swapIn();
+            ft.fiber->swapIn();     //执行协程
             --m_activeThreadCount;
             // 在准备状态  可以继续调度
             if(ft.fiber->getState() == Fiber::READY){
                 schedule(ft.fiber);
             }
-            // 并非 结束或异常状态  设备挂起状态
+            // 并非 结束或异常状态  设为HOLD状态
             else if(ft.fiber->getState() != Fiber::TERM &&
                      ft.fiber->getState() != Fiber::EXCEPT){
                 ft.fiber->setState(Fiber::HOLD);
             }
             ft.reset();
         }
+
         //6、处理函数
         else if(ft.cb){
             //存在cb_fiber  直接复用协程
@@ -204,7 +213,7 @@ void Scheduler::run(){  //真正的调度方法
             }
             ft.reset();
 
-            // 执行回调协程
+            // 执行协程
             cb_fiber->swapIn();  
             --m_activeThreadCount;
             if(cb_fiber->getState() == Fiber::READY){
@@ -231,7 +240,7 @@ void Scheduler::run(){  //真正的调度方法
             }
 
             ++m_idleThreadCount;
-            idle_fiber->swapIn();
+            idle_fiber->swapIn();   //执行idle协程
             --m_idleThreadCount;
             if(idle_fiber->getState() != Fiber::TERM && idle_fiber->getState() != Fiber::EXCEPT){
                 idle_fiber->setState(Fiber::HOLD);
