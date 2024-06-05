@@ -18,7 +18,7 @@ public:
 
     virtual int write(const void* buffer, size_t length) = 0; 
     virtual int write(ByteArray::ptr ba, size_t length) = 0;
-    virtual int writeFixSize(void* buffer, size_t length);
+    virtual int writeFixSize(const void* buffer, size_t length);
     virtual int writeFixSize(ByteArray::ptr ba, size_t length);
     virtual void close() = 0;
 

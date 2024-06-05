@@ -46,8 +46,23 @@
 },
 {
   "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/http/http_server.cc.o -c /home/ts/project/sylar-ts/sylar/src/http/http_server.cc",
+  "file": "/home/ts/project/sylar-ts/sylar/src/http/http_server.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/http/http_session.cc.o -c /home/ts/project/sylar-ts/sylar/src/http/http_session.cc",
+  "file": "/home/ts/project/sylar-ts/sylar/src/http/http_session.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
   "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/http/httpclient_parser.cc.o -c /home/ts/project/sylar-ts/sylar/src/http/httpclient_parser.cc",
   "file": "/home/ts/project/sylar-ts/sylar/src/http/httpclient_parser.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/http/servlet.cc.o -c /home/ts/project/sylar-ts/sylar/src/http/servlet.cc",
+  "file": "/home/ts/project/sylar-ts/sylar/src/http/servlet.cc"
 },
 {
   "directory": "/home/ts/project/sylar-ts",
@@ -138,6 +153,11 @@
   "directory": "/home/ts/project/sylar-ts",
   "command": "/usr/bin/c++  -D__FILE__=\\\"tests/test_http_parser.cc\\\" -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -Wno-builtin-macro-redefined -o CMakeFiles/test_http_parser.dir/tests/test_http_parser.cc.o -c /home/ts/project/sylar-ts/tests/test_http_parser.cc",
   "file": "/home/ts/project/sylar-ts/tests/test_http_parser.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++  -D__FILE__=\\\"tests/test_http_server.cc\\\" -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function  -Wno-builtin-macro-redefined -o CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o -c /home/ts/project/sylar-ts/tests/test_http_server.cc",
+  "file": "/home/ts/project/sylar-ts/tests/test_http_server.cc"
 },
 {
   "directory": "/home/ts/project/sylar-ts",

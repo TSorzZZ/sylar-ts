@@ -267,6 +267,11 @@ public:
 
     std::ostream& dump(std::ostream& os) const;
     std::string toString() const;
+    void init();
+    void initParam();
+    void initQueryParam();
+    void initBodyParam();
+    void initCookies();
 private:
     HttpMethod m_method;
     HttpStatus m_status;
@@ -333,6 +338,10 @@ private:
     MapType m_headers;
 
 };
+
+std::ostream& operator<<(std::ostream& os, const HttpRequest& req);
+
+std::ostream& operator<<(std::ostream& os, const HttpResponse& rsp);
 
 
 

@@ -56,6 +56,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/test_hook.dir/DependInfo.cmake"
   "CMakeFiles/test_http.dir/DependInfo.cmake"
   "CMakeFiles/test_http_parser.dir/DependInfo.cmake"
+  "CMakeFiles/test_http_server.dir/DependInfo.cmake"
   "CMakeFiles/test_iomanager.dir/DependInfo.cmake"
   "CMakeFiles/test_log.dir/DependInfo.cmake"
   "CMakeFiles/test_scheduler.dir/DependInfo.cmake"

@@ -512,7 +512,7 @@ bool ByteArray::readFromFile(const std::string& name) {
         return false;
     }
 
-    std::shared_ptr<char[]> buff(new char[m_baseSize]);
+    std::shared_ptr<char> buff(new char[m_baseSize], [](char* ptr){ delete [] ptr;});
     while(!ifs.eof()) {
         ifs.read(buff.get(), m_baseSize);
         write(buff.get(), ifs.gcount());    //从文件中读到的数据写入bytearray中
