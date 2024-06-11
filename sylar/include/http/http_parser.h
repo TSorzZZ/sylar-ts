@@ -35,9 +35,8 @@ public:
     uint64_t getContentLength();
 
     static uint64_t GetHttpRequestBufferSize();
-
     static uint64_t GetHttpRequestMaxBodySize();
-
+    const http_parser& getParser() const { return m_parser;}
 private:
     http_parser m_parser;
     HttpRequest::ptr m_data;
@@ -62,8 +61,8 @@ public:
 
     
     static uint64_t GetHttpResponseBufferSize();
-
     static uint64_t GetHttpResponseMaxBodySize();
+    const httpclient_parser& getParser() const { return m_parser;}
 private:
     httpclient_parser m_parser;
     HttpResponse::ptr m_data;

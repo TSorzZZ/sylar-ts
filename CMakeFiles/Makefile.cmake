@@ -55,6 +55,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/test_fiber.dir/DependInfo.cmake"
   "CMakeFiles/test_hook.dir/DependInfo.cmake"
   "CMakeFiles/test_http.dir/DependInfo.cmake"
+  "CMakeFiles/test_http_connection.dir/DependInfo.cmake"
   "CMakeFiles/test_http_parser.dir/DependInfo.cmake"
   "CMakeFiles/test_http_server.dir/DependInfo.cmake"
   "CMakeFiles/test_iomanager.dir/DependInfo.cmake"
@@ -63,5 +64,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/test_socket.dir/DependInfo.cmake"
   "CMakeFiles/test_tcp_server.dir/DependInfo.cmake"
   "CMakeFiles/test_thread.dir/DependInfo.cmake"
+  "CMakeFiles/test_uri.dir/DependInfo.cmake"
   "CMakeFiles/test_util.dir/DependInfo.cmake"
   )

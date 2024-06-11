@@ -15,11 +15,12 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/ts/project/sylar-ts/sylar/src/fiber.cc" "CMakeFiles/sylar.dir/sylar/src/fiber.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/fiber.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/hook.cc" "CMakeFiles/sylar.dir/sylar/src/hook.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/hook.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/http/http.cc" "CMakeFiles/sylar.dir/sylar/src/http/http.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/http/http.cc.o.d"
-  "/home/ts/project/sylar-ts/sylar/src/http/http11_parser.cc" "CMakeFiles/sylar.dir/sylar/src/http/http11_parser.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/http/http11_parser.cc.o.d"
+  "/home/ts/project/sylar-ts/sylar/src/http/http11_parser.rl.cc" "CMakeFiles/sylar.dir/sylar/src/http/http11_parser.rl.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/http/http11_parser.rl.cc.o.d"
+  "/home/ts/project/sylar-ts/sylar/src/http/http_connection.cc" "CMakeFiles/sylar.dir/sylar/src/http/http_connection.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/http/http_connection.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/http/http_parser.cc" "CMakeFiles/sylar.dir/sylar/src/http/http_parser.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/http/http_parser.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/http/http_server.cc" "CMakeFiles/sylar.dir/sylar/src/http/http_server.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/http/http_server.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/http/http_session.cc" "CMakeFiles/sylar.dir/sylar/src/http/http_session.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/http/http_session.cc.o.d"
-  "/home/ts/project/sylar-ts/sylar/src/http/httpclient_parser.cc" "CMakeFiles/sylar.dir/sylar/src/http/httpclient_parser.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/http/httpclient_parser.cc.o.d"
+  "/home/ts/project/sylar-ts/sylar/src/http/httpclient_parser.rl.cc" "CMakeFiles/sylar.dir/sylar/src/http/httpclient_parser.rl.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/http/httpclient_parser.rl.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/http/servlet.cc" "CMakeFiles/sylar.dir/sylar/src/http/servlet.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/http/servlet.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/iomanager.cc" "CMakeFiles/sylar.dir/sylar/src/iomanager.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/iomanager.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/log.cc" "CMakeFiles/sylar.dir/sylar/src/log.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/log.cc.o.d"
@@ -30,6 +31,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/ts/project/sylar-ts/sylar/src/stream.cc" "CMakeFiles/sylar.dir/sylar/src/stream.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/stream.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/tcp_server.cc" "CMakeFiles/sylar.dir/sylar/src/tcp_server.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/tcp_server.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/timer.cc" "CMakeFiles/sylar.dir/sylar/src/timer.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/timer.cc.o.d"
+  "/home/ts/project/sylar-ts/sylar/src/uri.rl.cc" "CMakeFiles/sylar.dir/sylar/src/uri.rl.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/uri.rl.cc.o.d"
   "/home/ts/project/sylar-ts/sylar/src/util.cc" "CMakeFiles/sylar.dir/sylar/src/util.cc.o" "gcc" "CMakeFiles/sylar.dir/sylar/src/util.cc.o.d"
   )
 

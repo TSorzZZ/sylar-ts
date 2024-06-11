@@ -59,7 +59,7 @@ Fiber::Fiber(){
     }
 
     ++s_fiber_count;
-    SYLAR_LOG_DEBUG(g_logger) << "Fiber::Fiber() MainThreadFiber！ id=" << m_id;
+    SYLAR_LOG_DEBUG(g_logger) << "Fiber::Fiber() MainThreadFiber! id=" << m_id;
 }
 
 //构造新协程
@@ -102,7 +102,7 @@ Fiber::~Fiber(){
         }
     }
     
-    SYLAR_LOG_DEBUG(g_logger) << "Fiber::~Fiber id=" << m_id;
+    SYLAR_LOG_DEBUG(g_logger) << "Fiber::~Fiber id=" << m_id<< " total=" << s_fiber_count;
 }
 
 //设置当前协程

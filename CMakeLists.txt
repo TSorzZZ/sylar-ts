@@ -5,7 +5,7 @@ include (cmake/utils.cmake) # 包含一个名为utils.cmake的文件，可能包
 add_compile_options(-Wno-builtin-macro-redefined) # 添加编译选项，禁止警告关于重定义内置宏
 set(CMAKE_VERBOSE_MAKEFILE ON) # 设置CMake生成的Makefile为详细模式，方便调试
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # 导出编译命令，用于IDE或其他工具使用
-set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function ") # 设置C++编译器的标志，包括环境变量中的CXXFLAGS、优化级别、调试信息、C++标准、警告控制等
+set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -O0 -ggdb -std=c++17 -Wall -Wno-deprecated ") # 设置C++编译器的标志，包括环境变量中的CXXFLAGS、优化级别、调试信息、C++标准、警告控制等
 
 # 指定头文件搜索路径
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/sylar/include/http) 
@@ -19,6 +19,11 @@ find_library(YAMLCPP yaml-cpp)
 
 # 递归查找所有源文件
 file(GLOB_RECURSE SRC_DIR_LIST ${PROJECT_SOURCE_DIR}/sylar/src/*.cc ${PROJECT_SOURCE_DIR}/sylar/src/*.cpp ${PROJECT_SOURCE_DIR}/sylar/src/http/*.cc)    
+
+# 调用 ragelmaker 函数来生成 .rl.cc 文件
+ragelmaker(sylar/include/http/http11_parser.rl SRC_DIR_LIST ${PROJECT_SOURCE_DIR}/sylar/src/http)
+ragelmaker(sylar/include/http/httpclient_parser.rl SRC_DIR_LIST ${PROJECT_SOURCE_DIR}/sylar/src/http)
+ragelmaker(sylar/include/uri.rl SRC_DIR_LIST ${PROJECT_SOURCE_DIR}/sylar/src)
 
 # 创建一个名为sylar的动态库 
 add_library(sylar SHARED ${SRC_DIR_LIST}) 
@@ -44,3 +49,4 @@ endforeach()
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin) # 设置可执行文件的输出路径为项目源目录下的bin目录
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib) # 设置库文件的输出路径为项目源目录下的lib目录
+
