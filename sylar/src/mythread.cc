@@ -5,7 +5,6 @@
 #include <pthread.h>
 #include <semaphore.h>
 #include <stdexcept>
-#include <threads.h>
 #include <functional>
 
 namespace sylar{
@@ -57,18 +56,7 @@ void Thread::SetName(const std::string& name){
     t_thread_name = name;
 }
 
-void* Thread::run(void *arg){
-    Thread* thread = static_cast<Thread*>(arg);
-    t_thread = thread;
-    t_thread_name = thread->m_name;
-    thread->m_id = sylar::GetThreadId();
-    pthread_setname_np(pthread_self(), thread->m_name.substr(0,15).c_str());
-    std::function<void()> cb;
-    cb.swap(thread->m_cb);
-    thread->m_semaphore.notify();
-    cb();
-    return 0;
-}
+
 
 //成员方法
 
@@ -105,6 +93,19 @@ void Thread::join(){
     }
 }
 
+
+void* Thread::run(void *arg){
+    Thread* thread = static_cast<Thread*>(arg);
+    t_thread = thread;
+    t_thread_name = thread->m_name;
+    thread->m_id = sylar::GetThreadId();
+    pthread_setname_np(pthread_self(), thread->m_name.substr(0,15).c_str());
+    std::function<void()> cb;
+    cb.swap(thread->m_cb);
+    thread->m_semaphore.notify();
+    cb();
+    return 0;
+}
 
 
 }

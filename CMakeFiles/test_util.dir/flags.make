@@ -6,7 +6,7 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.
 
-CXX_FLAGS =  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated  -Wno-builtin-macro-redefined
+CXX_FLAGS =  -rdynamic -O3 -ggdb -std=c++17 -Wall -Wno-deprecated  -Wno-builtin-macro-redefined
 
 # Custom defines: CMakeFiles/test_util.dir/tests/test_util.cc.o_DEFINES = __FILE__="tests/test_util.cc"
 

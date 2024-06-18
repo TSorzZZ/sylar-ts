@@ -28,7 +28,7 @@ int SocketStream::read(ByteArray::ptr ba, size_t length){
     if(!isConnected()) return -1;
     std::vector<iovec> iovs;
     ba->getWriteBuffers(iovs, length);
-    int rt = m_socket->recv(&iovs[0], length);
+    int rt = m_socket->recv(&iovs[0], iovs.size());
     if(rt > 0){
         ba->setPosition(ba->getPosition() + rt);
     }
@@ -43,8 +43,8 @@ int SocketStream::write(const void* buffer, size_t length){
 int SocketStream::write(ByteArray::ptr ba, size_t length){
     if(!isConnected()) return -1;
     std::vector<iovec> iovs;
-    ba->getWriteBuffers(iovs, length);
-    int rt = m_socket->send(&iovs[0], length);
+    ba->getReadBuffers(iovs, length);
+    int rt = m_socket->send(&iovs[0], iovs.size());
     if(rt > 0){
         ba->setPosition(ba->getPosition() + rt);
     }

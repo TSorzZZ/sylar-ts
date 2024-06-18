@@ -18,6 +18,53 @@ namespace sylar {
 
 static sylar::Logger::ptr g_logger = SYLAR_LOG_NAME("system");
 
+enum EpollCtlOp {
+};
+
+static std::ostream& operator<< (std::ostream& os, const EpollCtlOp& op) {
+    switch((int)op) {
+#define XX(ctl) \
+        case ctl: \
+            return os << #ctl;
+        XX(EPOLL_CTL_ADD);
+        XX(EPOLL_CTL_MOD);
+        XX(EPOLL_CTL_DEL);
+        default:
+            return os << (int)op;
+    }
+#undef XX
+}
+
+static std::ostream& operator<< (std::ostream& os, EPOLL_EVENTS events) {
+    if(!events) {
+        return os << "0";
+    }
+    bool first = true;
+#define XX(E) \
+    if(events & E) { \
+        if(!first) { \
+            os << "|"; \
+        } \
+        os << #E; \
+        first = false; \
+    }
+    XX(EPOLLIN);
+    XX(EPOLLPRI);
+    XX(EPOLLOUT);
+    XX(EPOLLRDNORM);
+    XX(EPOLLRDBAND);
+    XX(EPOLLWRNORM);
+    XX(EPOLLWRBAND);
+    XX(EPOLLMSG);
+    XX(EPOLLERR);
+    XX(EPOLLHUP);
+    XX(EPOLLRDHUP);
+    XX(EPOLLONESHOT);
+    XX(EPOLLET);
+#undef XX
+    return os;
+}
+
 //获取当前Fd对应的事件(读/写事件)的内容
 IOManager::FdContext::EventContext& IOManager::FdContext::getContext(IOManager::Event event){
     switch(event){
@@ -54,7 +101,8 @@ void IOManager::FdContext::triggerEvent(Event event){
 
 //创建对应的epoll 以及pipe读写管道
 IOManager::IOManager(size_t threads, bool use_caller, const std::string& name)
-:Scheduler(threads, use_caller, name){
+:Scheduler(threads, use_caller, name)
+{
     m_epfd = epoll_create(5000);
     SYLAR_ASSERT(m_epfd > 0);
 
@@ -124,9 +172,9 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb){
 
     FdContext::MutexType::Lock lock2(fd_ctx->mutex);
     //当前fd的事件已经存在了
-    if(fd_ctx->events & event){
+    if( SYLAR_UNLIKELY(fd_ctx->events & event)){
         SYLAR_LOG_ERROR(g_logger) << "addEvent assert fd=" << fd 
-        << "event= " << fd_ctx->events;
+        << "event= " << (EPOLL_EVENTS)event << "fd_ctx.event=" << (EPOLL_EVENTS)fd_ctx->events;
         SYLAR_ASSERT(!(fd_ctx->events & event));
     }
 
@@ -136,11 +184,11 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb){
     epevent.events = EPOLLET| fd_ctx->events | event;
     epevent.data.ptr = fd_ctx;
 
-    //增删epoll中的fd
+    //增/改epoll中的fd
     int ret = epoll_ctl(m_epfd, op, fd, &epevent);
     if(ret){
         SYLAR_LOG_ERROR(g_logger) << "epoll_ctl(" << m_epfd << ", "
-            << op << "," << fd << "," << epevent.events << "):"
+            << (EpollCtlOp)op << "," << fd << "," << epevent.events << "):"
             << ret << "(" << errno << ") (" << strerror(errno)  <<")";
             return -1;
     }
@@ -156,7 +204,12 @@ int IOManager::addEvent(int fd, Event event, std::function<void()> cb){
         event_ctx.cb.swap(cb);
     }else{
         event_ctx.fiber = Fiber::GetThis();
-        SYLAR_ASSERT(event_ctx.fiber->getState() == Fiber::EXEC);
+        if(event_ctx.fiber->getState() != Fiber::EXEC){
+            SYLAR_LOG_ERROR(g_logger) << "state=" << event_ctx.fiber->getState();
+            SYLAR_ASSERT2(event_ctx.fiber->getState() == Fiber::EXEC
+                      ,"state=" << event_ctx.fiber->getState());
+        }
+        
     }
     return 0;
         
@@ -188,7 +241,7 @@ bool IOManager::delEvent(int fd, Event event){
     int ret = epoll_ctl(m_epfd, op, fd, &epevent);
     if(ret){
         SYLAR_LOG_ERROR(g_logger) << "epoll_ctl(" << m_epfd << ", "
-            << op << "," << fd << "," << epevent.events << "):"
+            << (EpollCtlOp)op << "," << fd << "," << (EPOLL_EVENTS)epevent.events << "):"
             << ret << "(" << errno << ") (" << strerror(errno)  <<")";
             return false;
     }
@@ -224,7 +277,7 @@ bool IOManager::cancelEvent(int fd, Event event){
     int ret = epoll_ctl(m_epfd, op, fd, &epevent);
     if(ret){
         SYLAR_LOG_ERROR(g_logger) << "epoll_ctl(" << m_epfd << ", "
-            << op << "," << fd << "," << epevent.events << "):"
+            << (EpollCtlOp)op << "," << fd << "," << (EPOLL_EVENTS)epevent.events << "):"
             << ret << "(" << errno << ") (" << strerror(errno)  <<")";
             return false;
     }
@@ -246,7 +299,7 @@ bool IOManager::cancelAll(int fd){
     
     FdContext::MutexType::Lock lock2(fd_ctx->mutex);
 
-    if(!(fd_ctx->events)){
+    if(!fd_ctx->events){
         return false;
     }
 
@@ -258,7 +311,7 @@ bool IOManager::cancelAll(int fd){
     int ret = epoll_ctl(m_epfd, op, fd, &epevent);
     if(ret){
         SYLAR_LOG_ERROR(g_logger) << "epoll_ctl(" << m_epfd << ", "
-            << op << "," << fd << "," << epevent.events << "):"
+            << (EpollCtlOp)op << "," << fd << "," << (EPOLL_EVENTS)epevent.events << "):"
             << ret << "(" << errno << ") (" << strerror(errno)  <<")";
             return false;
     }
@@ -284,14 +337,14 @@ IOManager* IOManager::GetThis(){
 //当io调度器空闲时，idle协程通过epoll_wait阻塞在管道的读描述符上，等管道的可读事件。
 //添加新任务时，tickle方法写管道，idle协程检测到管道可读后退出，调度器执行调度。
 void IOManager::tickle(){
-    if(!hasIdleThreads()){
+    if(hasIdleThreads()){       //todo
         return;
     }
     int ret = write(m_tickleFds[1], "T", 1);
     SYLAR_ASSERT(ret == 1);
 }
 
-// 获取超时时间  增加额外条件  定时任务都执行完成   且没有等待事件
+// 获取最近的计时器执行时间 1 没有定时器任务存在  2 没有等待的事件   3 没有正在运行的线程   4 且任务列表为空
 bool IOManager::stopping(uint64_t& timeout){
     timeout = getNextTimer();
     return timeout == ~0ull && m_pendingEventCount == 0 && Scheduler::stopping();
@@ -303,14 +356,16 @@ bool IOManager::stopping(){
 }
 
 void IOManager::idle(){
-    epoll_event* events = new epoll_event[64]();
-    //重载删除器
+    const uint64_t MAX_EVNETS = 256;
+    epoll_event* events = new epoll_event[MAX_EVNETS]();
+    //重载删除器 这里是实现自动管理内存
     std::shared_ptr<epoll_event> shared_events(events, [](epoll_event* ptr){
         delete [] ptr;
     });
 
     while(true){
         uint64_t next_timeout = 0;
+        //获取下一个超时时间
         if(SYLAR_UNLIKELY(stopping(next_timeout))){
             SYLAR_LOG_INFO(g_logger) << "name=" << getName() << " idle stopping exit";
             break;
@@ -326,18 +381,18 @@ void IOManager::idle(){
             } else {
                 next_timeout = MAX_TIMEOUT;
             }
-            ret = epoll_wait(m_epfd, events, 64, (int)next_timeout);
+            ret = epoll_wait(m_epfd, events, MAX_EVNETS, (int)next_timeout);
             if(ret < 0 && errno == EINTR) {
             } else {
                 break;
             }
         } while(true);
 
-        // 收集所有已超时的定时器，执行回调函数
+        // 收集所有已超时的定时器，将回调函数加入调度(执行)
         std::vector<std::function<void()>> cbs;
         listExpiredCb(cbs);
         if(!cbs.empty()){
-            SYLAR_LOG_DEBUG(g_logger) << "on timer size=" << cbs.size();
+            SYLAR_LOG_DEBUG(g_logger) << "on timer cbs size=" << cbs.size();
             schedule(cbs.begin(), cbs.end());
             cbs.clear();
         }
@@ -345,16 +400,16 @@ void IOManager::idle(){
         for(int i = 0; i < ret; i++){
             epoll_event&  event = events[i];
             if(event.data.fd == m_tickleFds[0]){
-                uint8_t dummy;
-                while(read(m_tickleFds[0], &dummy, 1) == 1); //et触发 所以要while
+                uint8_t dummy[256];
+                while(read(m_tickleFds[0], dummy, 1) == 1); //et触发 所以要while
                 continue;
             }
 
             FdContext* fd_ctx = (FdContext*)event.data.ptr;
             FdContext::MutexType::Lock lock(fd_ctx->mutex);
-            //确定epoll当前监听道德事件
+            //确定epoll当前监听到的事件
             if(event.events & (EPOLLERR | EPOLLHUP)){
-                event.events |= EPOLLIN | EPOLLOUT;
+                event.events |= (EPOLLIN | EPOLLOUT) & fd_ctx->events;
             }
             int real_events = NONE;
             if(event.events & EPOLLIN){
@@ -378,7 +433,7 @@ void IOManager::idle(){
                 continue;
             }
 
-            //触发当前事件
+            //触发当前事件 加入调度(执行))
             if(real_events & READ){
                 fd_ctx->triggerEvent(READ);
                 --m_pendingEventCount;

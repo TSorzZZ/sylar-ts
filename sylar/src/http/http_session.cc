@@ -24,13 +24,16 @@ HttpRequest::ptr HttpSession::recvRequest() {
             });
     char* data = buffer.get();
     int offset = 0;
+    //读请求并解析
     do {
+        //缓冲区读到http报文  从缓冲区中拿到http报文
         int len = read(data + offset, buff_size - offset);
         if(len <= 0) {
             close();
             return nullptr;
         }
         len += offset;
+        //解析http请求
         size_t nparse = parser->execute(data, len);
         if(parser->hasError()) {
             close();
@@ -46,6 +49,7 @@ HttpRequest::ptr HttpSession::recvRequest() {
         }
     } while(true);
     int64_t length = parser->getContentLength();
+    //保存请求体
     if(length > 0) {
         std::string body;
         body.resize(length);
@@ -59,6 +63,7 @@ HttpRequest::ptr HttpSession::recvRequest() {
             len = length;
         }
         length -= offset;
+        //从缓冲区中拿到请求体
         if(length > 0) {
             if(readFixSize(&body[len], length) <= 0) {
                 close();
@@ -67,7 +72,11 @@ HttpRequest::ptr HttpSession::recvRequest() {
         }
         parser->getData()->setBody(body);
     }
-
+    std::string keep_alive = parser->getData()->getHeader("Connection");
+    
+    if(!strcasecmp(keep_alive.c_str(), "keep-alive")) {
+        parser->getData()->setClose(false);
+    }
     //parser->getData()->init();
     return parser->getData();
 }

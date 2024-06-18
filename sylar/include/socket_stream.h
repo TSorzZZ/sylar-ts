@@ -21,7 +21,7 @@ public:
     bool isConnected() const;
 protected:
     Socket::ptr m_socket;
-    bool m_owner;   //是否析构
+    bool m_owner;   //是否需要进行析构  关闭socket等等...
     
 };
 

@@ -20,11 +20,15 @@ public:
     typedef std::shared_ptr<Address> ptr;
     virtual ~Address(){}
 
+    //根据socketAddr创建  address对象
     static Address::ptr Create(const sockaddr* addr, socklen_t addrlen);
+    //找到host的所有地址
     static bool Lookup(std::vector<Address::ptr>& result, const std::string& host,
                        int family = AF_INET, int type = 0, int protocol = 0);
+    //找到host的任意一个地址    
     static Address::ptr LookupAny(const std::string& host,
                        int family = AF_INET, int type = 0, int protocol = 0);
+    //找到host的任意一个IP地址    
     static std::shared_ptr<IPAddress> LookupAnyIPAddress(const std::string& host,
                        int family = AF_INET, int type = 0, int protocol = 0);
     //返回本机所有网卡的<网卡名, 地址, 子网掩码位数>
@@ -55,9 +59,11 @@ public:
     typedef std::shared_ptr<IPAddress> ptr;
 
     static IPAddress::ptr Create(const char* address, uint16_t port = 0);
-
+    //求广播地址
     virtual IPAddress::ptr broadcastAddress(uint32_t prefix_len) = 0;
+    //求网络地址
     virtual IPAddress::ptr networkAddress(uint32_t prefix_len) = 0;
+    //求子网掩码
     virtual IPAddress::ptr subnetMask(uint32_t prefix_len) = 0;
     virtual uint32_t getPort() const = 0;
     virtual void setPort(uint16_t v) = 0;

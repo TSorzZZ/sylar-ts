@@ -25,6 +25,7 @@ static T CreateMask(uint32_t bits){
     return (1 << (sizeof(T) * 8 - bits)) - 1;
 }
 
+//计算1的个数
 template<class T>
 static uint32_t CountBytes(T value) {
     uint32_t result = 0;
@@ -116,6 +117,7 @@ Address::ptr Address::LookupAny(const std::string& host, int family, int type, i
     return nullptr;
 }
 
+
 std::shared_ptr<IPAddress> Address::LookupAnyIPAddress(const std::string& host, int family, int type, int protocol)
 {
     std::vector<Address::ptr> result;
@@ -141,6 +143,7 @@ bool Address::GetInterfaceAddresses(std::multimap<std::string
     }
 
     try {
+        //遍历所有网卡接口地址
         for(next = results; next; next = next->ifa_next) {
             Address::ptr addr;
             uint32_t prefix_len = ~0u;
@@ -228,6 +231,7 @@ Address::ptr Address::Create(const sockaddr* addr, socklen_t addrlen) {
     }
     return result;
 }
+
 
 bool Address::operator < (const Address& rhs) const {
     socklen_t minlen = std::min(getAddrLen(), rhs.getAddrLen());

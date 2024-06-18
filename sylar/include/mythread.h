@@ -22,10 +22,7 @@ public:
 
     void wait();
     void notify();
-private:
-    Semaphore(const Semaphore&) = delete;
-    Semaphore(const Semaphore&&) = delete;
-    Semaphore& operator = (const Semaphore&) = delete;
+
 
 private:
     sem_t m_semaphore;
@@ -257,10 +254,7 @@ public:
     static const std::string& GetName();
     static void SetName(const std::string& name);
     static void* run(void* arg);
-private:
-    Thread(const Thread&) = delete;
-    Thread(const Thread&&) = delete;
-    Thread& operator = (const Thread&) = delete;
+
 private:
     pid_t m_id = -1;
     pthread_t m_thread = 0;

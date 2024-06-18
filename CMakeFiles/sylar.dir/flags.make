@@ -6,5 +6,5 @@ CXX_DEFINES = -Dsylar_EXPORTS
 
 CXX_INCLUDES = -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.
 
-CXX_FLAGS =  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated  -fPIC -Wno-builtin-macro-redefined
+CXX_FLAGS =  -rdynamic -O3 -ggdb -std=c++17 -Wall -Wno-deprecated  -fPIC -Wno-builtin-macro-redefined
 

@@ -14,8 +14,8 @@ namespace sylar {
 
 class Socket: public std::enable_shared_from_this<Socket>, Noncopyable{
 public:
-    typedef std::shared_ptr<Socket> ptr;
-    typedef std::weak_ptr<Socket> weak_ptr;
+    using ptr = std::shared_ptr<Socket>;
+    using weak_ptr = std::weak_ptr<Socket>;
 
     enum Type{
         TCP = SOCK_STREAM,
@@ -28,15 +28,17 @@ public:
         UNIX = AF_UNIX,
     };
 
+    //根据tcp/udp family类型创建
     static Socket::ptr CreateTCP(sylar::Address::ptr address);
     static Socket::ptr CreateUDP(sylar::Address::ptr address);
     
+    //创建ipv4
     static Socket::ptr CreateTCPSocket();
     static Socket::ptr CreateUDPSocket();
-
+    //创建ipv6
     static Socket::ptr CreateTCPSocket6();
     static Socket::ptr CreateUDPSocket6();
-    
+    //
     static Socket::ptr CreateUnixTCPSocket();
     static Socket::ptr CreateUnixUDPSocket();
     
@@ -45,41 +47,50 @@ public:
     Socket(int family, int type, int protocol = 0);
     ~Socket();
 
+    //获取/设置收发超时时间
     int64_t getSendTimeout();
     void setSendTimeout(int64_t v);
     int64_t getRecvTimeout();
     void setRecvTimeout(int64_t v);
 
+    //对应getsockopt
     bool getOption(int level, int option, void* result, socklen_t* len);
     template<class T>
     bool getOption(int level, int option, T& result) {
         socklen_t length = sizeof(T);
         return getOption(level, option, &result, &length);
     }
-
+    //对应setsockopt
     bool setOption(int level, int option, const void* result, socklen_t len);
     template<class T>
     bool setOption(int level, int option, const T& value) {
         return setOption(level, option, &value, sizeof(T));
     }
-
-
-    Socket::ptr accept();
+    //新建一个socket 绑定本地地址
     bool bind(const Address::ptr addr);
-    bool connect(const Address::ptr addr, uint64_t timeout_ms = -1);
+    //监听socket 手动设定接受连接的socket的最大连接数。
     bool listen(int backlog = SOMAXCONN);
+    //接受连接 返回accept后的新socket
+    Socket::ptr accept();
+    //连接指定的地址 设置超时时间
+    bool connect(const Address::ptr addr, uint64_t timeout_ms = -1);
+    //关闭socket连接
     bool close();
 
+    //发送1-多个数据块
     int send(const void* buffer, size_t length, int flags = 0);
     int send(const iovec* buffers, size_t length, int flags = 0);
+    //向指定的地址发送数据
     int sendTo(const void* buffer, size_t length, Address::ptr to, int flags = 0);
     int sendTo(const iovec* buffers, size_t length, Address::ptr to, int flags = 0);
-    
+    //接收1-多个数据块
     int recv(void* buffer, size_t length, int flags = 0);
     int recv(iovec* buffers, size_t length, int flags = 0);
+    //从指定的地址接收数据
     int recvFrom(void* buffer, size_t length, Address::ptr from, int flags = 0);
     int recvFrom(iovec* buffers, size_t length, Address::ptr from, int flags = 0);
 
+    //创建/获取 远端或本地地址
     Address::ptr getRemoteAddress();
     Address::ptr getLocalAddress();
 
@@ -89,7 +100,7 @@ public:
     bool isConnected() const{ return m_isConnected;}
     bool isValid() const;
     int getError();
-
+    //打印socket信息到输出流中
     std::ostream& dump(std::ostream& os) const;
     int getSocket() const{ return m_sock;}
 
@@ -99,24 +110,25 @@ public:
     bool cancelAll();
 
 private:
-    void initSock();
+    //创建新的socket 并初始化
     void newSock();
+    //初始化socket 套接字关闭后立即释放该端口  开启Nagle算法
+    void initSock();
+    //初始化当前socket fd的状态  用于复用socket
     bool init(int sock);
 private:
-    int m_sock;
-    int m_family;
-    int m_type;
-    int m_protocol;
-    bool m_isConnected;
+    int m_sock;     //socket fd
+    int m_family;   //协议族
+    int m_type;     //通信类型
+    int m_protocol; //协议
+    bool m_isConnected; //是否连接
 
-    Address::ptr m_localAddress;
-    Address::ptr m_remoteAddress;   
+    Address::ptr m_localAddress;    //本地地址
+    Address::ptr m_remoteAddress;   //远端地址
 
 };
 
 std::ostream& operator<<(std::ostream& os, const Socket& sock);
-
-
 
 }
 

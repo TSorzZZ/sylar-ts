@@ -76,7 +76,6 @@ void Scheduler::start(){
         m_threadIds.push_back(m_threads[i]->getId());
     }
     lock.unlock();
-
 }
 
 
@@ -84,8 +83,8 @@ void Scheduler::stop(){
     m_autoStop = true;
 
     if(m_rootFiber && m_threadCount == 0 && 
-        (m_rootFiber->getState() == Fiber::TERM ||
-        m_rootFiber->getState() == Fiber::INIT) )
+      (m_rootFiber->getState() == Fiber::TERM ||
+       m_rootFiber->getState() == Fiber::INIT) )
     {
         SYLAR_LOG_INFO(g_logger) << this << " stopped";
         m_stopping = true;
@@ -103,13 +102,16 @@ void Scheduler::stop(){
         tickle();
     }
 
-    if(m_rootFiber){
+    if(m_rootFiber) {
         tickle();
-        if(!stopping()){
+    }
+
+    if(m_rootFiber) {
+        
+        if(!stopping()) {
             m_rootFiber->call();
         }
     }
-
     std::vector<Thread::ptr> threadPool;
     {
         MutexType::Lock lock(m_mutex);
@@ -135,6 +137,7 @@ void Scheduler::run(){  //真正的调度方法
     if(typeid(*this) == typeid(IOManager)){
         set_hook_enable(true);  //只使用scheduler时不能开启hook 不然会找不到iomanager
     }
+    
     setThis();
 
     //2.如果不是caller线程 指定当前调度协程为当前协程
@@ -157,9 +160,10 @@ void Scheduler::run(){  //真正的调度方法
             // 1、遍历任务队列
             while(it != m_fibers.end()){
                 // 2、该任务指定了线程id 且不对应
-                if( it->thread != -1 && it->thread != sylar::GetThreadId()){
+                if( it->thread != -1 && it->thread != sylar::GetThreadId())
+                {
                     ++it;
-                    tickle_me = true;   //通知别人处理  
+                    tickle_me = true;   //通知别人处理
                     continue;
                 }
                 SYLAR_ASSERT(it->fiber || it->cb);
@@ -175,6 +179,7 @@ void Scheduler::run(){  //真正的调度方法
                 is_active = true;
                 break;
             }
+            
         }
 
         // 4、是否需要唤醒其他线程处理
@@ -196,7 +201,7 @@ void Scheduler::run(){  //真正的调度方法
             // 并非 结束或异常状态  设为HOLD状态
             else if(ft.fiber->getState() != Fiber::TERM &&
                      ft.fiber->getState() != Fiber::EXCEPT){
-                ft.fiber->setState(Fiber::HOLD);
+                ft.fiber->m_state = (Fiber::HOLD);
             }
             ft.reset();
         }
@@ -222,7 +227,7 @@ void Scheduler::run(){  //真正的调度方法
             }else if(cb_fiber->getState() == Fiber::EXCEPT || cb_fiber->getState() == Fiber::TERM){
                 cb_fiber->reset(nullptr);
             }else{
-                cb_fiber->setState(Fiber::HOLD);
+                cb_fiber->m_state = (Fiber::HOLD);
                 cb_fiber.reset();
             }
         }
@@ -243,12 +248,9 @@ void Scheduler::run(){  //真正的调度方法
             idle_fiber->swapIn();   //执行idle协程
             --m_idleThreadCount;
             if(idle_fiber->getState() != Fiber::TERM && idle_fiber->getState() != Fiber::EXCEPT){
-                idle_fiber->setState(Fiber::HOLD);
+                idle_fiber->m_state = (Fiber::HOLD);
             }
-            
         }
-
-
 
     }
 }
@@ -257,11 +259,11 @@ void Scheduler::tickle(){
     SYLAR_LOG_INFO(g_logger) << "tickle";
 }
 
+//没有正在运行的线程 且任务列表为空
 bool Scheduler::stopping(){
     MutexType::Lock lock(m_mutex);
     return m_autoStop && m_stopping && 
            m_fibers.empty() && m_activeThreadCount == 0;
-
 }
 
 void Scheduler::idle(){

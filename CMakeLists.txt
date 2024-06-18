@@ -5,7 +5,7 @@ include (cmake/utils.cmake) # 包含一个名为utils.cmake的文件，可能包
 add_compile_options(-Wno-builtin-macro-redefined) # 添加编译选项，禁止警告关于重定义内置宏
 set(CMAKE_VERBOSE_MAKEFILE ON) # 设置CMake生成的Makefile为详细模式，方便调试
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # 导出编译命令，用于IDE或其他工具使用
-set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -O0 -ggdb -std=c++17 -Wall -Wno-deprecated ") # 设置C++编译器的标志，包括环境变量中的CXXFLAGS、优化级别、调试信息、C++标准、警告控制等
+set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O3 -ggdb -std=c++17 -Wall -Wno-deprecated ") # 设置C++编译器的标志，包括环境变量中的CXXFLAGS、优化级别、调试信息、C++标准、警告控制等
 
 # 指定头文件搜索路径
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/sylar/include/http) 
@@ -32,7 +32,10 @@ add_library(sylar SHARED ${SRC_DIR_LIST})
 set(LIB_LIB sylar pthread dl ${YAMLCPP})
 
 # 递归查找所有test源文件
-file(GLOB_RECURSE TEST_DIR_LIST ${PROJECT_SOURCE_DIR}/tests/*.cc ${PROJECT_SOURCE_DIR}/tests/*.cpp ${PROJECT_SOURCE_DIR}/examples/*.cc)    
+file(GLOB_RECURSE TEST_DIR_LIST ${PROJECT_SOURCE_DIR}/tests/*.cc 
+                                ${PROJECT_SOURCE_DIR}/tests/*.cpp 
+                                ${PROJECT_SOURCE_DIR}/examples/*.cc
+                                ${PROJECT_SOURCE_DIR}/samples/*.cc)    
 
 foreach(TEST ${TEST_DIR_LIST})
     # 从原文件中提取目标名称 Name Without Extension

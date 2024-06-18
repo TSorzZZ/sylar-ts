@@ -47,6 +47,7 @@ void ByteArray::setIsLittleEndian(bool val){
     }
 }
 
+//删除整个列表
 ByteArray::~ByteArray(){
     Node* tmp = m_root;
     while(tmp){
@@ -161,13 +162,13 @@ void ByteArray::writeUint64(uint64_t value){
     write(tmp, i);
 }
 
-void ByteArray::writeFloat  (float value) {
+void ByteArray::writeFloat(float value) {
     uint32_t v;
     memcpy(&v, &value, sizeof(value));
     writeFuint32(v);
 }
 
-void ByteArray::writeDouble (double value) {
+void ByteArray::writeDouble(double value) {
     uint64_t v;
     memcpy(&v, &value, sizeof(value));
     writeFuint64(v);
@@ -455,7 +456,7 @@ void ByteArray::read(void* buf, size_t size, size_t position) const {
     }
 }
 
-//修改位置
+//修改位置 m_position 和m_cur节点位置都改变
 void ByteArray::setPosition(size_t v){
     if( v > m_capacity){
         throw std::out_of_range("set_position out of range");

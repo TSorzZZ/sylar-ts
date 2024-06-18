@@ -108,7 +108,6 @@ protected:
     bool m_stopping = true;                                //是否停止
     bool m_autoStop = false;                               //自动停止
     int m_rootThread = 0;                                  //caller线程的id
-
 };
 
 

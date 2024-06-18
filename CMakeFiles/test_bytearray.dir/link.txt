@@ -1,1 +1,1 @@
-/usr/bin/c++  -O0 -ggdb -std=c++17 -Wall -Wno-deprecated  -rdynamic CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.o -o bin/test_bytearray   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib:/home/ts/project/sylar-ts/lib lib/libsylar.so -lpthread -ldl /usr/local/lib/libyaml-cpp.a 
+/usr/bin/c++  -rdynamic -O3 -ggdb -std=c++17 -Wall -Wno-deprecated  -rdynamic CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.o -o bin/test_bytearray   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib:/home/ts/project/sylar-ts/lib lib/libsylar.so -lpthread -ldl /usr/local/lib/libyaml-cpp.a 

@@ -19,8 +19,10 @@ public:
               sylar::IOManager* accept_worker = sylar::IOManager::GetThis());
     virtual ~TcpServer();
     
+    //包括bind + listen
     virtual bool bind(sylar::Address::ptr addr);
     virtual bool bind(const std::vector<sylar::Address::ptr>& addrs, std::vector<sylar::Address::ptr>& fails);
+    //开始accept建立连接
     virtual bool start();
     virtual void stop();
 
@@ -33,12 +35,14 @@ public:
     bool isStop() const{return m_isStop;}
 
 protected:
+    //
     virtual void handleClient(Socket::ptr client);
+    //成功建立连接 实际的数据处理
     virtual void startAccept(Socket::ptr sock);
 private:
-    std::vector<Socket::ptr> m_socks;   //支持不止一种协议
-    IOManager* m_worker;
-    IOManager* m_acceptWorker;
+    std::vector<Socket::ptr> m_socks;   //支持不止一种协议 保存的是listen成功的队列
+    IOManager* m_worker;                //处理新的客户端连接
+    IOManager* m_acceptWorker;          //专门负责监听和接受新的连接请求
     uint64_t m_recvTimeout;
     std::string m_name;
     bool m_isStop;

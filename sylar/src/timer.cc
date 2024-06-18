@@ -147,6 +147,10 @@ void TimerManager::listExpiredCb(std::vector<std::function<void()>>& cbs){
     }
 
     RWMutexType::WriteLock lock(m_mutex);
+    if(m_timers.empty()) {
+        return;
+    }
+
     bool rollover = detectClockRollover(now_ms);
     // 如果服务器时间没问题，并且第一个定时器都没有到执行时间，就说明没有任务需要执行
     if(!rollover && ((*m_timers.begin())->m_next > now_ms)){

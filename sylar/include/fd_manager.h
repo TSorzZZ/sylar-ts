@@ -33,6 +33,7 @@ public:
    
     uint64_t getTimeout(int type);
 private:    
+    // 初始化fd 判断是否为socket  设置非阻塞
     bool init();
 private:
     /// 是否初始化
@@ -57,17 +58,18 @@ class FdManager {
 public:
     typedef RWMutex RWMutexType;
     FdManager();
-
+    //获取对应fd的ctc  如果没有就创建
     FdCtx::ptr get(int fd, bool auto_create = false);
+    //删除对应fd
     void del(int fd);
 private:
-    /// 读写锁
+    // 读写锁
     RWMutexType m_mutex;
-    /// 文件句柄集合
+    // 文件句柄集合
     std::vector<FdCtx::ptr> m_datas;
 };
 
-/// 文件句柄单例
+// 文件句柄单例
 typedef Singleton<FdManager> FdMgr;
 
 }

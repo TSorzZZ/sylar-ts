@@ -117,34 +117,19 @@ bool Socket::setOption(int level, int option, const void* result, socklen_t len)
     return true;
 }
 
-
-
-Socket::ptr Socket::accept() {
-    Socket::ptr sock(new Socket(m_family, m_type, m_protocol));
-    int newsock = ::accept(m_sock, nullptr, nullptr);
-    if(newsock == -1) {
-        SYLAR_LOG_ERROR(g_logger) << "accept(" << m_sock << ") errno="
-            << errno << " errstr=" << strerror(errno);
-        return nullptr;
-    }
-    if(sock->init(newsock)) {
-        return sock;
-    }
-    return nullptr;
-}
-
 bool Socket::init(int sock){
     FdCtx::ptr ctx = FdMgr::GetInstance()->get(sock);
     if(ctx && ctx->isSocket() && ! ctx->isClose()){
         m_sock = sock;
         m_isConnected = true;
         initSock();
-        getLocalAddress();
-        getRemoteAddress();
+        getLocalAddress();  //获取本地地址
+        getRemoteAddress(); //获取远端地址
         return true;
     }
     return false;
 }
+
 
 bool Socket::bind(const Address::ptr addr){
     if(!isValid()){
@@ -168,6 +153,37 @@ bool Socket::bind(const Address::ptr addr){
     getLocalAddress();
     return true;
 }
+
+bool Socket::listen(int backlog){
+    if(!isValid()){
+        SYLAR_LOG_ERROR(g_logger) << "listen error sock=-1";
+        return false;
+    }
+
+    if(::listen(m_sock, backlog)){
+        SYLAR_LOG_ERROR(g_logger) << "listen error errno= " << errno 
+        << " errstr= " << strerror(errno);
+        return false;
+    }
+    return true;
+}
+
+Socket::ptr Socket::accept() {
+    Socket::ptr sock(new Socket(m_family, m_type, m_protocol));
+    int newsock = ::accept(m_sock, nullptr, nullptr);
+    if(newsock == -1) {
+        SYLAR_LOG_ERROR(g_logger) << "accept(" << m_sock << ") errno="
+            << errno << " errstr=" << strerror(errno);
+        return nullptr;
+    }
+    if(sock->init(newsock)) {
+        return sock;
+    }
+    return nullptr;
+}
+
+
+
 
 bool Socket::connect(const Address::ptr addr, uint64_t timeout_ms) {
     m_remoteAddress = addr;
@@ -210,19 +226,7 @@ bool Socket::connect(const Address::ptr addr, uint64_t timeout_ms) {
     return true;
 }
 
-bool Socket::listen(int backlog){
-    if(!isValid()){
-        SYLAR_LOG_ERROR(g_logger) << "listen error sock=-1";
-        return false;
-    }
 
-    if(::listen(m_sock, backlog)){
-        SYLAR_LOG_ERROR(g_logger) << "listen error errno= " << errno 
-        << " errstr= " << strerror(errno);
-        return false;
-    }
-    return true;
-}
 
 bool Socket::close(){
     if(!m_isConnected && m_sock == -1){

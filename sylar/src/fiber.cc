@@ -55,7 +55,7 @@ Fiber::Fiber(){
     m_state = EXEC;
     SetThis(this);
     if(getcontext(&m_ctx)){
-        SYLAR_ASSERT2("false", "getcontext");
+        SYLAR_ASSERT2(false, "getcontext");
     }
 
     ++s_fiber_count;
@@ -169,12 +169,12 @@ void Fiber::swapIn(){
 
 // 从当前子协程切换回调度协程    当前子协程 -> 调度协程
 void Fiber::swapOut(){
-    if(this != Scheduler::GetMainFiber()){  //
-        SetThis( Scheduler::GetMainFiber());
-        if(swapcontext(&m_ctx, &Scheduler::GetMainFiber()->m_ctx)){
-        SYLAR_ASSERT2(false, "swapcontext");
-        }
+    
+    SetThis( Scheduler::GetMainFiber());
+    if(swapcontext(&m_ctx, &Scheduler::GetMainFiber()->m_ctx)){
+    SYLAR_ASSERT2(false, "swapcontext");
     }
+    
 }
 
 //切换到后台 设置为ready        当前子协程 ->调度协程
@@ -190,6 +190,7 @@ void Fiber::YieldToHold(){
     Fiber::ptr cur = GetThis();
     SYLAR_ASSERT(cur->m_state == EXEC);
     cur->m_state  = HOLD;
+    SYLAR_LOG_ERROR(g_logger) << cur->getId() <<"yield to hold";
     cur->swapOut();
 }
 

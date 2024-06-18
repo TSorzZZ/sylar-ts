@@ -186,7 +186,6 @@ public:
 
     HttpMethod getMethod() const{ return m_method;}
     uint8_t getVersion() const {return m_version;}
-    HttpStatus getStatus() const { return m_status;}
     const std::string& getPath() const {return m_path;}
     const std::string& getQuery() const {return m_query;}
     const std::string& getBody() const {return m_body;}
@@ -198,7 +197,6 @@ public:
     
     void setMethod(HttpMethod v) {m_method = v;}
     void setVersion(uint8_t v)  {m_version = v;}
-    void setStatus(HttpStatus v)  {m_status = v;}
     void setPath(const std::string& v)  {m_path = v;}
     void setQuery(const std::string& v)  {m_query = v;}
     void setFragment(const std::string& v)  {m_fragment = v;}
@@ -274,9 +272,8 @@ public:
     void initCookies();
 private:
     HttpMethod m_method;
-    HttpStatus m_status;
     uint8_t m_version;
-    bool m_close;
+    bool m_close;   //连接状态 长短连接
 
     std::string m_path;
     std::string m_query;
@@ -330,12 +327,12 @@ public:
     std::ostream& dump(std::ostream& os) const;
     std::string toString() const;
 private:
-    HttpStatus m_status;
-    uint8_t m_version;
-    bool m_close;
-    std::string m_body;
-    std::string m_reason;
-    MapType m_headers;
+    HttpStatus m_status;    //状态码
+    uint8_t m_version;      //版本
+    bool m_close;           //连接状态 长短连接
+    std::string m_body;     //响应体
+    std::string m_reason;   //描述
+    MapType m_headers;      //响应头
 
 };
 

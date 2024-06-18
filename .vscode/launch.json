@@ -11,7 +11,7 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "${workspaceFolder}/bin/test_http_server",
+            "program": "${workspaceFolder}/bin/my_http_server",
             "args": [],
             "cwd": "${workspaceFolder}"
         }

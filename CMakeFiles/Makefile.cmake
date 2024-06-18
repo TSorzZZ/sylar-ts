@@ -49,6 +49,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/sylar.dir/DependInfo.cmake"
   "CMakeFiles/echo_server.dir/DependInfo.cmake"
+  "CMakeFiles/my_http_server.dir/DependInfo.cmake"
   "CMakeFiles/test_address.dir/DependInfo.cmake"
   "CMakeFiles/test_bytearray.dir/DependInfo.cmake"
   "CMakeFiles/test_config.dir/DependInfo.cmake"

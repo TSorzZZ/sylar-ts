@@ -14,18 +14,22 @@ namespace http {
 
 static sylar::Logger::ptr g_logger = SYLAR_LOG_NAME("system");
 
+//外部请求最多为4K
 static sylar::ConfigVar<uint64_t>::ptr g_http_request_buffer_size =
     sylar::Config::Lookup("http.request.buffer_size"
                 ,(uint64_t)(4 * 1024), "http request buffer size");
 
+//请求体大小最多为64M
 static sylar::ConfigVar<uint64_t>::ptr g_http_request_max_body_size =
     sylar::Config::Lookup("http.request.max_body_size"
                 ,(uint64_t)(64 * 1024 * 1024), "http request max body size");
 
+//响应最多为4K
 static sylar::ConfigVar<uint64_t>::ptr g_http_response_buffer_size =
     sylar::Config::Lookup("http.response.buffer_size"
                 ,(uint64_t)(4 * 1024), "http response buffer size");
 
+//响应体大小最多为64M
 static sylar::ConfigVar<uint64_t>::ptr g_http_response_max_body_size =
     sylar::Config::Lookup("http.response.max_body_size"
                 ,(uint64_t)(64 * 1024 * 1024), "http response max body size");

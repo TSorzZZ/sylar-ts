@@ -40,7 +40,6 @@ public:
 
     uint64_t getId()const {return m_id;}
     State getState()const {return m_state;}
-    void setState(State state) { m_state = state;}
 public:
     static Fiber::ptr GetThis();    //返回当前协程
     static uint64_t GetFiberId();

@@ -114,7 +114,7 @@ public:
     uint64_t getReadBuffers(std::vector<iovec>& buffers, uint64_t len = ~0ull) const;
     //获取指定位置buffer 不修改m_position
     uint64_t getReadBuffers(std::vector<iovec>& buffers, uint64_t len, uint64_t position) const;
-    //增加容量 不修改m_position
+    //相当于提前分配空间 增加容量 不修改m_position  
     uint64_t getWriteBuffers(std::vector<iovec>& buffers, uint64_t len);
 private:
     void addCapacity(size_t size);
