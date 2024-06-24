@@ -4,6 +4,8 @@
 /home/ts/project/sylar-ts/CMakeFiles/test_address.dir
 /home/ts/project/sylar-ts/CMakeFiles/test_bytearray.dir
 /home/ts/project/sylar-ts/CMakeFiles/test_config.dir
+/home/ts/project/sylar-ts/CMakeFiles/test_daemon.dir
+/home/ts/project/sylar-ts/CMakeFiles/test_env.dir
 /home/ts/project/sylar-ts/CMakeFiles/test_fiber.dir
 /home/ts/project/sylar-ts/CMakeFiles/test_hook.dir
 /home/ts/project/sylar-ts/CMakeFiles/test_http.dir

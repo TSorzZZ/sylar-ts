@@ -376,8 +376,9 @@ public:
     }
 
     static void LoadFromYaml(const YAML::Node& root);
-    static ConfigVarBase::ptr LookupBase(const std::string& name);
+    static void LoadFromConfDir(const std::string& path, bool force = false);
 
+    static ConfigVarBase::ptr LookupBase(const std::string& name);
     static void Visit(std::function<void(ConfigVarBase::ptr)> cb);
 private:
     // 解决全局变量初始化顺序的问题

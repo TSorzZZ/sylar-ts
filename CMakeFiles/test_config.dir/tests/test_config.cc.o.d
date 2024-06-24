@@ -859,4 +859,5 @@ CMakeFiles/test_config.dir/tests/test_config.cc.o: \
   /home/ts/project/sylar-ts/sylar/include/noncopyable.h \
   /usr/include/semaphore.h \
   /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  /home/ts/project/sylar-ts/sylar/include/env.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/iostream

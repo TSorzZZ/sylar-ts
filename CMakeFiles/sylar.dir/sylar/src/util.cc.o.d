@@ -246,7 +246,15 @@ CMakeFiles/sylar.dir/sylar/src/util.cc.o: \
   /usr/include/semaphore.h \
   /usr/include/x86_64-linux-gnu/bits/semaphore.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/atomic \
+  /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/cstring \
+  /usr/include/string.h /usr/include/strings.h \
+  /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/ctime \
   /usr/include/execinfo.h /usr/include/x86_64-linux-gnu/sys/time.h \
+  /usr/include/dirent.h /usr/include/x86_64-linux-gnu/bits/dirent.h \
+  /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/dirent_ext.h \
   /home/ts/project/sylar-ts/sylar/include/fiber.h \
   /usr/include/x86_64-linux-gnu/sys/ucontext.h \
   /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \

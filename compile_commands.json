@@ -16,6 +16,16 @@
 },
 {
   "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -rdynamic -O3 -ggdb -std=c++17 -Wall -Wno-deprecated  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/daemon.cc.o -c /home/ts/project/sylar-ts/sylar/src/daemon.cc",
+  "file": "/home/ts/project/sylar-ts/sylar/src/daemon.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -rdynamic -O3 -ggdb -std=c++17 -Wall -Wno-deprecated  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/env.cc.o -c /home/ts/project/sylar-ts/sylar/src/env.cc",
+  "file": "/home/ts/project/sylar-ts/sylar/src/env.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
   "command": "/usr/bin/c++ -Dsylar_EXPORTS -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -rdynamic -O3 -ggdb -std=c++17 -Wall -Wno-deprecated  -fPIC -Wno-builtin-macro-redefined -o CMakeFiles/sylar.dir/sylar/src/fd_manager.cc.o -c /home/ts/project/sylar-ts/sylar/src/fd_manager.cc",
   "file": "/home/ts/project/sylar-ts/sylar/src/fd_manager.cc"
 },
@@ -148,6 +158,16 @@
   "directory": "/home/ts/project/sylar-ts",
   "command": "/usr/bin/c++  -D__FILE__=\\\"tests/test_config.cc\\\" -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -rdynamic -O3 -ggdb -std=c++17 -Wall -Wno-deprecated  -Wno-builtin-macro-redefined -o CMakeFiles/test_config.dir/tests/test_config.cc.o -c /home/ts/project/sylar-ts/tests/test_config.cc",
   "file": "/home/ts/project/sylar-ts/tests/test_config.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++  -D__FILE__=\\\"tests/test_daemon.cc\\\" -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -rdynamic -O3 -ggdb -std=c++17 -Wall -Wno-deprecated  -Wno-builtin-macro-redefined -o CMakeFiles/test_daemon.dir/tests/test_daemon.cc.o -c /home/ts/project/sylar-ts/tests/test_daemon.cc",
+  "file": "/home/ts/project/sylar-ts/tests/test_daemon.cc"
+},
+{
+  "directory": "/home/ts/project/sylar-ts",
+  "command": "/usr/bin/c++  -D__FILE__=\\\"tests/test_env.cc\\\" -I/home/ts/project/sylar-ts/sylar/include -I/home/ts/project/sylar-ts/sylar/include/http -I/home/ts/project/sylar-ts/.  -rdynamic -O3 -ggdb -std=c++17 -Wall -Wno-deprecated  -Wno-builtin-macro-redefined -o CMakeFiles/test_env.dir/tests/test_env.cc.o -c /home/ts/project/sylar-ts/tests/test_env.cc",
+  "file": "/home/ts/project/sylar-ts/tests/test_env.cc"
 },
 {
   "directory": "/home/ts/project/sylar-ts",

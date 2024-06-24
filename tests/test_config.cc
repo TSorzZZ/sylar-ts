@@ -1,4 +1,5 @@
 #include "config.h"
+#include "env.h"
 #include "log.h"
 #include <set>
 #include<iostream>
@@ -155,11 +156,17 @@ void test_log(){
     SYLAR_LOG_INFO(system_log) << "hello system" << std::endl;
 }
 
+void test_loadconf(){
+    sylar::Config::LoadFromConfDir("conf");
+}
+
 int main(int argc, char** argv) {
     //test_yaml();
     //test_config();
     //test_class();
-    test_log();
+    sylar::EnvMgr::GetInstance()->init(argc, argv);
+    test_loadconf();
+    //test_log();
     sylar::Config::Visit([](sylar::ConfigVarBase::ptr var){
         SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "name= " << var->getName()
                                     << "description= " << var->getDescription()

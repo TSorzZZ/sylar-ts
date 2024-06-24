@@ -190,7 +190,7 @@ void Fiber::YieldToHold(){
     Fiber::ptr cur = GetThis();
     SYLAR_ASSERT(cur->m_state == EXEC);
     cur->m_state  = HOLD;
-    SYLAR_LOG_ERROR(g_logger) << cur->getId() <<"yield to hold";
+    //SYLAR_LOG_ERROR(g_logger) << cur->getId() <<"yield to hold";
     cur->swapOut();
 }
 

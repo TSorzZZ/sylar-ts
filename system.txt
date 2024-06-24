@@ -16,3 +16,21 @@
 
 2024-04-02 00:48:48	system	[INFO]	hello system
 
+2024-06-24 23:47:02	system	[ERROR]	LoadConfFile file=/home/ts/project/sylar-ts/bin/conf/log.yml success
+2024-06-24 23:47:02	system	[INFO]	hello system
+
+2024-06-24 23:47:02	system	[INFO]	hello system
+
+2024-06-24 23:50:09	system	[ERROR]	LoadConfFile file=/home/ts/project/sylar-ts/bin/conf/log.yml success
+2024-06-24 23:50:09	system	[INFO]	hello system
+
+2024-06-24 23:50:09	system	[INFO]	hello system
+
+2024-06-24 23:51:53	system	[ERROR]	LoadConfFile file=/home/ts/project/sylar-ts/bin/conf/log.yml success
+2024-06-24 23:51:53	system	[INFO]	hello system
+
+2024-06-24 23:51:53	system	[INFO]	hello system
+
+2024-06-25 00:00:15	system	[INFO]	LoadConfFile file=/home/ts/project/sylar-ts/bin/conf/xx/log.yml success
+2024-06-25 00:00:15	system	[INFO]	LoadConfFile file=/home/ts/project/sylar-ts/bin/conf/log2.yml success
+2024-06-25 00:00:15	system	[INFO]	LoadConfFile file=/home/ts/project/sylar-ts/bin/conf/log.yml success
