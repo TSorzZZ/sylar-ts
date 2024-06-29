@@ -25,7 +25,7 @@ public:
                    sylar::http::HttpResponse::ptr response,
                    sylar::http::HttpSession::ptr session) = 0;
     const std::string& getName() const { return m_name;}
-private:
+protected:
     std::string m_name;
 };
 

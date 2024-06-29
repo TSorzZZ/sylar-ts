@@ -271,8 +271,11 @@ CMakeFiles/test_daemon.dir/tests/test_daemon.cc.o: tests/test_daemon.cc \
   /usr/include/x86_64-linux-gnu/sys/syscall.h \
   /usr/include/x86_64-linux-gnu/asm/unistd.h \
   /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
-  /usr/include/x86_64-linux-gnu/bits/syscall.h
+  /usr/include/x86_64-linux-gnu/bits/syscall.h \
+  sylar/include/hash_util.h
 
+
+sylar/include/hash_util.h:
 
 /usr/include/x86_64-linux-gnu/bits/syscall.h:
 

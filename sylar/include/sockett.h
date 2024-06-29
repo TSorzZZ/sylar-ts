@@ -9,6 +9,8 @@
 #include <memory>
 #include <ostream>
 #include <sys/socket.h>
+#include <openssl/err.h>
+#include <openssl/ssl.h>
 
 namespace sylar {
 
@@ -45,7 +47,7 @@ public:
 
 
     Socket(int family, int type, int protocol = 0);
-    ~Socket();
+    virtual ~Socket();
 
     //获取/设置收发超时时间
     int64_t getSendTimeout();
@@ -67,28 +69,28 @@ public:
         return setOption(level, option, &value, sizeof(T));
     }
     //新建一个socket 绑定本地地址
-    bool bind(const Address::ptr addr);
+    virtual bool bind(const Address::ptr addr);
     //监听socket 手动设定接受连接的socket的最大连接数。
-    bool listen(int backlog = SOMAXCONN);
+    virtual bool listen(int backlog = SOMAXCONN);
     //接受连接 返回accept后的新socket
-    Socket::ptr accept();
+    virtual Socket::ptr accept();
     //连接指定的地址 设置超时时间
-    bool connect(const Address::ptr addr, uint64_t timeout_ms = -1);
+    virtual bool connect(const Address::ptr addr, uint64_t timeout_ms = -1);
     //关闭socket连接
-    bool close();
+    virtual bool close();
 
     //发送1-多个数据块
-    int send(const void* buffer, size_t length, int flags = 0);
-    int send(const iovec* buffers, size_t length, int flags = 0);
+    virtual int send(const void* buffer, size_t length, int flags = 0);
+    virtual int send(const iovec* buffers, size_t length, int flags = 0);
     //向指定的地址发送数据
-    int sendTo(const void* buffer, size_t length, Address::ptr to, int flags = 0);
-    int sendTo(const iovec* buffers, size_t length, Address::ptr to, int flags = 0);
+    virtual int sendTo(const void* buffer, size_t length, Address::ptr to, int flags = 0);
+    virtual int sendTo(const iovec* buffers, size_t length, Address::ptr to, int flags = 0);
     //接收1-多个数据块
-    int recv(void* buffer, size_t length, int flags = 0);
-    int recv(iovec* buffers, size_t length, int flags = 0);
+    virtual int recv(void* buffer, size_t length, int flags = 0);
+    virtual int recv(iovec* buffers, size_t length, int flags = 0);
     //从指定的地址接收数据
-    int recvFrom(void* buffer, size_t length, Address::ptr from, int flags = 0);
-    int recvFrom(iovec* buffers, size_t length, Address::ptr from, int flags = 0);
+    virtual int recvFrom(void* buffer, size_t length, Address::ptr from, int flags = 0);
+    virtual int recvFrom(iovec* buffers, size_t length, Address::ptr from, int flags = 0);
 
     //创建/获取 远端或本地地址
     Address::ptr getRemoteAddress();
@@ -101,7 +103,7 @@ public:
     bool isValid() const;
     int getError();
     //打印socket信息到输出流中
-    std::ostream& dump(std::ostream& os) const;
+    virtual std::ostream& dump(std::ostream& os) const;
     int getSocket() const{ return m_sock;}
 
     bool cancelRead();
@@ -109,14 +111,14 @@ public:
     bool cancelAccept();
     bool cancelAll();
 
-private:
+protected:
     //创建新的socket 并初始化
     void newSock();
     //初始化socket 套接字关闭后立即释放该端口  开启Nagle算法
     void initSock();
     //初始化当前socket fd的状态  用于复用socket
-    bool init(int sock);
-private:
+    virtual bool init(int sock);
+protected:
     int m_sock;     //socket fd
     int m_family;   //协议族
     int m_type;     //通信类型
@@ -127,6 +129,41 @@ private:
     Address::ptr m_remoteAddress;   //远端地址
 
 };
+
+
+class SSLSocket: public Socket{
+public:
+    using ptr = std::shared_ptr<SSLSocket>;
+
+    static SSLSocket::ptr CreateTCP(sylar::Address::ptr address);
+    static SSLSocket::ptr CreateTCPSocket();
+    static SSLSocket::ptr CreateTCPSocket6();
+
+    SSLSocket(int family, int type, int protocol = 0);
+    virtual Socket::ptr accept() override;
+    virtual bool bind(const Address::ptr addr) override;
+    virtual bool connect(const Address::ptr addr, uint64_t timeout_ms = -1) override;
+    virtual bool listen(int backlog = SOMAXCONN) override;
+    virtual bool close() override;
+    virtual int send(const void* buffer, size_t length, int flags = 0) override;
+    virtual int send(const iovec* buffers, size_t length, int flags = 0) override;
+    virtual int sendTo(const void* buffer, size_t length, const Address::ptr to, int flags = 0) override;
+    virtual int sendTo(const iovec* buffers, size_t length, const Address::ptr to, int flags = 0) override;
+    virtual int recv(void* buffer, size_t length, int flags = 0) override;
+    virtual int recv(iovec* buffers, size_t length, int flags = 0) override;
+    virtual int recvFrom(void* buffer, size_t length, Address::ptr from, int flags = 0) override;
+    virtual int recvFrom(iovec* buffers, size_t length, Address::ptr from, int flags = 0) override;
+    //加载凭证
+    bool loadCertificates(const std::string& cert_file, const std::string& key_file);
+    virtual std::ostream& dump(std::ostream& os) const override;
+protected:
+    virtual bool init(int sock) override;
+private:
+    std::shared_ptr<SSL_CTX> m_ctx; //SSL配置
+    std::shared_ptr<SSL> m_ssl;     //SSL连接
+};
+
+
 
 std::ostream& operator<<(std::ostream& os, const Socket& sock);
 

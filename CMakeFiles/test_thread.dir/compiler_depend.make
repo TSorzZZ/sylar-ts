@@ -243,6 +243,7 @@ CMakeFiles/test_thread.dir/tests/test_thread.cc.o: tests/test_thread.cc \
   /usr/include/x86_64-linux-gnu/asm/unistd.h \
   /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
+  sylar/include/hash_util.h \
   sylar/include/singleton.h \
   sylar/include/mythread.h \
   sylar/include/noncopyable.h \
@@ -937,8 +938,146 @@ CMakeFiles/test_thread.dir/tests/test_thread.cc.o: tests/test_thread.cc \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
   /usr/include/x86_64-linux-gnu/bits/in.h \
   /usr/include/x86_64-linux-gnu/sys/un.h \
-  sylar/include/sockett.h
+  sylar/include/sockett.h \
+  /usr/include/openssl/err.h \
+  /usr/include/openssl/macros.h \
+  /usr/include/x86_64-linux-gnu/openssl/opensslconf.h \
+  /usr/include/x86_64-linux-gnu/openssl/configuration.h \
+  /usr/include/openssl/opensslv.h \
+  /usr/include/openssl/e_os2.h \
+  /usr/include/openssl/types.h \
+  /usr/include/openssl/safestack.h \
+  /usr/include/openssl/stack.h \
+  /usr/include/openssl/bio.h \
+  /usr/include/openssl/crypto.h \
+  /usr/include/openssl/cryptoerr.h \
+  /usr/include/openssl/symhacks.h \
+  /usr/include/openssl/cryptoerr_legacy.h \
+  /usr/include/openssl/core.h \
+  /usr/include/openssl/bioerr.h \
+  /usr/include/openssl/lhash.h \
+  /usr/include/openssl/ssl.h \
+  /usr/include/openssl/comp.h \
+  /usr/include/openssl/comperr.h \
+  /usr/include/openssl/x509.h \
+  /usr/include/openssl/buffer.h \
+  /usr/include/openssl/buffererr.h \
+  /usr/include/openssl/evp.h \
+  /usr/include/openssl/core_dispatch.h \
+  /usr/include/openssl/evperr.h \
+  /usr/include/openssl/params.h \
+  /usr/include/openssl/bn.h \
+  /usr/include/openssl/bnerr.h \
+  /usr/include/openssl/objects.h \
+  /usr/include/openssl/obj_mac.h \
+  /usr/include/openssl/asn1.h \
+  /usr/include/openssl/asn1err.h \
+  /usr/include/openssl/objectserr.h \
+  /usr/include/openssl/ec.h \
+  /usr/include/openssl/ecerr.h \
+  /usr/include/openssl/rsa.h \
+  /usr/include/openssl/rsaerr.h \
+  /usr/include/openssl/dsa.h \
+  /usr/include/openssl/dh.h \
+  /usr/include/openssl/dherr.h \
+  /usr/include/openssl/dsaerr.h \
+  /usr/include/openssl/sha.h \
+  /usr/include/openssl/x509err.h \
+  /usr/include/openssl/x509_vfy.h \
+  /usr/include/openssl/pkcs7.h \
+  /usr/include/openssl/pkcs7err.h \
+  /usr/include/openssl/ocsp.h \
+  /usr/include/openssl/http.h \
+  /usr/include/openssl/conf.h \
+  /usr/include/openssl/conferr.h \
+  /usr/include/openssl/conftypes.h \
+  /usr/include/openssl/x509v3.h \
+  /usr/include/openssl/x509v3err.h \
+  /usr/include/openssl/ocsperr.h \
+  /usr/include/openssl/pem.h \
+  /usr/include/openssl/pemerr.h \
+  /usr/include/openssl/hmac.h \
+  /usr/include/openssl/async.h \
+  /usr/include/openssl/asyncerr.h \
+  /usr/include/openssl/ct.h \
+  /usr/include/openssl/cterr.h \
+  /usr/include/openssl/sslerr.h \
+  /usr/include/openssl/sslerr_legacy.h \
+  /usr/include/openssl/prov_ssl.h \
+  /usr/include/openssl/ssl2.h \
+  /usr/include/openssl/ssl3.h \
+  /usr/include/openssl/tls1.h \
+  /usr/include/openssl/dtls1.h \
+  /usr/include/openssl/srtp.h
 
+
+/usr/include/openssl/ssl3.h:
+
+/usr/include/openssl/ssl2.h:
+
+/usr/include/openssl/sslerr_legacy.h:
+
+/usr/include/openssl/ct.h:
+
+/usr/include/openssl/asyncerr.h:
+
+/usr/include/openssl/hmac.h:
+
+/usr/include/openssl/pemerr.h:
+
+/usr/include/openssl/ocsperr.h:
+
+/usr/include/openssl/conftypes.h:
+
+/usr/include/openssl/http.h:
+
+/usr/include/openssl/x509err.h:
+
+/usr/include/openssl/dsaerr.h:
+
+/usr/include/openssl/dh.h:
+
+/usr/include/openssl/ecerr.h:
+
+/usr/include/openssl/ec.h:
+
+/usr/include/openssl/asn1err.h:
+
+/usr/include/openssl/asn1.h:
+
+/usr/include/openssl/obj_mac.h:
+
+/usr/include/openssl/params.h:
+
+/usr/include/openssl/evperr.h:
+
+/usr/include/openssl/core_dispatch.h:
+
+/usr/include/openssl/buffer.h:
+
+/usr/include/openssl/x509.h:
+
+/usr/include/openssl/comperr.h:
+
+/usr/include/openssl/comp.h:
+
+/usr/include/openssl/ssl.h:
+
+/usr/include/openssl/bioerr.h:
+
+/usr/include/openssl/symhacks.h:
+
+/usr/include/openssl/cryptoerr.h:
+
+/usr/include/openssl/safestack.h:
+
+/usr/include/openssl/types.h:
+
+/usr/include/x86_64-linux-gnu/openssl/configuration.h:
+
+/usr/include/x86_64-linux-gnu/openssl/opensslconf.h:
+
+/usr/include/openssl/err.h:
 
 /usr/include/x86_64-linux-gnu/asm/sockios.h:
 
@@ -957,6 +1096,8 @@ CMakeFiles/test_thread.dir/tests/test_thread.cc.o: tests/test_thread.cc \
 /usr/include/linux/posix_types.h:
 
 /usr/include/ucontext.h:
+
+/usr/include/openssl/srtp.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h:
 
@@ -1050,6 +1191,8 @@ sylar/include/macro.h:
 
 /usr/include/boost/mpl/aux_/advance_forward.hpp:
 
+/usr/include/openssl/rsaerr.h:
+
 /usr/include/boost/mpl/negate.hpp:
 
 /usr/include/boost/mpl/advance.hpp:
@@ -1064,6 +1207,8 @@ sylar/include/macro.h:
 
 /usr/include/boost/mpl/vector/aux_/begin_end.hpp:
 
+/usr/include/openssl/x509v3err.h:
+
 /usr/include/boost/mpl/prior.hpp:
 
 /usr/include/boost/mpl/distance_fwd.hpp:
@@ -1075,6 +1220,8 @@ sylar/include/macro.h:
 /usr/include/boost/mpl/minus.hpp:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/plus.hpp:
+
+/usr/include/openssl/objects.h:
 
 /usr/include/boost/mpl/plus.hpp:
 
@@ -1095,6 +1242,8 @@ sylar/include/macro.h:
 sylar/include/fiber.h:
 
 /usr/include/boost/mpl/vector/aux_/front.hpp:
+
+/usr/include/openssl/dsa.h:
 
 /usr/include/boost/mpl/aux_/config/typeof.hpp:
 
@@ -1134,6 +1283,8 @@ sylar/include/fiber.h:
 
 /usr/include/boost/mpl/logical.hpp:
 
+/usr/include/openssl/bn.h:
+
 /usr/include/boost/mpl/aux_/iter_apply.hpp:
 
 /usr/include/boost/mpl/aux_/traits_lambda_spec.hpp:
@@ -1159,6 +1310,8 @@ sylar/include/fiber.h:
 /usr/include/boost/mpl/list/aux_/size.hpp:
 
 /usr/include/boost/mpl/clear_fwd.hpp:
+
+/usr/include/openssl/sslerr.h:
 
 /usr/include/boost/mpl/list/aux_/clear.hpp:
 
@@ -1208,6 +1361,8 @@ sylar/include/address.h:
 
 /usr/include/boost/predef/version_number.h:
 
+/usr/include/openssl/buffererr.h:
+
 /usr/include/boost/predef/architecture/x86/32.h:
 
 /usr/include/boost/mpl/vector/aux_/pop_back.hpp:
@@ -1217,6 +1372,8 @@ sylar/include/address.h:
 /usr/include/boost/math/tools/config.hpp:
 
 /usr/include/boost/math/special_functions/sign.hpp:
+
+/usr/include/openssl/prov_ssl.h:
 
 /usr/include/boost/noncopyable.hpp:
 
@@ -1262,6 +1419,8 @@ sylar/include/address.h:
 
 /usr/include/c++/11/tr1/legendre_function.tcc:
 
+/usr/include/openssl/conf.h:
+
 /usr/include/c++/11/tr1/hypergeometric.tcc:
 
 /usr/include/c++/11/tr1/exp_integral.tcc:
@@ -1300,6 +1459,8 @@ sylar/include/timer.h:
 
 /usr/include/boost/config/no_tr1/cmath.hpp:
 
+/usr/include/openssl/core.h:
+
 /usr/include/boost/mpl/find_if.hpp:
 
 /usr/include/boost/numeric/conversion/converter_policies.hpp:
@@ -1309,6 +1470,8 @@ sylar/include/timer.h:
 /usr/include/boost/mpl/vector/aux_/push_front.hpp:
 
 /usr/include/boost/mpl/less.hpp:
+
+/usr/include/openssl/pkcs7err.h:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/times.hpp:
 
@@ -1339,6 +1502,8 @@ sylar/include/timer.h:
 /usr/include/boost/mpl/aux_/has_tag.hpp:
 
 /usr/include/boost/mpl/tag.hpp:
+
+/usr/include/openssl/sha.h:
 
 /usr/include/boost/mpl/aux_/numeric_op.hpp:
 
@@ -1490,6 +1655,10 @@ sylar/include/timer.h:
 
 /usr/include/boost/mpl/apply_fwd.hpp:
 
+sylar/include/hash_util.h:
+
+/usr/include/openssl/crypto.h:
+
 /usr/include/boost/numeric/conversion/int_float_mixture_enum.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
@@ -1519,6 +1688,8 @@ sylar/include/timer.h:
 /usr/include/boost/mpl/aux_/find_if_pred.hpp:
 
 /usr/include/c++/11/bits/ptr_traits.h:
+
+/usr/include/openssl/evp.h:
 
 /usr/include/stdint.h:
 
@@ -1598,6 +1769,8 @@ sylar/include/timer.h:
 
 /usr/include/c++/11/istream:
 
+/usr/include/openssl/cryptoerr_legacy.h:
+
 /usr/include/boost/mpl/aux_/config/msvc_typename.hpp:
 
 /usr/include/c++/11/sstream:
@@ -1626,6 +1799,8 @@ sylar/include/timer.h:
 
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
 
+/usr/include/openssl/macros.h:
+
 /usr/include/boost/iterator/reverse_iterator.hpp:
 
 /usr/include/c++/11/bits/nested_exception.h:
@@ -1633,6 +1808,8 @@ sylar/include/timer.h:
 /usr/include/c++/11/exception:
 
 /usr/include/c++/11/bits/refwrap.h:
+
+/usr/include/openssl/lhash.h:
 
 /usr/include/c++/11/typeinfo:
 
@@ -1663,6 +1840,8 @@ sylar/include/timer.h:
 sylar/include/noncopyable.h:
 
 /usr/include/c++/11/bits/stl_raw_storage_iter.h:
+
+/usr/include/openssl/x509_vfy.h:
 
 /usr/include/boost/mpl/aux_/reverse_fold_impl.hpp:
 
@@ -1698,6 +1877,8 @@ sylar/include/noncopyable.h:
 
 /usr/include/stdio.h:
 
+/usr/include/openssl/bnerr.h:
+
 /usr/include/boost/mpl/aux_/advance_backward.hpp:
 
 /usr/include/boost/mpl/int_fwd.hpp:
@@ -1707,6 +1888,8 @@ sylar/include/noncopyable.h:
 /usr/include/boost/iterator/iterator_traits.hpp:
 
 /usr/include/c++/11/cwctype:
+
+/usr/include/openssl/ocsp.h:
 
 /usr/include/semaphore.h:
 
@@ -1751,6 +1934,8 @@ sylar/include/noncopyable.h:
 /usr/include/c++/11/bits/locale_facets_nonio.h:
 
 /usr/lib/llvm-14/lib/clang/14.0.0/include/stdarg.h:
+
+/usr/include/openssl/e_os2.h:
 
 /usr/include/c++/11/bits/ostream.tcc:
 
@@ -1807,6 +1992,8 @@ sylar/include/noncopyable.h:
 /usr/include/boost/mpl/aux_/config/ctps.hpp:
 
 /usr/include/boost/mpl/void.hpp:
+
+/usr/include/openssl/x509v3.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
@@ -1877,6 +2064,8 @@ sylar/include/noncopyable.h:
 /usr/include/boost/mpl/aux_/value_wknd.hpp:
 
 /usr/include/c++/11/bits/atomic_base.h:
+
+/usr/include/openssl/dherr.h:
 
 /usr/include/c++/11/bits/stl_multimap.h:
 
@@ -1960,6 +2149,8 @@ sylar/include/singleton.h:
 
 /usr/include/boost/type_traits/make_unsigned.hpp:
 
+/usr/include/openssl/stack.h:
+
 /usr/include/c++/11/pstl/glue_memory_defs.h:
 
 /usr/local/include/yaml-cpp/null.h:
@@ -2024,6 +2215,8 @@ sylar/include/mythread.h:
 
 /usr/include/c++/11/bits/move.h:
 
+/usr/include/openssl/bio.h:
+
 /usr/include/c++/11/bits/hash_bytes.h:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/advance_backward.hpp:
@@ -2048,6 +2241,8 @@ sylar/include/log.h:
 
 /usr/include/c++/11/cwchar:
 
+/usr/include/openssl/opensslv.h:
+
 /usr/include/boost/mpl/aux_/config/arrays.hpp:
 
 /usr/include/boost/range/concepts.hpp:
@@ -2055,6 +2250,8 @@ sylar/include/log.h:
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
 /usr/include/c++/11/unordered_map:
+
+/usr/include/openssl/async.h:
 
 /usr/include/boost/config/workaround.hpp:
 
@@ -2095,6 +2292,8 @@ sylar/include/log.h:
 /usr/include/x86_64-linux-gnu/bits/confname.h:
 
 /usr/include/c++/11/bits/ostream_insert.h:
+
+/usr/include/openssl/dtls1.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
@@ -2182,6 +2381,8 @@ tests/test_thread.cc:
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
+/usr/include/openssl/tls1.h:
+
 /usr/include/x86_64-linux-gnu/bits/time.h:
 
 /usr/include/c++/11/backward/binders.h:
@@ -2223,6 +2424,8 @@ sylar/include/sylar.h:
 /usr/include/boost/preprocessor/tuple/detail/is_single_return.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/openssl/pkcs7.h:
 
 /usr/include/boost/mpl/same_as.hpp:
 
@@ -2283,6 +2486,8 @@ sylar/include/sylar.h:
 /usr/include/boost/iterator/detail/facade_iterator_category.hpp:
 
 /usr/include/boost/mpl/aux_/config/integral.hpp:
+
+/usr/include/openssl/objectserr.h:
 
 /usr/include/boost/concept/detail/concept_undef.hpp:
 
@@ -2428,6 +2633,8 @@ sylar/include/util.h:
 
 /usr/include/boost/type_traits/is_function.hpp:
 
+/usr/include/openssl/conferr.h:
+
 /usr/include/x86_64-linux-gnu/bits/environments.h:
 
 /usr/include/boost/mpl/aux_/config/preprocessor.hpp:
@@ -2498,6 +2705,8 @@ sylar/include/util.h:
 
 /usr/include/boost/preprocessor/empty.hpp:
 
+/usr/include/openssl/cterr.h:
+
 /usr/include/c++/11/iterator:
 
 /usr/include/boost/config/detail/posix_features.hpp:
@@ -2534,6 +2743,8 @@ sylar/include/util.h:
 
 /usr/include/boost/preprocessor/detail/check.hpp:
 
+/usr/include/openssl/rsa.h:
+
 /usr/local/include/yaml-cpp/exceptions.h:
 
 /usr/include/boost/preprocessor/logical/compl.hpp:
@@ -2551,6 +2762,8 @@ sylar/include/util.h:
 /usr/include/boost/mpl/aux_/template_arity.hpp:
 
 /usr/include/boost/preprocessor/tuple/rem.hpp:
+
+/usr/include/openssl/pem.h:
 
 /usr/include/boost/mpl/aux_/config/eti.hpp:
 

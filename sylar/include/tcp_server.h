@@ -20,8 +20,9 @@ public:
     virtual ~TcpServer();
     
     //包括bind + listen
-    virtual bool bind(sylar::Address::ptr addr);
-    virtual bool bind(const std::vector<sylar::Address::ptr>& addrs, std::vector<sylar::Address::ptr>& fails);
+    virtual bool bind(sylar::Address::ptr addr, bool ssl = false);
+    virtual bool bind(const std::vector<sylar::Address::ptr>& addrs, 
+    std::vector<sylar::Address::ptr>& fails, bool ssl = false);
     //开始accept建立连接
     virtual bool start();
     virtual void stop();

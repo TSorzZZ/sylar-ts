@@ -178,6 +178,8 @@ T getAs(const MapType& m, const std::string& key, const T& def = T()) {
     return def;
 }
 
+class HttpResponse;
+
 class HttpRequest{
 public:
     typedef std::shared_ptr<HttpRequest> ptr;
@@ -194,7 +196,10 @@ public:
     const MapType& getHeaders()const{return m_headers;}   //请求头
     const MapType& getParams()const{return m_params; }   //参数
     const MapType& getCookies()const{return m_cookies; }   //cookie
-    
+    void setHeaders(const MapType& v){ m_headers = v;}   //请求头
+    void setParams(const MapType& v){ m_params = v; }   //参数
+    void setCookies(const MapType& v){ m_cookies = v; }   //cookie
+
     void setMethod(HttpMethod v) {m_method = v;}
     void setVersion(uint8_t v)  {m_version = v;}
     void setPath(const std::string& v)  {m_path = v;}
@@ -202,28 +207,31 @@ public:
     void setFragment(const std::string& v)  {m_fragment = v;}
     void setBody(const std::string& v)  {m_body = v;}
 
-    void setHeaders(const MapType& v){ m_headers = v;}   //请求头
-    void setParams(const MapType& v){ m_params = v; }   //参数
-    void setCookies(const MapType& v){ m_cookies = v; }   //cookie
+    
 
     std::string getHeader(const std::string& key, const std::string& def = "") const; 
     std::string getParam(const std::string& key, const std::string& def = "") const; 
     std::string getCookie(const std::string& key, const std::string& def = "") const; 
-
     void setHeader(const std::string& key, const std::string& val);
     void setParam(const std::string& key, const std::string& val);
     void setCookie(const std::string& key, const std::string& val);
-
-    bool isClose() const {return m_close;}
-    void setClose(bool v) {m_close = v;}
-
     void delHeader(const std::string& key);
     void delParam(const std::string& key);
     void delCookie(const std::string& key);
 
+    bool isClose() const {return m_close;}
+    void setClose(bool v) {m_close = v;}
+
+    
+
     bool hasHeader(const std::string& key, std::string* val = nullptr);
     bool hasParam(const std::string& key, std::string* val = nullptr);
     bool hasCookie(const std::string& key, std::string* val = nullptr);
+
+    std::shared_ptr<HttpResponse> createResponse();
+
+    bool isWebsocket() const { return m_websocket;}
+    void setWebsocket(bool v) { m_websocket = v;}
 
     template<class T>
     bool checkGetHeaderAs(const std::string& key, T& val, const T& def = T()) {
@@ -235,33 +243,33 @@ public:
         return getAs(m_headers, key, def);
     }
 
-    // template<class T>
-    // bool checkGetParamAs(const std::string& key, T& val, const T& def = T()) {
-    //     initQueryParam();
-    //     initBodyParam();
-    //     return checkGetAs(m_params, key, val, def);
-    // }
+    template<class T>
+    bool checkGetParamAs(const std::string& key, T& val, const T& def = T()) {
+        initQueryParam();
+        initBodyParam();
+        return checkGetAs(m_params, key, val, def);
+    }
 
     
-    // template<class T>
-    // T getParamAs(const std::string& key, const T& def = T()) {
-    //     initQueryParam();
-    //     initBodyParam();
-    //     return getAs(m_params, key, def);
-    // }
+    template<class T>
+    T getParamAs(const std::string& key, const T& def = T()) {
+        initQueryParam();
+        initBodyParam();
+        return getAs(m_params, key, def);
+    }
 
-    // template<class T>
-    // bool checkGetCookieAs(const std::string& key, T& val, const T& def = T()) {
-    //     initCookies();
-    //     return checkGetAs(m_cookies, key, val, def);
-    // }
+    template<class T>
+    bool checkGetCookieAs(const std::string& key, T& val, const T& def = T()) {
+        initCookies();
+        return checkGetAs(m_cookies, key, val, def);
+    }
 
     
-    // template<class T>
-    // T getCookieAs(const std::string& key, const T& def = T()) {
-    //     initCookies();
-    //     return getAs(m_cookies, key, def);
-    // }
+    template<class T>
+    T getCookieAs(const std::string& key, const T& def = T()) {
+        initCookies();
+        return getAs(m_cookies, key, def);
+    }
 
     std::ostream& dump(std::ostream& os) const;
     std::string toString() const;
@@ -274,6 +282,7 @@ private:
     HttpMethod m_method;
     uint8_t m_version;
     bool m_close;   //连接状态 长短连接
+    bool m_websocket;
 
     std::string m_path;
     std::string m_query;
@@ -314,6 +323,9 @@ public:
     void setHeader(const std::string& key, const std::string& val);
     void delHeader(const std::string& key);
 
+    bool isWebsocket() const { return m_websocket;}
+    void setWebsocket(bool v) { m_websocket = v;}
+
     template<class T>
     bool checkGetHeaderAs(const std::string& key, T& val, const T& def = T()) {
         return checkGetAs(m_headers, key, val, def);
@@ -330,6 +342,7 @@ private:
     HttpStatus m_status;    //状态码
     uint8_t m_version;      //版本
     bool m_close;           //连接状态 长短连接
+    bool m_websocket;       //是否为websocket
     std::string m_body;     //响应体
     std::string m_reason;   //描述
     MapType m_headers;      //响应头

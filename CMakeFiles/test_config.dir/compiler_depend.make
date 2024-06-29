@@ -900,6 +900,7 @@ CMakeFiles/test_config.dir/tests/test_config.cc.o: tests/test_config.cc \
   /usr/include/x86_64-linux-gnu/asm/unistd.h \
   /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
+  sylar/include/hash_util.h \
   sylar/include/singleton.h \
   sylar/include/mythread.h \
   sylar/include/noncopyable.h \
@@ -914,6 +915,8 @@ CMakeFiles/test_config.dir/tests/test_config.cc.o: tests/test_config.cc \
 sylar/include/noncopyable.h:
 
 sylar/include/mythread.h:
+
+sylar/include/hash_util.h:
 
 /usr/include/x86_64-linux-gnu/bits/syscall.h:
 

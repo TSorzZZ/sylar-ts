@@ -25,6 +25,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.22/Modules/Compiler/Clang-CXX.cmake"
   "/usr/share/cmake-3.22/Modules/Compiler/Clang.cmake"
   "/usr/share/cmake-3.22/Modules/Compiler/GNU.cmake"
+  "/usr/share/cmake-3.22/Modules/FindOpenSSL.cmake"
+  "/usr/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake"
+  "/usr/share/cmake-3.22/Modules/FindPackageMessage.cmake"
+  "/usr/share/cmake-3.22/Modules/FindPkgConfig.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-Clang-C.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-Clang-CXX.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-GNU-C.cmake"
@@ -69,4 +73,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/test_thread.dir/DependInfo.cmake"
   "CMakeFiles/test_uri.dir/DependInfo.cmake"
   "CMakeFiles/test_util.dir/DependInfo.cmake"
+  "CMakeFiles/test_ws_client.dir/DependInfo.cmake"
+  "CMakeFiles/test_ws_server.dir/DependInfo.cmake"
   )

@@ -62,8 +62,14 @@ bool CaseInsensitiveLess::operator () (const std::string& lhs, const std::string
 
 
 HttpRequest::HttpRequest(uint8_t version, bool close):m_method(HttpMethod::GET),
-                         m_version(version), m_close(close), m_path("/"){
+                         m_version(version), m_close(close), m_websocket(false),
+                         m_path("/"){
 
+}
+
+std::shared_ptr<HttpResponse> HttpRequest::createResponse() {
+    HttpResponse::ptr rsp(new HttpResponse(getVersion(),isClose()));
+    return rsp;
 }
 
 
@@ -160,9 +166,11 @@ std::ostream& HttpRequest::dump(std::ostream& os) const{
        << "."
        << ((uint32_t)(m_version & 0x0F))
        << "\r\n";
-    os << "connection: " << (m_close ? "close" : "keep-alive") << "\r\n";
+    if(!m_websocket) {
+        os << "connection: " << (m_close ? "close" : "keep-alive") << "\r\n";
+    }
     for(auto& i: m_headers){
-        if(strcasecmp(i.first.c_str(), "connection") == 0) continue;
+        if(!m_websocket && strcasecmp(i.first.c_str(), "connection") == 0) continue;
         os << i.first << ":" << i.second << "\r\n";
     }
 
@@ -179,7 +187,7 @@ std::ostream& HttpRequest::dump(std::ostream& os) const{
 
 
 HttpResponse::HttpResponse(uint8_t version, bool close):m_status(HttpStatus::OK),
-                          m_version(version), m_close(close){
+                          m_version(version), m_close(close), m_websocket(false){
 
 }
 
@@ -217,11 +225,13 @@ std::ostream& HttpResponse::dump(std::ostream& os) const{
        << "\r\n";
 
     for(auto& i: m_headers){
-        if(strcasecmp(i.first.c_str(), "connection") == 0)continue;
+        if(!m_websocket && strcasecmp(i.first.c_str(), "connection") == 0)continue;
         os << i.first << ": " << i.second << "\r\n";
     }
 
-    os << "connection: " << (m_close ? "close" : "keep-alive") << "\r\n";
+     if(!m_websocket) {
+        os << "connection: " << (m_close ? "close" : "keep-alive") << "\r\n";
+    }
 
     if(!m_body.empty()){
         os << "content-length: " << m_body.size() << "\r\n\r\n" << m_body;

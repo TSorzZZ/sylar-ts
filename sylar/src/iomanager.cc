@@ -337,7 +337,7 @@ IOManager* IOManager::GetThis(){
 //当io调度器空闲时，idle协程通过epoll_wait阻塞在管道的读描述符上，等管道的可读事件。
 //添加新任务时，tickle方法写管道，idle协程检测到管道可读后退出，调度器执行调度。
 void IOManager::tickle(){
-    if(hasIdleThreads()){       //todo
+    if(!hasIdleThreads()){       //todo
         return;
     }
     int ret = write(m_tickleFds[1], "T", 1);
@@ -401,7 +401,7 @@ void IOManager::idle(){
             epoll_event&  event = events[i];
             if(event.data.fd == m_tickleFds[0]){
                 uint8_t dummy[256];
-                while(read(m_tickleFds[0], dummy, 1) == 1); //et触发 所以要while
+                while(read(m_tickleFds[0], dummy, sizeof(dummy)) > 0); //et触发 所以要while
                 continue;
             }
 
@@ -434,11 +434,11 @@ void IOManager::idle(){
             }
 
             //触发当前事件 加入调度(执行))
-            if(real_events & READ){
+            if(fd_ctx->events & READ){
                 fd_ctx->triggerEvent(READ);
                 --m_pendingEventCount;
             }
-            if(real_events & WRITE){
+            if(fd_ctx->events & WRITE){
                 fd_ctx->triggerEvent(WRITE);
                 --m_pendingEventCount;
             }

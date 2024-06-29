@@ -32,13 +32,14 @@ TcpServer::~TcpServer(){
 }
 
 //根据地址创建好socket
-bool TcpServer::bind(sylar::Address::ptr addr){
+bool TcpServer::bind(sylar::Address::ptr addr, bool ssl){
     std::vector<Address::ptr> addrs, fails;
     addrs.push_back(addr);
-    return bind(addrs, fails);
+    return bind(addrs, fails, ssl);
 }
 
-bool TcpServer::bind(const std::vector<sylar::Address::ptr>& addrs, std::vector<sylar::Address::ptr>& fails){
+bool TcpServer::bind(const std::vector<sylar::Address::ptr>& addrs, 
+std::vector<sylar::Address::ptr>& fails, bool ssl){
     for(auto& addr: addrs){
         Socket::ptr sock = Socket::CreateTCP(addr);
         if(!sock->bind(addr)){

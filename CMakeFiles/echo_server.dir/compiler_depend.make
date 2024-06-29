@@ -254,6 +254,85 @@ CMakeFiles/echo_server.dir/examples/echo_server.cc.o: examples/echo_server.cc \
   /usr/include/c++/11/cstddef \
   sylar/include/sockett.h \
   sylar/include/noncopyable.h \
+  /usr/include/openssl/err.h \
+  /usr/include/openssl/macros.h \
+  /usr/include/x86_64-linux-gnu/openssl/opensslconf.h \
+  /usr/include/x86_64-linux-gnu/openssl/configuration.h \
+  /usr/include/openssl/opensslv.h \
+  /usr/include/openssl/e_os2.h \
+  /usr/include/c++/11/stdlib.h \
+  /usr/include/openssl/types.h \
+  /usr/lib/llvm-14/lib/clang/14.0.0/include/limits.h \
+  /usr/include/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+  /usr/include/openssl/safestack.h \
+  /usr/include/openssl/stack.h \
+  /usr/include/openssl/bio.h \
+  /usr/include/openssl/crypto.h \
+  /usr/include/openssl/cryptoerr.h \
+  /usr/include/openssl/symhacks.h \
+  /usr/include/openssl/cryptoerr_legacy.h \
+  /usr/include/openssl/core.h \
+  /usr/include/openssl/bioerr.h \
+  /usr/include/openssl/lhash.h \
+  /usr/include/openssl/ssl.h \
+  /usr/include/openssl/comp.h \
+  /usr/include/openssl/comperr.h \
+  /usr/include/openssl/x509.h \
+  /usr/include/openssl/buffer.h \
+  /usr/include/openssl/buffererr.h \
+  /usr/include/openssl/evp.h \
+  /usr/include/openssl/core_dispatch.h \
+  /usr/include/openssl/evperr.h \
+  /usr/include/openssl/params.h \
+  /usr/include/openssl/bn.h \
+  /usr/include/openssl/bnerr.h \
+  /usr/include/openssl/objects.h \
+  /usr/include/openssl/obj_mac.h \
+  /usr/include/openssl/asn1.h \
+  /usr/include/openssl/asn1err.h \
+  /usr/include/openssl/objectserr.h \
+  /usr/include/openssl/ec.h \
+  /usr/include/openssl/ecerr.h \
+  /usr/include/openssl/rsa.h \
+  /usr/include/openssl/rsaerr.h \
+  /usr/include/openssl/dsa.h \
+  /usr/include/openssl/dh.h \
+  /usr/include/openssl/dherr.h \
+  /usr/include/openssl/dsaerr.h \
+  /usr/include/openssl/sha.h \
+  /usr/include/openssl/x509err.h \
+  /usr/include/openssl/x509_vfy.h \
+  /usr/include/openssl/pkcs7.h \
+  /usr/include/openssl/pkcs7err.h \
+  /usr/include/openssl/ocsp.h \
+  /usr/include/openssl/http.h \
+  /usr/include/openssl/conf.h \
+  /usr/include/openssl/conferr.h \
+  /usr/include/openssl/conftypes.h \
+  /usr/include/openssl/x509v3.h \
+  /usr/include/openssl/x509v3err.h \
+  /usr/include/openssl/ocsperr.h \
+  /usr/include/openssl/pem.h \
+  /usr/include/openssl/pemerr.h \
+  /usr/include/openssl/hmac.h \
+  /usr/include/openssl/async.h \
+  /usr/include/openssl/asyncerr.h \
+  /usr/include/openssl/ct.h \
+  /usr/include/openssl/cterr.h \
+  /usr/include/openssl/sslerr.h \
+  /usr/include/openssl/sslerr_legacy.h \
+  /usr/include/openssl/prov_ssl.h \
+  /usr/include/openssl/ssl2.h \
+  /usr/include/openssl/ssl3.h \
+  /usr/include/openssl/tls1.h \
+  /usr/include/openssl/dtls1.h \
+  /usr/include/openssl/srtp.h \
   sylar/include/tcp_server.h \
   sylar/include/iomanager.h \
   sylar/include/fiber.h \
@@ -298,14 +377,15 @@ CMakeFiles/echo_server.dir/examples/echo_server.cc.o: examples/echo_server.cc \
   /usr/include/x86_64-linux-gnu/asm/unistd.h \
   /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
+  sylar/include/hash_util.h \
   sylar/include/singleton.h
 
 
 sylar/include/singleton.h:
 
-/usr/include/x86_64-linux-gnu/bits/syscall.h:
+sylar/include/hash_util.h:
 
-/usr/include/x86_64-linux-gnu/sys/syscall.h:
+/usr/include/x86_64-linux-gnu/bits/syscall.h:
 
 sylar/include/util.h:
 
@@ -315,10 +395,6 @@ sylar/include/util.h:
 
 /usr/include/c++/11/fstream:
 
-/usr/include/x86_64-linux-gnu/asm/unistd_64.h:
-
-/usr/include/c++/11/sstream:
-
 sylar/include/log.h:
 
 /usr/include/c++/11/bits/stl_multiset.h:
@@ -326,8 +402,6 @@ sylar/include/log.h:
 /usr/include/c++/11/bits/stl_set.h:
 
 /usr/include/c++/11/set:
-
-/usr/include/c++/11/bits/list.tcc:
 
 /usr/include/c++/11/bits/stl_list.h:
 
@@ -347,9 +421,123 @@ sylar/include/mythread.h:
 
 /usr/include/c++/11/unordered_map:
 
+/usr/include/x86_64-linux-gnu/sys/ucontext.h:
+
+sylar/include/scheduler.h:
+
+sylar/include/fiber.h:
+
+sylar/include/tcp_server.h:
+
+/usr/include/x86_64-linux-gnu/sys/syscall.h:
+
+/usr/include/openssl/srtp.h:
+
+/usr/include/openssl/ssl3.h:
+
+/usr/include/openssl/ssl2.h:
+
 /usr/include/x86_64-linux-gnu/bits/indirect-return.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/stack_t.h:
+/usr/include/openssl/prov_ssl.h:
+
+/usr/include/x86_64-linux-gnu/asm/unistd_64.h:
+
+/usr/include/c++/11/sstream:
+
+/usr/include/openssl/sslerr.h:
+
+/usr/include/openssl/async.h:
+
+/usr/include/openssl/hmac.h:
+
+/usr/include/openssl/pemerr.h:
+
+/usr/include/openssl/pem.h:
+
+/usr/include/openssl/x509v3.h:
+
+/usr/include/openssl/conferr.h:
+
+/usr/include/openssl/x509_vfy.h:
+
+/usr/include/openssl/x509err.h:
+
+/usr/include/openssl/dsaerr.h:
+
+/usr/include/openssl/dh.h:
+
+/usr/include/openssl/dsa.h:
+
+/usr/include/openssl/rsaerr.h:
+
+/usr/include/openssl/rsa.h:
+
+/usr/include/openssl/ec.h:
+
+/usr/include/c++/11/bits/list.tcc:
+
+/usr/include/openssl/asn1err.h:
+
+/usr/include/openssl/asn1.h:
+
+/usr/include/openssl/obj_mac.h:
+
+/usr/include/openssl/bn.h:
+
+/usr/include/openssl/params.h:
+
+/usr/include/openssl/evperr.h:
+
+/usr/include/openssl/evp.h:
+
+/usr/include/openssl/buffererr.h:
+
+/usr/include/openssl/buffer.h:
+
+/usr/include/openssl/x509v3err.h:
+
+/usr/include/openssl/http.h:
+
+/usr/include/openssl/objectserr.h:
+
+/usr/include/openssl/x509.h:
+
+/usr/include/openssl/comp.h:
+
+/usr/include/openssl/tls1.h:
+
+/usr/include/openssl/ssl.h:
+
+/usr/include/openssl/lhash.h:
+
+/usr/include/openssl/comperr.h:
+
+/usr/include/openssl/core.h:
+
+/usr/include/openssl/symhacks.h:
+
+/usr/include/openssl/bio.h:
+
+/usr/include/openssl/stack.h:
+
+/usr/include/openssl/safestack.h:
+
+/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/local_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/usr/include/openssl/conftypes.h:
+
+/usr/lib/llvm-14/lib/clang/14.0.0/include/limits.h:
+
+/usr/include/c++/11/stdlib.h:
+
+/usr/include/openssl/e_os2.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
@@ -359,17 +547,19 @@ sylar/include/mythread.h:
 
 /usr/include/c++/11/bits/stl_pair.h:
 
+/usr/include/openssl/ocsp.h:
+
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
+/usr/include/linux/limits.h:
+
 /usr/include/c++/11/bits/shared_ptr_base.h:
 
 /usr/include/c++/11/bits/basic_string.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
@@ -399,6 +589,8 @@ sylar/include/mythread.h:
 
 /usr/include/c++/11/bits/stringfwd.h:
 
+/usr/include/openssl/core_dispatch.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
@@ -419,6 +611,8 @@ sylar/include/mythread.h:
 
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
 
+/usr/include/openssl/ecerr.h:
+
 /usr/include/c++/11/cwchar:
 
 /usr/include/x86_64-linux-gnu/bits/sockaddr.h:
@@ -431,7 +625,11 @@ sylar/include/mythread.h:
 
 /usr/include/c++/11/bits/invoke.h:
 
+/usr/include/openssl/cryptoerr_legacy.h:
+
 /usr/include/c++/11/bits/string_view.tcc:
+
+/usr/include/openssl/bnerr.h:
 
 /usr/include/c++/11/bits/functional_hash.h:
 
@@ -481,6 +679,8 @@ sylar/include/noncopyable.h:
 
 /usr/include/c++/11/new:
 
+/usr/include/openssl/cterr.h:
+
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 
 /usr/include/c++/11/bits/stl_iterator.h:
@@ -509,6 +709,8 @@ sylar/include/noncopyable.h:
 
 /usr/include/c++/11/bits/stl_tree.h:
 
+/usr/include/openssl/objects.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
 /usr/include/x86_64-linux-gnu/asm/errno.h:
@@ -527,6 +729,8 @@ sylar/include/noncopyable.h:
 
 /usr/include/c++/11/bits/algorithmfwd.h:
 
+/usr/include/openssl/pkcs7.h:
+
 /usr/include/c++/11/pstl/execution_defs.h:
 
 /usr/include/c++/11/debug/assertions.h:
@@ -541,9 +745,7 @@ sylar/include/noncopyable.h:
 
 /usr/include/x86_64-linux-gnu/sys/single_threaded.h:
 
-sylar/include/scheduler.h:
-
-sylar/include/fiber.h:
+/usr/include/openssl/macros.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
@@ -571,6 +773,8 @@ sylar/include/fiber.h:
 
 /usr/include/c++/11/bits/move.h:
 
+/usr/include/openssl/conf.h:
+
 examples/echo_server.cc:
 
 /usr/include/c++/11/cstring:
@@ -586,6 +790,8 @@ examples/echo_server.cc:
 /usr/include/stdc-predef.h:
 
 /usr/include/c++/11/bits/fstream.tcc:
+
+/usr/include/openssl/dtls1.h:
 
 /usr/include/asm-generic/posix_types.h:
 
@@ -609,9 +815,13 @@ sylar/include/timer.h:
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
+/usr/include/openssl/ocsperr.h:
+
 /usr/include/c++/11/bits/unique_ptr.h:
 
 /usr/include/c++/11/ostream:
+
+/usr/include/limits.h:
 
 /usr/include/c++/11/bits/stl_relops.h:
 
@@ -624,6 +834,8 @@ sylar/include/timer.h:
 /usr/lib/llvm-14/lib/clang/14.0.0/include/stdint.h:
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
+
+/usr/include/openssl/opensslv.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
@@ -644,6 +856,8 @@ sylar/include/timer.h:
 /usr/include/c++/11/ext/alloc_traits.h:
 
 /usr/include/c++/11/bits/cxxabi_forced.h:
+
+/usr/include/openssl/types.h:
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
 
@@ -687,11 +901,11 @@ sylar/include/address.h:
 
 /usr/include/linux/errno.h:
 
-sylar/include/tcp_server.h:
-
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
 
 /usr/include/c++/11/exception:
+
+/usr/include/openssl/crypto.h:
 
 /usr/include/c++/11/ext/string_conversions.h:
 
@@ -700,6 +914,8 @@ sylar/include/tcp_server.h:
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
 
 /usr/include/c++/11/bits/atomic_lockfree_defines.h:
+
+/usr/include/openssl/dherr.h:
 
 /usr/include/c++/11/bits/char_traits.h:
 
@@ -715,6 +931,8 @@ sylar/include/tcp_server.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
 
+/usr/include/openssl/ct.h:
+
 /usr/include/c++/11/clocale:
 
 /usr/include/c++/11/bits/ostream.tcc:
@@ -727,9 +945,13 @@ sylar/include/tcp_server.h:
 
 /usr/include/ctype.h:
 
+/usr/include/openssl/sha.h:
+
 /usr/include/c++/11/bits/ios_base.h:
 
 /usr/include/c++/11/bits/locale_classes.h:
+
+/usr/include/x86_64-linux-gnu/bits/uio_lim.h:
 
 /usr/include/c++/11/string:
 
@@ -752,6 +974,8 @@ sylar/include/tcp_server.h:
 /usr/include/c++/11/ext/aligned_buffer.h:
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
+
+/usr/include/openssl/pkcs7err.h:
 
 /usr/include/alloca.h:
 
@@ -785,6 +1009,8 @@ sylar/include/tcp_server.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
 
+/usr/include/x86_64-linux-gnu/openssl/opensslconf.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
 /usr/include/asm-generic/errno.h:
@@ -809,6 +1035,10 @@ sylar/include/tcp_server.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
 
+sylar/include/iomanager.h:
+
+/usr/include/c++/11/stdexcept:
+
 /usr/include/c++/11/bits/uniform_int_dist.h:
 
 /usr/include/c++/11/bits/basic_ios.h:
@@ -831,11 +1061,15 @@ sylar/include/tcp_server.h:
 
 /usr/include/c++/11/bits/basic_ios.tcc:
 
+/usr/include/openssl/bioerr.h:
+
 /usr/include/asm-generic/sockios.h:
 
 /usr/include/c++/11/istream:
 
 /usr/include/c++/11/bits/istream.tcc:
+
+/usr/include/openssl/asyncerr.h:
 
 /usr/include/c++/11/bits/memoryfwd.h:
 
@@ -851,9 +1085,7 @@ sylar/include/tcp_server.h:
 
 /usr/include/linux/posix_types.h:
 
-/usr/include/c++/11/stdexcept:
-
-sylar/include/iomanager.h:
+/usr/include/openssl/cryptoerr.h:
 
 /usr/include/x86_64-linux-gnu/asm/posix_types.h:
 
@@ -895,4 +1127,12 @@ sylar/include/bytearray.h:
 
 sylar/include/sockett.h:
 
-/usr/include/x86_64-linux-gnu/sys/ucontext.h:
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
+
+/usr/include/openssl/err.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/stack_t.h:
+
+/usr/include/openssl/sslerr_legacy.h:
+
+/usr/include/x86_64-linux-gnu/openssl/configuration.h:

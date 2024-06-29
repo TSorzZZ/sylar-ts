@@ -97,6 +97,8 @@ bin/test_env: CMakeFiles/test_env.dir/tests/test_env.cc.o
 bin/test_env: CMakeFiles/test_env.dir/build.make
 bin/test_env: lib/libsylar.so
 bin/test_env: /usr/local/lib/libyaml-cpp.a
+bin/test_env: /usr/lib/x86_64-linux-gnu/libssl.so
+bin/test_env: /usr/lib/x86_64-linux-gnu/libcrypto.so
 bin/test_env: CMakeFiles/test_env.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ts/project/sylar-ts/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bin/test_env"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_env.dir/link.txt --verbose=$(VERBOSE)

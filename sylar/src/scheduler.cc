@@ -174,12 +174,12 @@ void Scheduler::run(){  //真正的调度方法
                 }
 
                 ft = *it;
-                m_fibers.erase(it);
+                m_fibers.erase(it++);
                 ++m_activeThreadCount;  //添加任务时数量就++   启动协程时再++会有问题
                 is_active = true;
                 break;
             }
-            
+            tickle_me |= it != m_fibers.end();
         }
 
         // 4、是否需要唤醒其他线程处理

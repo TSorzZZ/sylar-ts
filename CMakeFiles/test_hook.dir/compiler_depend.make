@@ -288,6 +288,7 @@ CMakeFiles/test_hook.dir/tests/test_hook.cc.o: tests/test_hook.cc \
   /usr/include/x86_64-linux-gnu/asm/unistd.h \
   /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
+  sylar/include/hash_util.h \
   sylar/include/singleton.h \
   /usr/include/arpa/inet.h \
   /usr/include/netinet/in.h \
@@ -304,6 +305,8 @@ CMakeFiles/test_hook.dir/tests/test_hook.cc.o: tests/test_hook.cc \
 /usr/include/arpa/inet.h:
 
 sylar/include/singleton.h:
+
+sylar/include/hash_util.h:
 
 /usr/include/x86_64-linux-gnu/bits/syscall.h:
 

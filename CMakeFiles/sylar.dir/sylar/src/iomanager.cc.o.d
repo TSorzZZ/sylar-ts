@@ -255,6 +255,7 @@ CMakeFiles/sylar.dir/sylar/src/iomanager.cc.o: \
   /usr/include/x86_64-linux-gnu/asm/unistd.h \
   /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
+  /home/ts/project/sylar-ts/sylar/include/hash_util.h \
   /home/ts/project/sylar-ts/sylar/include/singleton.h \
   /home/ts/project/sylar-ts/sylar/include/macro.h /usr/include/string.h \
   /usr/include/strings.h /usr/include/assert.h \

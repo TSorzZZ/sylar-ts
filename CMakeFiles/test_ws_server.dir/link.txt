@@ -1,0 +1,1 @@
+/usr/bin/c++  -rdynamic -O3 -ggdb -std=c++17 -Wall -Wno-deprecated  -rdynamic CMakeFiles/test_ws_server.dir/tests/test_ws_server.cc.o -o bin/test_ws_server   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib:/home/ts/project/sylar-ts/lib lib/libsylar.so -lpthread -ldl /usr/local/lib/libyaml-cpp.a -lssl -lcrypto 

@@ -857,6 +857,7 @@ CMakeFiles/test_http_parser.dir/tests/test_http_parser.cc.o: tests/test_http_par
   /usr/include/x86_64-linux-gnu/asm/unistd.h \
   /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
+  sylar/include/hash_util.h \
   sylar/include/singleton.h \
   sylar/include/mythread.h \
   sylar/include/noncopyable.h \
@@ -872,6 +873,8 @@ CMakeFiles/test_http_parser.dir/tests/test_http_parser.cc.o: tests/test_http_par
 sylar/include/noncopyable.h:
 
 sylar/include/mythread.h:
+
+sylar/include/hash_util.h:
 
 /usr/include/x86_64-linux-gnu/asm/unistd_64.h:
 

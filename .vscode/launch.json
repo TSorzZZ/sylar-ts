@@ -11,7 +11,7 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "${workspaceFolder}/bin/test_config",
+            "program": "${workspaceFolder}/bin/test_ws_server",
             "args": [],
             "cwd": "${workspaceFolder}"
         }

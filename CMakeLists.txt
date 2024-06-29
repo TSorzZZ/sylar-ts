@@ -8,6 +8,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # 导出编译命令，用于IDE或其他�
 set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O3 -ggdb -std=c++17 -Wall -Wno-deprecated ") # 设置C++编译器的标志，包括环境变量中的CXXFLAGS、优化级别、调试信息、C++标准、警告控制等
 
 # 指定头文件搜索路径
+include_directories(BEFORE ${PROJECT_SOURCE_DIR}/sylar/include/websocket) 
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/sylar/include/http) 
 include_directories(BEFORE ${PROJECT_SOURCE_DIR}/sylar/include) 
 include_directories(.) 
@@ -16,9 +17,16 @@ link_directories(/usr/local/lib)
 
 # 查找名为yaml-cpp的库，并将其路径存储在变量YAMLCPP中
 find_library(YAMLCPP yaml-cpp) 
+find_package(OpenSSL REQUIRED)
+if(OPENSSL_FOUND)
+    include_directories(${OPENSSL_INCLUDE_DIR})
+endif()
 
 # 递归查找所有源文件
-file(GLOB_RECURSE SRC_DIR_LIST ${PROJECT_SOURCE_DIR}/sylar/src/*.cc ${PROJECT_SOURCE_DIR}/sylar/src/*.cpp ${PROJECT_SOURCE_DIR}/sylar/src/http/*.cc)    
+file(GLOB_RECURSE SRC_DIR_LIST ${PROJECT_SOURCE_DIR}/sylar/src/*.cc 
+                               ${PROJECT_SOURCE_DIR}/sylar/src/*.cpp 
+                               ${PROJECT_SOURCE_DIR}/sylar/src/http/*.cc
+                               ${PROJECT_SOURCE_DIR}/sylar/src/websocket/*.cc)    
 
 # 调用 ragelmaker 函数来生成 .rl.cc 文件
 ragelmaker(sylar/include/http/http11_parser.rl SRC_DIR_LIST ${PROJECT_SOURCE_DIR}/sylar/src/http)
@@ -29,7 +37,7 @@ ragelmaker(sylar/include/uri.rl SRC_DIR_LIST ${PROJECT_SOURCE_DIR}/sylar/src)
 add_library(sylar SHARED ${SRC_DIR_LIST}) 
 # add_library(sylar STATIC ${SRC_DIR_LIST}) 
 
-set(LIB_LIB sylar pthread dl ${YAMLCPP})
+set(LIB_LIB sylar pthread dl ${YAMLCPP} ${OPENSSL_LIBRARIES})
 
 # 递归查找所有test源文件
 file(GLOB_RECURSE TEST_DIR_LIST ${PROJECT_SOURCE_DIR}/tests/*.cc 

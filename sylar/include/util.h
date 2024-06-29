@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <vector>
+#include "hash_util.h"
 
 namespace sylar {
 
